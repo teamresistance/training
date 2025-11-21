@@ -17,21 +17,6 @@ A **complete programming training system** for Team Resistance, including:
 
 Simply open `index.html` in your web browser. All pages are static HTML and work without any server or build process.
 
-**Option 1: Direct File Opening**
-```bash
-# Navigate to the repository folder
-cd /path/to/challenges
-
-# Open in your default browser (Mac/Linux)
-open index.html
-
-# Or on Windows
-start index.html
-```
-
-**Option 2: Drag and Drop**
-Drag the `index.html` file into any web browser window.
-
 ## Website Structure
 
 ```
@@ -58,12 +43,14 @@ challenges/
 ### Pages
 
 #### **Home (index.html)**
+
 - Welcome and overview
 - Quick stats
 - Links to all sections
 - Team philosophy
 
 #### **Challenges (challenges.html)**
+
 - All 6 core programming challenges
 - Detailed requirements
 - Success criteria
@@ -71,12 +58,14 @@ challenges/
 - Resource links
 
 #### **Mentor Guide (mentor-guide.html)**
+
 - Challenge-by-challenge teaching notes
 - Common student struggles
 - Debugging help
 - Assessment templates
 
 #### **Quick Reference (quick-reference.html)**
+
 - FRC programming essentials
 - PID tuning guide
 - Motor control basics
@@ -84,12 +73,14 @@ challenges/
 - Debugging checklists
 
 #### **Skills Progression (progression.html)**
+
 - Interactive visual roadmap
 - Animated challenge cards
 - Hover effects
 - Skills breakdown
 
 #### **Challenge Tracker (tracker.html)**
+
 - Printable progress sheet
 - Checkboxes for each challenge
 - Requirements checklist
@@ -107,59 +98,6 @@ challenges/
 | **6: Integration Project**    | ⭐⭐⭐⭐⭐ Advanced | Multi-subsystem, safety      |
 
 **Plus 4 bonus challenges** for advanced programmers!
-
-## Hosting Options
-
-### Option 1: GitHub Pages (Free)
-
-1. Create a GitHub repository
-2. Upload all files to the repository
-3. Enable GitHub Pages in repository settings
-4. Access at: `https://yourusername.github.io/repository-name`
-
-### Option 2: Team Server
-
-- Upload to your team's web server
-- Point a subdomain (e.g., `training.teamresistance.org`)
-- Ensure all files are uploaded
-
-### Option 3: USB Drive / Local Network
-
-- Copy folder to USB or network drive
-- Team members can open `index.html` directly in browsers
-- Works offline!
-
-## Customization
-
-### Updating Colors
-
-Edit `styles.css` and change the root variables:
-
-```css
-:root {
-  --resistance-green: #00ff41; /* Change your primary color */
-  --resistance-green-dark: #00cc33;
-  /* ... more colors */
-}
-```
-
-All colors update automatically throughout the site!
-
-### Updating Team Info
-
-Search and replace in all files:
-
-- Team number: "86" → your team number
-- City: "Jacksonville, FL" → your location
-- Year: "1996" → your founding year
-- "TEAM RESISTANCE" → your team name
-
-### Adding New Pages
-
-1. Copy the structure from any existing HTML file
-2. Update the `<title>` and content
-3. Add link to sidebar navigation in all files
-4. Use same header/footer/navigation structure
 
 ## Technical Details
 
