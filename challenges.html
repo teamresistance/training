@@ -54,19 +54,15 @@
     <main class="main-content">
         <div class="content-wrapper">
             <h1>Team Resistance #86 - Beginner Programming Challenges</h1>
-<h2 id="2025 Season Training Projects">2025 Season Training Projects</h2>
+<h2 id="training-projects">Training Projects</h2>
 
 <em>Going against the current since 1996!</em>
 
-<p>
----
-</p>
 
 <h2 id="Overview">Overview</h2>
 
 <p>
 Welcome to the Team Resistance programming sub-team! These challenges are designed to help new programmers build skills progressively while learning the FRC programming framework. Each challenge should be completed with an experienced programmer as a mentor/pair programmer.
-</p>
 
 <strong>Prerequisites:</strong>
 <ul>
@@ -76,9 +72,6 @@ Welcome to the Team Resistance programming sub-team! These challenges are design
 <li>Access to team repositories at https://github.com/teamresistance</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 1: Simple Motor Control">Challenge 1: Simple Motor Control</h2>
 <strong>Difficulty:</strong> ⭐ Beginner
@@ -86,7 +79,6 @@ Welcome to the Team Resistance programming sub-team! These challenges are design
 <h3>Objective</h3>
 <p>
 Create a simple program to control a single NEO motor using button inputs from a joystick.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -96,7 +88,6 @@ Create a simple program to control a single NEO motor using button inputs from a
 4. Run the motor backward when Button B is pressed (50% speed)
 5. Stop the motor when no buttons are pressed
 6. Add safety limits: motor should not exceed ±0.75 throttle
-</p>
 
 <h3>Hardware Setup</h3>
 <ul>
@@ -120,9 +111,6 @@ Create a simple program to control a single NEO motor using button inputs from a
 <li>No compiler warnings</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 2: Sensor Feedback & SmartDashboard">Challenge 2: Sensor Feedback & SmartDashboard</h2>
 <strong>Difficulty:</strong> ⭐⭐ Beginner-Intermediate
@@ -130,7 +118,6 @@ Create a simple program to control a single NEO motor using button inputs from a
 <h3>Objective</h3>
 <p>
 Extend Challenge 1 to display sensor data on SmartDashboard and add encoder-based position tracking.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -142,7 +129,6 @@ Extend Challenge 1 to display sensor data on SmartDashboard and add encoder-base
 - Applied voltage
 3. Add a "Zero Encoder" button (Button X) to reset position to 0
 4. Display whether motor is running forward, backward, or stopped
-</p>
 
 <h3>Additional Features</h3>
 <ul>
@@ -167,9 +153,6 @@ Extend Challenge 1 to display sensor data on SmartDashboard and add encoder-base
 <li>Clean, readable SmartDashboard layout</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 3: PID Position Control">Challenge 3: PID Position Control</h2>
 <strong>Difficulty:</strong> ⭐⭐⭐ Intermediate
@@ -177,7 +160,6 @@ Extend Challenge 1 to display sensor data on SmartDashboard and add encoder-base
 <h3>Objective</h3>
 <p>
 Implement PID control to accurately move a motor to specific positions. This builds directly on the 2018 Arm Project concept.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -192,7 +174,6 @@ Implement PID control to accurately move a motor to specific positions. This bui
 - Soft limits at ±15 rotations
 - Maximum velocity limit
 - Current limiting (40A)
-</p>
 
 <h3>Advanced Requirements</h3>
 <ul>
@@ -203,7 +184,6 @@ Implement PID control to accurately move a motor to specific positions. This bui
 - PID error value
 - PID output value
 - Is at setpoint? (within tolerance)
-</p>
 <ul>
 <li>Allow tuning PID values through SmartDashboard while robot is running</li>
 <li>Create a graph showing position over time using NetworkTables</li>
@@ -212,7 +192,6 @@ Implement PID control to accurately move a motor to specific positions. This bui
 <h3>Math Challenge</h3>
 <p>
 Create a function that converts arm angle (degrees) to motor rotations, accounting for:
-</p>
 <ul>
 <li>Gear ratio (assume 100:1)</li>
 <li>Starting position offset</li>
@@ -239,11 +218,7 @@ Create a function that converts arm angle (degrees) to motor rotations, accounti
 <h3>Reference</h3>
 <p>
 Use the 2018 Arm Project document as a guide. Consider using Team Resistance's PIDlab tool for simulation before deploying to hardware.
-</p>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 4: Subsystem Architecture">Challenge 4: Subsystem Architecture</h2>
 <strong>Difficulty:</strong> ⭐⭐⭐ Intermediate
@@ -251,7 +226,6 @@ Use the 2018 Arm Project document as a guide. Consider using Team Resistance's P
 <h3>Objective</h3>
 <p>
 Refactor your PID motor control into a proper Command-Based subsystem architecture.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -267,7 +241,6 @@ Refactor your PID motor control into a proper Command-Based subsystem architectu
 - <code>HoldPosition</code> - actively holds current position
 3. Bind commands to controller buttons properly
 4. Implement proper command scheduling and interruption
-</p>
 
 <h3>Advanced Requirements</h3>
 <ul>
@@ -277,7 +250,6 @@ Refactor your PID motor control into a proper Command-Based subsystem architectu
 <p>
 - Automatically chooses fastest path to setpoint
 - Implements motion profiling for smooth acceleration/deceleration
-</p>
 <ul>
 <li>Add LED indicators for elevator state (use simulated LEDs on SmartDashboard)</li>
 </ul>
@@ -300,9 +272,6 @@ Refactor your PID motor control into a proper Command-Based subsystem architectu
 <li>All functionality from Challenge 3 still works</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 5: Autonomous Routine">Challenge 5: Autonomous Routine</h2>
 <strong>Difficulty:</strong> ⭐⭐⭐⭐ Advanced
@@ -310,7 +279,6 @@ Refactor your PID motor control into a proper Command-Based subsystem architectu
 <h3>Objective</h3>
 <p>
 Create a timed autonomous routine that sequences multiple operations.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -326,7 +294,6 @@ Create a timed autonomous routine that sequences multiple operations.
 - "Fast Auto" - faster movements with motion profiling
 - "Test Auto" - small movements for testing
 4. Implement autonomous with proper timeout safety
-</p>
 
 <h3>Advanced Requirements</h3>
 <ul>
@@ -354,9 +321,6 @@ Create a timed autonomous routine that sequences multiple operations.
 <li>Comprehensive logging</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Challenge 6: Integration Project">Challenge 6: Integration Project</h2>
 <strong>Difficulty:</strong> ⭐⭐⭐⭐⭐ Advanced
@@ -364,7 +328,6 @@ Create a timed autonomous routine that sequences multiple operations.
 <h3>Objective</h3>
 <p>
 Integrate your elevator subsystem with another mechanism to create a coordinated system.
-</p>
 
 <h3>Requirements</h3>
 <p>
@@ -381,7 +344,6 @@ Integrate your elevator subsystem with another mechanism to create a coordinated
 - etc. (define safe operating zones)
 4. Create a state-based control system where robot remembers its "mode":
 - STOWED, INTAKING, SCORING_LOW, SCORING_HIGH, etc.
-</p>
 
 <h3>Advanced Requirements</h3>
 <ul>
@@ -410,16 +372,12 @@ Integrate your elevator subsystem with another mechanism to create a coordinated
 <li>Well-documented code with comments</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Bonus Challenges">Bonus Challenges</h2>
 
 <h3>Bonus 1: Simulation</h3>
 <p>
 Create a robot simulation that:
-</p>
 <ul>
 <li>Simulates your elevator mechanism in Physics Sim</li>
 <li>Shows realistic physics (gravity, momentum)</li>
@@ -429,7 +387,6 @@ Create a robot simulation that:
 <h3>Bonus 2: Vision Integration</h3>
 <p>
 Research and propose how you would:
-</p>
 <ul>
 <li>Use camera data to automatically position elevator</li>
 <li>Integrate with PhotonVision or Limelight</li>
@@ -439,7 +396,6 @@ Research and propose how you would:
 <h3>Bonus 3: Advanced Swerve</h3>
 <p>
 Study Team Resistance's Drive_Template repository:
-</p>
 <ul>
 <li>Document how swerve drive works</li>
 <li>Create a tutorial for new programmers</li>
@@ -449,7 +405,6 @@ Study Team Resistance's Drive_Template repository:
 <h3>Bonus 4: Contribute to PIDlab</h3>
 <p>
 Enhance Team Resistance's PIDlab tool:
-</p>
 <ul>
 <li>Add new features</li>
 <li>Fix bugs</li>
@@ -457,16 +412,12 @@ Enhance Team Resistance's PIDlab tool:
 <li>Submit a pull request to the team repository</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Assessment & Progression">Assessment & Progression</h2>
 
 <h3>Skill Levels</h3>
 <p>
 After completing challenges, programmers should be categorized as:
-</p>
 
 <strong>Level 1 (Challenges 1-2):</strong> Basic Controls
 <ul>
@@ -496,9 +447,6 @@ After completing challenges, programmers should be categorized as:
 <li>Can lead programming projects</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Resources">Resources</h2>
 
@@ -525,15 +473,11 @@ After completing challenges, programmers should be categorized as:
 <li>PID Control Explanation: https://www.youtube.com/watch?v=4Y7zG48uHRo</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2 id="Code Review Process">Code Review Process</h2>
 
 <p>
 All completed challenges must go through code review:
-</p>
 
 <p>
 1. <strong>Self-Review Checklist:</strong>
@@ -544,7 +488,6 @@ All completed challenges must go through code review:
 - [ ] Comments explain "why" not just "what"
 - [ ] No hardcoded values (use constants)
 - [ ] Tested on actual hardware (where applicable)
-</p>
 
 <p>
 2. <strong>Mentor Review:</strong>
@@ -552,7 +495,6 @@ All completed challenges must go through code review:
 - Discuss improvements and best practices
 - Identify learning opportunities
 - Approve or request changes
-</p>
 
 <p>
 3. <strong>Commit to Team Repository:</strong>
@@ -561,63 +503,45 @@ All completed challenges must go through code review:
 - Create pull request for review
 - Respond to feedback
 - Merge when approved
-</p>
 
-<p>
----
-</p>
 
 <h2 id="Tips for Success">Tips for Success</h2>
 
 <p>
 1. <strong>Start Simple:</strong> Don't skip ahead. Each challenge builds on the previous one.
-</p>
 
 <p>
 2. <strong>Test Incrementally:</strong> Don't write 100 lines then test. Write 10 lines, test, repeat.
-</p>
 
 <p>
 3. <strong>Use Version Control:</strong> Commit working code frequently. Use branches.
-</p>
 
 <p>
 4. <strong>Ask Questions:</strong> Your mentor is there to help! Don't struggle alone for hours.
-</p>
 
 <p>
 5. <strong>Read Team Code:</strong> Study how experienced team members solve similar problems.
-</p>
 
 <p>
 6. <strong>Safety First:</strong> Always implement safety limits before testing on hardware.
-</p>
 
 <p>
 7. <strong>Document Your Work:</strong> Write README files explaining your approach and what you learned.
-</p>
 
 <p>
 8. <strong>Pair Programming:</strong> Work alongside your mentor or another programmer whenever possible.
-</p>
 
 <p>
 9. <strong>Use Simulation:</strong> Test logic in simulation before deploying to robot.
-</p>
 
 <p>
 10. <strong>Learn from Failures:</strong> Robot broke? Code crashed? These are learning opportunities!
-</p>
+
+
+<h2 id="competition-expectations">Competition Expectations</h2>
 
 <p>
----
-</p>
-
-<h2 id="Competition Season Expectations">Competition Season Expectations</h2>
-
-<p>
-Once build season starts:
-</p>
+Once the build begins:
 <ul>
 <li>Beginners (Level 1-2) will work on: Driver Station interface, autonomous selectors, LED control, telemetry</li>
 <li>Intermediate (Level 2-3) will work on: Subsystem implementation, command creation, testing</li>
@@ -626,19 +550,15 @@ Once build season starts:
 
 <strong>Remember:</strong> Team Resistance has been competing since 1996. We have a legacy of excellence. Let's continue going against the current! 🌊⚡
 
-<p>
----
-</p>
 
 <em>Document created for FRC Team 86 - Team Resistance</em>
 <em>Jacksonville, FL</em>
-<em>Updated: 2025 Season</em>
 
         </div>
     </main>
 
     <footer class="site-footer">
-        <p>Team Resistance #86 • Jacksonville, FL • <span class="footer-highlight">2025 Season</span></p>
+        <p>Team Resistance #86 • Jacksonville, FL</p>
         <p style="margin-top: 10px;">🌊⚡ Going against the current! ⚡🌊</p>
     </footer>
 
