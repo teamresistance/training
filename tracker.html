@@ -3,26 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge Tracker - Team Resistance #86</title>
+    <title>Team Resistance #86 - Programming Challenge Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .tracker-page {
-            max-width: 900px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+            .site-header, .sidebar-nav, .site-footer {
+                display: none !important;
+            }
+            .main-content {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .page {
+                box-shadow: none !important;
+                padding: 30px !important;
+            }
+        }
+
+        .tracker-wrapper {
+            background: #f5f5f5;
+            min-height: calc(100vh - 200px);
+            padding: 40px 20px;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: 0 auto;
             background: white;
             padding: 50px;
-            border-radius: 10px;
-            color: #1a1a1a;
-        }
-        .tracker-page h1, .tracker-page h2 {
-            color: #1a1a1a;
-        }
-        .print-note {
-            background: #fffacd;
-            border: 2px dashed var(--resistance-green);
-            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             border-radius: 8px;
-            margin-top: 30px;
+        }
+
+        .header {
             text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid #00ff41;
+            padding-bottom: 30px;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: #00ff41;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #1a1a1a;
+            border: 4px solid #1a1a1a;
+        }
+
+        .team-header {
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 42px;
+            font-weight: bold;
+            color: #1a1a1a;
+            letter-spacing: 2px;
+        }
+
+        .team-motto {
+            color: #00cc33;
+            font-style: italic;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .info-section {
+            background: #f9f9f9;
+            border-left: 4px solid #00ff41;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 12px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #00cc33;
+            min-width: 150px;
+        }
+
+        .info-value {
+            flex: 1;
+            border-bottom: 2px solid #ddd;
+            min-height: 24px;
+        }
+
+        .challenges-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        .challenge-item {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-item:hover {
+            border-color: #00ff41;
+            box-shadow: 0 4px 12px rgba(0, 255, 65, 0.1);
+        }
+
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-large {
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            border: 3px solid #00ff41;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .checkbox-large:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .challenge-title-text {
+            flex: 1;
+        }
+
+        .challenge-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .challenge-diff {
+            font-size: 14px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .challenge-details {
+            margin-left: 50px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .checklist {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .checklist-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #00cc33;
+            margin-bottom: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .checkbox-small {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 2px solid #00ff41;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .signature-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .signature-box {
+            flex: 1;
+        }
+
+        .signature-label {
+            font-weight: bold;
+            color: #00cc33;
+            margin-bottom: 10px;
+        }
+
+        .signature-line {
+            border-bottom: 2px solid #1a1a1a;
+            height: 40px;
+        }
+
+        .date-line {
+            margin-top: 20px;
+        }
+
+        .tracker-footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .print-note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #fffacd;
+            border: 2px dashed #00cc33;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        @media print {
+            .print-note {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                padding: 30px 20px;
+            }
+
+            .team-name {
+                font-size: 32px;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+                font-size: 36px;
+            }
+
+            .signature-row {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -39,7 +315,7 @@
             <a href="index.html">Home</a>
             <a href="challenges.html">Challenges</a>
             <a href="quick-reference.html">Quick Ref</a>
-            <a href="tracker.html" class="active">Tracker</a>
+            <a href="progression.html">Skills Path</a>
         </nav>
         <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
     </header>
@@ -72,258 +348,256 @@
     </nav>
 
     <main class="main-content">
-        <div class="tracker-page">
-            
-    <div class="page">
-        <div class="header">
-            <div class="logo-row">
-                <div class="logo">86</div>
-                <div class="team-header">
-                    <div class="team-name">TEAM RESISTANCE</div>
-                    <div class="team-motto">Going against the current since 1996</div>
-                </div>
-            </div>
-            <div class="page-title">Programming Challenge Tracker</div>
-        </div>
-        
-        <div class="info-section">
-            <div class="info-row">
-                <div class="info-label">Programmer Name:</div>
-                <div class="info-value"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Mentor Name:</div>
-                <div class="info-value"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Start Date:</div>
-                <div class="info-value"></div>
-            </div>
-        </div>
-        
-        <div class="challenges-section">
-            <div class="section-title">Challenge Progression</div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 1: Simple Motor Control</div>
-                        <div class="challenge-diff">⭐ Beginner</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Control a NEO motor with Xbox controller button inputs. Learn motor controller initialization, reading inputs, and implementing safety limits.
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Motor responds to button inputs</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Safety limits implemented</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
+        <div class="tracker-wrapper">
+            <div class="page">
+                <div class="header">
+                    <div class="logo-row">
+                        <div class="logo">86</div>
+                        <div class="team-header">
+                            <div class="team-name">TEAM RESISTANCE</div>
+                            <div class="team-motto">Going against the current since 1996</div>
                         </div>
                     </div>
+                    <div class="page-title">Programming Challenge Tracker</div>
                 </div>
-            </div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 2: Sensor Feedback & SmartDashboard</div>
-                        <div class="challenge-diff">⭐⭐ Beginner-Intermediate</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Read encoder data and display telemetry on SmartDashboard. Learn to work with sensors and create debugging interfaces.
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Encoder data reading correctly</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>SmartDashboard displays all required data</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 3: PID Position Control</div>
-                        <div class="challenge-diff">⭐⭐⭐ Intermediate</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Implement PID control for accurate position movements. Master PID tuning and motion control.
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>PID controller implemented</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Successfully tuned (smooth motion, no oscillation)</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>All setpoints reach target accurately</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 4: Subsystem Architecture</div>
-                        <div class="challenge-diff">⭐⭐⭐ Intermediate</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Refactor code into Command-Based architecture. Learn subsystems, commands, and proper code structure.
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Subsystem class created properly</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>All commands working correctly</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Command scheduling implemented</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 5: Autonomous Routine</div>
-                        <div class="challenge-diff">⭐⭐⭐⭐ Advanced</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Create sequenced autonomous routines using command compositions. Build complex behaviors from simple parts.
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Full autonomous sequence completes</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Multiple auto modes selectable</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Timeout safety implemented</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="challenge-item">
-                <div class="challenge-header">
-                    <div class="checkbox-large"></div>
-                    <div class="challenge-title-text">
-                        <div class="challenge-name">Challenge 6: Integration Project</div>
-                        <div class="challenge-diff">⭐⭐⭐⭐⭐ Advanced</div>
-                    </div>
-                </div>
-                <div class="challenge-details">
-                    Coordinate multiple subsystems with safety interlocks. Create a complete competition-ready system!
-                    
-                    <div class="checklist">
-                        <div class="checklist-title">Requirements Completed:</div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Second subsystem integrated</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Coordinated commands working</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>All safety interlocks tested</div>
-                        </div>
-                        <div class="checklist-item">
-                            <div class="checkbox-small"></div>
-                            <div>Code reviewed and approved</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="signature-section">
-            <div class="section-title">Challenge Completion Certification</div>
-            <div class="signature-row">
-                <div class="signature-box">
-                    <div class="signature-label">Programmer Signature:</div>
-                    <div class="signature-line"></div>
-                </div>
-                <div class="signature-box">
-                    <div class="signature-label">Mentor Signature:</div>
-                    <div class="signature-line"></div>
-                </div>
-            </div>
-            <div class="signature-box date-line">
-                <div class="signature-label">Date Completed:</div>
-                <div class="signature-line"></div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            Team Resistance #86 • Jacksonville, FL<br>
-            🌊⚡ Going against the current! ⚡🌊
-        </div>
-        
-        <div class="print-note">
-            💡 <strong>Print this page</strong> and check off items as you complete them!<br>
-            Use this as your personal progress tracker throughout your programming journey.
-        </div>
-    </div>
 
+                <div class="info-section">
+                    <div class="info-row">
+                        <div class="info-label">Programmer Name:</div>
+                        <div class="info-value"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Mentor Name:</div>
+                        <div class="info-value"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Start Date:</div>
+                        <div class="info-value"></div>
+                    </div>
+                </div>
+
+                <div class="challenges-section">
+                    <div class="section-title">Challenge Progression</div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 1: Simple Motor Control</div>
+                                <div class="challenge-diff">⭐ Beginner</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Control a NEO motor with Xbox controller button inputs. Learn motor controller initialization, reading inputs, and implementing safety limits.
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Motor responds to button inputs</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Safety limits implemented</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 2: Sensor Feedback & SmartDashboard</div>
+                                <div class="challenge-diff">⭐⭐ Beginner-Intermediate</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Read encoder data and display telemetry on SmartDashboard. Learn to work with sensors and create debugging interfaces.
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Encoder data reading correctly</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>SmartDashboard displays all required data</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 3: PID Position Control</div>
+                                <div class="challenge-diff">⭐⭐⭐ Intermediate</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Implement PID control for accurate position movements. Master PID tuning and motion control.
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>PID controller implemented</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Successfully tuned (smooth motion, no oscillation)</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>All setpoints reach target accurately</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 4: Subsystem Architecture</div>
+                                <div class="challenge-diff">⭐⭐⭐ Intermediate</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Refactor code into Command-Based architecture. Learn subsystems, commands, and proper code structure.
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Subsystem class created properly</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>All commands working correctly</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Command scheduling implemented</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 5: Autonomous Routine</div>
+                                <div class="challenge-diff">⭐⭐⭐⭐ Advanced</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Create sequenced autonomous routines using command compositions. Build complex behaviors from simple parts.
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Full autonomous sequence completes</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Multiple auto modes selectable</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Timeout safety implemented</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-item">
+                        <div class="challenge-header">
+                            <div class="checkbox-large"></div>
+                            <div class="challenge-title-text">
+                                <div class="challenge-name">Challenge 6: Integration Project</div>
+                                <div class="challenge-diff">⭐⭐⭐⭐⭐ Advanced</div>
+                            </div>
+                        </div>
+                        <div class="challenge-details">
+                            Coordinate multiple subsystems with safety interlocks. Create a complete competition-ready system!
+
+                            <div class="checklist">
+                                <div class="checklist-title">Requirements Completed:</div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Second subsystem integrated</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Coordinated commands working</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>All safety interlocks tested</div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox-small"></div>
+                                    <div>Code reviewed and approved</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signature-section">
+                    <div class="section-title">Challenge Completion Certification</div>
+                    <div class="signature-row">
+                        <div class="signature-box">
+                            <div class="signature-label">Programmer Signature:</div>
+                            <div class="signature-line"></div>
+                        </div>
+                        <div class="signature-box">
+                            <div class="signature-label">Mentor Signature:</div>
+                            <div class="signature-line"></div>
+                        </div>
+                    </div>
+                    <div class="signature-box date-line">
+                        <div class="signature-label">Date Completed:</div>
+                        <div class="signature-line"></div>
+                    </div>
+                </div>
+
+                <div class="tracker-footer">
+                    Team Resistance #86 • Jacksonville, FL • 2025 Season<br>
+                    🌊⚡ Going against the current! ⚡🌊
+                </div>
+
+                <div class="print-note">
+                    💡 <strong>Print this page</strong> and check off items as you complete them!<br>
+                    Use this as your personal progress tracker throughout your programming journey.
+                </div>
+            </div>
         </div>
     </main>
 
