@@ -54,16 +54,13 @@
     <main class="main-content">
         <div class="content-wrapper">
             <h1>Team Resistance #86 - Programmer Quick Reference</h1>
-<h2>Essential FRC Programming Concepts - 2025 Season</h2>
+<h2>Essential FRC Programming Concepts</h2>
 
-<p>
----
-</p>
 
 <h2>Programming Progression Map</h2>
 
 <p>
-``<code>
+<pre><code>
 START HERE
 ↓
 [Challenge 1: Motor Control] ⭐
@@ -79,17 +76,13 @@ START HERE
 [Challenge 6: Integration] ⭐⭐⭐⭐⭐
 ↓
 READY FOR COMPETITION! 🏆
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>FRC Programming Fundamentals</h2>
 
 <h3>The Robot Loop</h3>
-</code>`<code>java
+java
 <p>
 robotInit()              // Runs ONCE when robot starts
 ↓
@@ -102,65 +95,54 @@ teleopExit()            // Runs ONCE when teleop ends
 disabledInit()          // Runs ONCE when disabled
 ↓
 disabledPeriodic() --→  // Runs REPEATEDLY while disabled
-</p>
-</code>`<code>
+
 
 <h3>Essential WPILib Classes</h3>
 
 <p>
 | Class | Purpose | Common Methods |
 |-------|---------|----------------|
-| </code>TimedRobot<code> | Base robot class | </code>robotInit()<code>, </code>teleopPeriodic()<code> |
-| </code>XboxController<code> | Read controller inputs | </code>getAButton()<code>, </code>getLeftY()<code> |
-| </code>CANSparkMax<code> | Control NEO motors | </code>set()<code>, </code>getEncoder()<code> |
-| </code>SmartDashboard<code> | Display data to drivers | </code>putNumber()<code>, </code>putBoolean()<code> |
-| </code>PIDController<code> | Position/speed control | </code>setSetpoint()<code>, </code>calculate()<code> |
-</p>
+| <code>TimedRobot</code> | Base robot class | <code>robotInit()</code>, <code>teleopPeriodic()</code> |
+| <code>XboxController</code> | Read controller inputs | <code>getAButton()</code>, <code>getLeftY()</code> |
+| <code>CANSparkMax</code> | Control NEO motors | <code>set()</code>, <code>getEncoder()</code> |
+| <code>SmartDashboard</code> | Display data to drivers | <code>putNumber()</code>, <code>putBoolean()</code> |
+| <code>PIDController</code> | Position/speed control | <code>setSetpoint()</code>, <code>calculate()</code> |
 
-<p>
----
-</p>
 
 <h2>Motor Control</h2>
 
 <h3>Basic Motor Commands</h3>
-</code>`<code>java
+java
 <p>
 // Create motor controller
 CANSparkMax motor = new CANSparkMax(CAN_ID, MotorType.kBrushless);
-</p>
 
 <p>
 // Set motor speed (-1.0 to 1.0)
 motor.set(0.5);        // 50% forward
 motor.set(-0.5);       // 50% reverse
 motor.set(0.0);        // Stop
-</p>
 
 <p>
 // Invert direction
 motor.setInverted(true);
-</p>
 
 <p>
 // Get encoder
 RelativeEncoder encoder = motor.getEncoder();
 double position = encoder.getPosition();  // Rotations
 double velocity = encoder.getVelocity();  // RPM
-</p>
-</code>`<code>
+
 
 <h3>Safety Practices ⚠️</h3>
-</code>`<code>java
+java
 <p>
 // ALWAYS restore factory defaults
 motor.restoreFactoryDefaults();
-</p>
 
 <p>
 // ALWAYS set current limits
 motor.setSmartCurrentLimit(40);  // 40 amp limit
-</p>
 
 <p>
 // ALWAYS stop motors when disabled
@@ -168,17 +150,13 @@ motor.setSmartCurrentLimit(40);  // 40 amp limit
 public void disabledInit() {
 motor.set(0);
 }
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>Controller Input</h2>
 
 <h3>Xbox Controller Button Map</h3>
-</code>`<code>
+
 <p>
 [LB]                    [RB]
 |                       |
@@ -187,7 +165,6 @@ motor.set(0);
 └──[Back] [Xbox] [Start]──┘
 │     │     │
 [View] [ X ] [Menu]
-</p>
 
 <p>
 [Y]
@@ -195,58 +172,47 @@ motor.set(0);
 [X]──┼──[B]
 │
 [A]
-</p>
 
 <p>
 D-Pad
 [Up][Down]
 [Left][Right]
-</p>
-</code>`<code>
+
 
 <h3>Reading Inputs</h3>
-</code>`<code>java
+java
 <p>
 XboxController controller = new XboxController(0);
-</p>
 
 <p>
 // Buttons (returns true/false)
 boolean aButton = controller.getAButton();
 boolean bButton = controller.getBButton();
 // ... X, Y, LeftBumper, RightBumper, etc.
-</p>
 
 <p>
 // Joysticks (returns -1.0 to 1.0)
 double leftY = controller.getLeftY();
 double rightX = controller.getRightX();
-</p>
 
 <p>
 // Triggers (returns 0.0 to 1.0)
 double leftTrigger = controller.getLeftTriggerAxis();
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>PID Control</h2>
 
 <h3>What is PID?</h3>
 <strong>P</strong>roportional + <strong>I</strong>ntegral + <strong>D</strong>erivative = Smooth, accurate control
 
-</code>`<code>
+
 <p>
 Error = Setpoint - Current Position
-</p>
 
 <p>
 Output = (kP × Error) + (kI × ∫Error) + (kD × dError/dt)
-</p>
-</code>`<code>
+
 
 <h3>What Each Term Does</h3>
 
@@ -256,10 +222,9 @@ Output = (kP × Error) + (kI × ∫Error) + (kD × dError/dt)
 | <strong>P</strong> (Proportional) | Push harder when farther away | Always start here |
 | <strong>I</strong> (Integral) | Fix steady-state error | Only if needed (careful!) |
 | <strong>D</strong> (Derivative) | Slow down as you approach | Reduces oscillation |
-</p>
 
 <h3>PID Tuning Process</h3>
-</code>`<code>
+
 <p>
 1. Set I and D to 0
 2. Increase P until oscillation starts
@@ -267,8 +232,7 @@ Output = (kP × Error) + (kI × ∫Error) + (kD × dError/dt)
 4. Add D to reduce oscillation
 5. Add small I only if steady-state error exists
 6. Test at different setpoints
-</p>
-</code>`<code>
+
 
 <h3>Common PID Problems</h3>
 
@@ -280,24 +244,19 @@ Output = (kP × Error) + (kI × ∫Error) + (kD × dError/dt)
 | Overshoots | Not enough damping | Increase kD |
 | Steady error | No integral term | Add small kI (0.0001 start) |
 | Slow/sluggish | P too conservative | Increase kP |
-</p>
 
-<p>
----
-</p>
 
 <h2>Command-Based Programming</h2>
 
 <h3>Architecture Overview</h3>
-</code>`<code>
+
 <p>
 RobotContainer
 ↓ creates
 Subsystems ←─── Commands
 ↓ own           ↓ use
 Hardware      Subsystem methods
-</p>
-</code>`<code>
+
 
 <h3>Key Concepts</h3>
 
@@ -314,41 +273,36 @@ Hardware      Subsystem methods
 <li>Uses subsystem methods</li>
 <li>Has lifecycle: initialize → execute → end</li>
 <li>Can be interrupted</li>
-<li>Example: </code>MoveToPosition<code></li>
+<li>Example: <code>MoveToPosition</code></li>
 </ul>
 
 <h3>Command Structure</h3>
-</code>`<code>java
+java
 <p>
 public class MyCommand extends Command {
-</p>
 
 <p>
 public MyCommand(MySubsystem subsystem) {
 addRequirements(subsystem);  // Claims the subsystem
 }
-</p>
 
 <p>
 @Override
 public void initialize() {
 // Runs ONCE when command starts
 }
-</p>
 
 <p>
 @Override
 public void execute() {
 // Runs REPEATEDLY while command runs
 }
-</p>
 
 <p>
 @Override
 public void end(boolean interrupted) {
 // Runs ONCE when command ends
 }
-</p>
 
 <p>
 @Override
@@ -357,12 +311,11 @@ public boolean isFinished() {
 return false;
 }
 }
-</p>
-</code>`<code>
+
 
 <h3>Command Compositions</h3>
 
-</code>`<code>java
+java
 <p>
 // Sequential: One after another
 new SequentialCommandGroup(
@@ -370,7 +323,6 @@ new MoveToPositionA(),
 new WaitCommand(1.0),
 new MoveToPositionB()
 );
-</p>
 
 <p>
 // Parallel: At the same time
@@ -378,7 +330,6 @@ new ParallelCommandGroup(
 new MoveElevator(),
 new MoveIntake()
 );
-</p>
 
 <p>
 // Race: First to finish ends all
@@ -386,97 +337,75 @@ new ParallelRaceGroup(
 new MoveUntilDone(),
 new WaitCommand(3.0)  // 3 second timeout
 );
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>SmartDashboard & Telemetry</h2>
 
 <h3>Sending Data to Dashboard</h3>
-</code>`<code>java
+java
 <p>
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-</p>
 
 <p>
 // Numbers
 SmartDashboard.putNumber("Motor Speed", motor.get());
 SmartDashboard.putNumber("Position", encoder.getPosition());
-</p>
 
 <p>
 // Boolean
 SmartDashboard.putBoolean("At Setpoint", atSetpoint);
-</p>
 
 <p>
 // Strings
 SmartDashboard.putString("Status", "Moving");
-</p>
 
 <p>
 // Reading back (for tuning)
 double kP = SmartDashboard.getNumber("kP", 0.1);  // default 0.1
-</p>
-</code>`<code>
+
 
 <h3>NetworkTables Hierarchy</h3>
-</code>`<code>
+
 <p>
 Robot (roboRIO)
 ↓ NetworkTables
 Driver Station Computer
 ↓ displays in
 SmartDashboard / Shuffleboard / Glass
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>Common Math Operations</h2>
 
-</code>`<code>java
+java
 <p>
 // Clamp value between min and max
 double clamped = Math.max(MIN, Math.min(MAX, value));
-</p>
 
 <p>
 // Absolute value
 double positive = Math.abs(value);
-</p>
 
 <p>
 // Convert degrees to radians
 double radians = Math.toRadians(degrees);
-</p>
 
 <p>
 // Convert rotations to degrees (encoder)
 double degrees = rotations * 360.0;
-</p>
 
 <p>
 // Apply deadband (ignore small joystick movements)
 if (Math.abs(joystick) < 0.1) {
 joystick = 0;
 }
-</p>
 
 <p>
 // Scale input (e.g., gear ratio)
 double outputPosition = motorPosition * GEAR_RATIO;
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>Units Conversions</h2>
 
@@ -491,20 +420,15 @@ double outputPosition = motorPosition * GEAR_RATIO;
 | Time | Seconds | - |
 | Voltage | Volts | Battery: ~12V |
 | Current | Amps | Typical limit: 40A |
-</p>
 
 <h3>Gear Ratio Math</h3>
-</code>`<code>java
+java
 <p>
 // If motor has 50:1 gear ratio
 double OUTPUT_ROTATIONS = MOTOR_ROTATIONS / 50.0;
 double MOTOR_ROTATIONS = OUTPUT_ROTATIONS * 50.0;
-</p>
-</code>`<code>
 
-<p>
----
-</p>
+
 
 <h2>Debugging Checklist</h2>
 
@@ -550,66 +474,50 @@ double MOTOR_ROTATIONS = OUTPUT_ROTATIONS * 50.0;
 <li>[ ] Did you zero the sensor?</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2>Keyboard Shortcuts (VS Code)</h2>
 
 <p>
 | Shortcut | Action |
 |----------|--------|
-| </code>Ctrl+Shift+P<code> | Command Palette (WPILib menu) |
-| </code>F5<code> | Start debugging/simulation |
-| </code>Ctrl+Shift+B<code> | Build project |
+| <code>Ctrl+Shift+P</code> | Command Palette (WPILib menu) |
+| <code>F5</code> | Start debugging/simulation |
+| <code>Ctrl+Shift+B</code> | Build project |
 | </code>Ctrl+/<code> | Comment/uncomment line |
-| </code>Ctrl+F<code> | Find in file |
-| </code>Ctrl+H<code> | Find and replace |
-| </code>Ctrl+Space<code> | Auto-complete |
-</p>
+| <code>Ctrl+F</code> | Find in file |
+| <code>Ctrl+H</code> | Find and replace |
+| <code>Ctrl+Space</code> | Auto-complete |
 
-<p>
----
-</p>
 
 <h2>Git Basics</h2>
 
-</code>`<code>bash
+bash
 <h1>See what changed</h1>
 <p>
 git status
-</p>
 
 <h1>Save changes locally</h1>
 <p>
 git add .
 git commit -m "Completed Challenge 1"
-</p>
 
 <h1>Push to GitHub</h1>
 <p>
 git push
-</p>
 
 <h1>Get latest code</h1>
 <p>
 git pull
-</p>
 
 <h1>Create new branch</h1>
 <p>
 git checkout -b yourname-challenge1
-</p>
 
 <h1>Switch branches</h1>
 <p>
 git checkout main
-</p>
-</code>``
+</code></pre>
 
-<p>
----
-</p>
 
 <h2>Team Resources</h2>
 
@@ -634,9 +542,6 @@ git checkout main
 <li>Mentor: [Your mentor's name]</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2>Success Tips</h2>
 
@@ -662,35 +567,25 @@ git checkout main
 <li>❌ Give up when stuck</li>
 </ul>
 
-<p>
----
-</p>
 
 <h2>Competition Readiness Levels</h2>
 
 <strong>Level 1</strong> (Challenges 1-2)
 <p>
 → Can help with basic tasks, needs guidance
-</p>
 
 <strong>Level 2</strong> (Challenges 3-4)
 <p>
 → Can implement subsystems independently
-</p>
 
 <strong>Level 3</strong> (Challenges 5-6)
 <p>
 → Can design systems and mentor others
-</p>
 
 <strong>Level 4</strong> (Bonus challenges)
 <p>
 → Ready to lead programming projects
-</p>
 
-<p>
----
-</p>
 
 <h2>Remember</h2>
 
@@ -700,23 +595,19 @@ git checkout main
 > "It's not about being the best, it's about being better than you were yesterday."
 >
 > "Going against the current!" 🌊⚡
-</p>
 
 <strong>Team Resistance has been competing since 1996.</strong>
 <strong>You are part of that legacy. Make us proud!</strong>
 
-<p>
----
-</p>
 
-<em>Quick Reference - Team 86 - Jacksonville, FL - 2025 Season</em>
+<em>Quick Reference - Team 86 - Jacksonville, FL</em>
 <em>Questions? Ask your mentor!</em>
 
         </div>
     </main>
 
     <footer class="site-footer">
-        <p>Team Resistance #86 • Jacksonville, FL • <span class="footer-highlight">2025 Season</span></p>
+        <p>Team Resistance #86 • Jacksonville, FL</p>
         <p style="margin-top: 10px;">🌊⚡ Going against the current! ⚡🌊</p>
     </footer>
 

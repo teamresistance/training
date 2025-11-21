@@ -1,42 +1,41 @@
 # Team Resistance #86 - Programming Training Website
 
-A complete training website for new programmers featuring all documentation, visual tools, and resources.
+A complete static HTML training website for new programmers featuring all documentation, visual tools, and resources.
 
----
+## Overview
 
-## 🌊⚡ Quick Start
+A **complete programming training system** for Team Resistance, including:
 
-### View the Website Locally
+- Full website with all materials
+- Skill-based curriculum (no time constraints)
+- Team Resistance branded throughout (green theme)
+- Ready to deploy and use immediately
 
-**Option 1: Python (Recommended)**
+## Quick Start
 
+### Viewing the Website
+
+Simply open `index.html` in your web browser. All pages are static HTML and work without any server or build process.
+
+**Option 1: Direct File Opening**
 ```bash
-# Navigate to the website folder
-cd website
+# Navigate to the repository folder
+cd /path/to/challenges
 
-# Start a local web server (Python 3)
-python3 -m http.server 8000
+# Open in your default browser (Mac/Linux)
+open index.html
 
-# Open your browser to:
-# http://localhost:8000
+# Or on Windows
+start index.html
 ```
 
-**Option 2: Using launch scripts**
+**Option 2: Drag and Drop**
+Drag the `index.html` file into any web browser window.
 
-```bash
-# On Windows:
-double-click launch_server.bat
-
-# On Mac/Linux:
-./launch_server.sh
-```
-
----
-
-## 📁 Website Structure
+## Website Structure
 
 ```
-website/
+challenges/
 ├── index.html              # Home page
 ├── challenges.html         # All 6 programming challenges
 ├── mentor-guide.html       # Guide for mentors
@@ -44,13 +43,10 @@ website/
 ├── progression.html        # Visual skills progression
 ├── tracker.html            # Printable challenge tracker
 ├── styles.css              # Centralized Team Resistance styling
-├── README.md               # This file
-└── launch_server.*         # Helper scripts to start local server
+└── README.md               # This file
 ```
 
----
-
-## 🎨 Features
+## Features
 
 ### Consistent Navigation
 
@@ -62,55 +58,62 @@ website/
 ### Pages
 
 #### **Home (index.html)**
-
 - Welcome and overview
 - Quick stats
 - Links to all sections
 - Team philosophy
 
 #### **Challenges (challenges.html)**
-
 - All 6 core programming challenges
 - Detailed requirements
 - Success criteria
+- Learning goals
 - Resource links
 
 #### **Mentor Guide (mentor-guide.html)**
-
 - Challenge-by-challenge teaching notes
 - Common student struggles
 - Debugging help
 - Assessment templates
 
 #### **Quick Reference (quick-reference.html)**
-
 - FRC programming essentials
 - PID tuning guide
-- Common debugging scenarios
-- Code snippets
+- Motor control basics
+- Command-based architecture
+- Debugging checklists
 
 #### **Skills Progression (progression.html)**
-
 - Interactive visual roadmap
 - Animated challenge cards
 - Hover effects
 - Skills breakdown
 
 #### **Challenge Tracker (tracker.html)**
-
 - Printable progress sheet
 - Checkboxes for each challenge
 - Requirements checklist
 - Signature section
 
----
+## Challenge Overview
 
-## 🚀 Hosting Options
+| Challenge                     | Difficulty          | Skills                       |
+| ----------------------------- | ------------------- | ---------------------------- |
+| **1: Motor Control**          | ⭐ Beginner         | Basic control, safety limits |
+| **2: Sensors & Telemetry**    | ⭐⭐ Beginner-Int   | Encoders, SmartDashboard     |
+| **3: PID Control**            | ⭐⭐⭐ Intermediate | PID tuning, motion control   |
+| **4: Subsystem Architecture** | ⭐⭐⭐ Intermediate | Commands, subsystems         |
+| **5: Autonomous Routine**     | ⭐⭐⭐⭐ Advanced   | Command groups, sequencing   |
+| **6: Integration Project**    | ⭐⭐⭐⭐⭐ Advanced | Multi-subsystem, safety      |
+
+**Plus 4 bonus challenges** for advanced programmers!
+
+## Hosting Options
 
 ### Option 1: GitHub Pages (Free)
 
 1. Create a GitHub repository
-2. Upload the `website` folder contents
+2. Upload all files to the repository
 3. Enable GitHub Pages in repository settings
 4. Access at: `https://yourusername.github.io/repository-name`
 
@@ -122,13 +125,11 @@ website/
 
 ### Option 3: USB Drive / Local Network
 
-- Copy `website` folder to USB or network drive
+- Copy folder to USB or network drive
 - Team members can open `index.html` directly in browsers
 - Works offline!
 
----
-
-## 💡 Customization
+## Customization
 
 ### Updating Colors
 
@@ -142,68 +143,25 @@ Edit `styles.css` and change the root variables:
 }
 ```
 
-### Adding Content
-
-- Markdown files in `/mnt/user-data/outputs/` can be converted to HTML
-- Follow the same template structure
-- Add navigation links to all pages
+All colors update automatically throughout the site!
 
 ### Updating Team Info
 
-Search and replace:
+Search and replace in all files:
 
 - Team number: "86" → your team number
 - City: "Jacksonville, FL" → your location
-- Year: "2025" → current season
+- Year: "1996" → your founding year
+- "TEAM RESISTANCE" → your team name
 
----
+### Adding New Pages
 
-## 📱 Mobile Support
+1. Copy the structure from any existing HTML file
+2. Update the `<title>` and content
+3. Add link to sidebar navigation in all files
+4. Use same header/footer/navigation structure
 
-The website is fully responsive:
-
-- **Desktop**: Full sidebar + header navigation
-- **Tablet**: Collapsible sidebar
-- **Mobile**: Hamburger menu (☰)
-
----
-
-## 🎓 For Programming Leads
-
-### Before Launching
-
-- [ ] Review all content for accuracy
-- [ ] Update team-specific links
-- [ ] Test on different devices
-- [ ] Print the tracker page for distribution
-
-### During Onboarding
-
-1. Show new members the home page
-2. Walk through the progression visual
-3. Give them the tracker (print or digital)
-4. Assign Challenge 1
-
-### Maintenance
-
-- Update challenge completion stats
-- Add team success stories
-- Link to new GitHub repositories
-- Update for each season
-
----
-
-## 🔗 External Resources Linked
-
-- [Team GitHub](https://github.com/teamresistance)
-- [The Blue Alliance](https://www.thebluealliance.com/team/86)
-- [WPILib Documentation](https://docs.wpilib.org)
-- [REV Robotics Docs](https://docs.revrobotics.com)
-- [Chief Delphi Forums](https://www.chiefdelphi.com)
-
----
-
-## ⚙️ Technical Details
+## Technical Details
 
 **Built With:**
 
@@ -226,33 +184,59 @@ The website is fully responsive:
 - No external libraries
 - Works offline
 
----
+## Training Philosophy
 
-## 📝 License & Usage
+### Key Principles
+
+1. **Skill-Based** - No arbitrary timelines
+2. **Hands-On** - Real robot hardware
+3. **Mentorship** - 1:1 support
+4. **Competition-Ready** - Directly applicable
+
+### For New Programmers
+
+1. Start at home page
+2. View progression path
+3. Print challenge tracker
+4. Bookmark quick reference
+5. Work through challenges page
+
+### For Mentors
+
+1. Review mentor guide first
+2. Use during mentoring sessions
+3. Reference common struggles section
+4. Use assessment templates
+
+### For Team Leads
+
+1. Display on monitors during recruitment
+2. Send link to new members
+3. Use in presentations
+4. Track team progress
+
+## External Resources
+
+- [Team GitHub](https://github.com/teamresistance)
+- [The Blue Alliance](https://www.thebluealliance.com/team/86)
+- [WPILib Documentation](https://docs.wpilib.org)
+- [REV Robotics Docs](https://docs.revrobotics.com)
+- [Chief Delphi Forums](https://www.chiefdelphi.com)
+
+## Team Resistance
+
+**FRC Team #86**
+Jacksonville, Florida
+**Going against the current since 1996!**
+
+This training system represents nearly 30 years of robotics programming excellence. Use it to train the next generation of programmers who will carry on the legacy.
+
+## License
 
 Created for FRC Team 86 - Team Resistance
 Free to use and modify for educational purposes
-Attribution appreciated but not required
+Share with other FRC teams!
 
 ---
 
-## 🤝 Contributing
-
-To add new content:
-
-1. Create markdown files following existing format
-2. Convert to HTML using the template structure
-3. Add navigation links
-4. Test responsiveness
-
----
-
-## 🌊⚡ Team Resistance
-
-**FRC #86**  
-Jacksonville, Florida  
-Going against the current since 1996!
-
----
-
-_Need help? Contact your programming sub-team lead._
+_Questions or issues? Contact your programming sub-team lead._
