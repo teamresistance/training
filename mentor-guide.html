@@ -89,7 +89,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <ul>
 <li>Understanding CAN IDs and device initialization</li>
 <li>Controller button mapping confusion</li>
-<li>Not understanding the loop structure (iterativeInit vs. iterativePeriodic)</li>
+<li>Not understanding the loop structure</li>
 </ul>
 
 <strong>Key Teaching Points:</strong>
@@ -127,7 +127,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <ul>
 <li>Draw a diagram showing Robot → NetworkTables → SmartDashboard → Driver Station</li>
 <li>Explain sensor fusion concepts at a high level</li>
-<li>Show them how to use Glass and AdvantageScope as alternatives</li>
+<li>Show them how to use Elastic and AdvantageScope as alternatives</li>
 </ul>
 
 <strong>Mentor Tips:</strong>
@@ -147,18 +147,17 @@ This guide helps experienced programmers effectively mentor beginners through th
 <strong>Red Flags:</strong>
 <ul>
 <li>Not checking if values make sense (e.g., motor at 10000 RPM)</li>
-<li>Updating SmartDashboard too frequently (performance issues)</li>
-<li>Not labeling values clearly</li>
+<li>Not labeling logged telemetry properly</li>
 </ul>
 
 
 <h3>Challenge 3: PID Position Control</h3>
-<strong>NOTE:</strong> This is where many beginners struggle. Be extra available.
+<strong>NOTE:</strong> This is where many beginners struggle. Be available.
 
 <strong>Pre-Challenge Prep:</strong>
 <ul>
 <li>Review PID theory together (recommend watching a video first)</li>
-<li>Have them use the team's PIDlab tool to experiment</li>
+<li>Have them use the team's PIDlab tool to experiment and possibly to get a semi-useful baseline</li>
 <li>Discuss real-world examples (cruise control, thermostat)</li>
 </ul>
 
@@ -169,6 +168,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>Integral windup</li>
 <li>Derivative kick</li>
 <li>Confusion about error sign</li>
+<li>Oscillation from D or P being incorrectly tuned</li>
 </ul>
 
 <strong>Key Teaching Points:</strong>
@@ -182,14 +182,15 @@ This guide helps experienced programmers effectively mentor beginners through th
 - D: "Slowing down as you approach target"
 <ul>
 <li>Show them oscillation, overshoot, undershoot</li>
-<li>Teach systematic tuning: P → D → I (not I!)</li>
+<li>Teach systematic tuning: P → D → I</li>
+<li>Teach that terms may sometimes not be needed, especailly I</li>
 </ul>
 
 <strong>Mentor Tips:</strong>
 <ul>
 <li>Have them graph the response in NetworkTables/AdvantageScope</li>
 <li>Start with small movements (1-2 rotations)</li>
-<li>Use the PIDlab simulation extensively before hardware</li>
+<li>Use the PIDlab simulation to get a safe base for values</li>
 <li>Teach them to recognize oscillation patterns</li>
 </ul>
 
@@ -215,7 +216,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>Using huge P values (>1.0) without understanding</li>
 <li>Enabling I term before P and D are tuned</li>
 <li>Not implementing safety limits</li>
-<li>Tuning on hardware without simulation first</li>
+<li>Tuning on hardware without review or simulating some output</li>
 </ul>
 
 <strong>Advanced Discussion Topics:</strong>
@@ -223,17 +224,19 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>Why use PID instead of bang-bang control?</li>
 <li>Trade-offs: speed vs smoothness vs accuracy</li>
 <li>When is PID not the right solution?</li>
+<li>Feedforward? When to use it kF?</li>
 </ul>
 
 
-<h3>Challenge 4: Subsystem Architecture  </h3>
+<h3>Challenge 4: Abstract Subsystem Architecture  </h3>
 
 <strong>Common Struggles:</strong>
 <ul>
 <li>Understanding the command-based paradigm</li>
-<li>When to use <code>requires()</code> vs when not to</li>
+<li>When to use <code>addRequirements()</code> vs when not to</li>
+<li>Confusion on how the abstract IO class and its implementations work</li>
 <li>Command scheduling lifecycle</li>
-<li>Default commands vs button commands</li>
+<li>Default commands vs triggered commands</li>
 </ul>
 
 <strong>Key Teaching Points:</strong>
@@ -242,6 +245,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>Explain inversion of control: "Commands call subsystem methods"</li>
 <li>Walk through command lifecycle: initialize → execute → end → isFinished</li>
 <li>Discuss why this architecture scales better than monolithic code</li>
+<li>Provide examples on how it can be used to sequence code efficiently</li>
 </ul>
 
 <strong>Mentor Tips:</strong>
@@ -249,6 +253,8 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>Have them trace execution flow on paper</li>
 <li>Show them actual team competition code structure</li>
 <li>Emphasize: Subsystems own hardware, Commands own behavior</li>
+<li>Explain what goes in subsystems and what should stay in a command</li>
+<li>Provide examples of where to use command compositions and where to create a file for your command</li>
 <li>Review team coding standards for file organization</li>
 </ul>
 
@@ -263,6 +269,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <strong>Red Flags:</strong>
 <ul>
 <li>Putting business logic in subsystems instead of commands</li>
+<li>Thread-sleeping using any other method than a WaitCommand sequence</li>
 <li>Creating dependencies between subsystems</li>
 <li>Not using default commands appropriately</li>
 <li>Overcomplicated command structures</li>
@@ -306,6 +313,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <ul>
 <li>Path planning basics</li>
 <li>Using triggers and events in PathPlanner</li>
+<li>Consider using non-preplanned paths depending on the situation, is it more efficient?</li>
 <li>Telemetry during auto for debugging</li>
 </ul>
 
@@ -324,17 +332,15 @@ This guide helps experienced programmers effectively mentor beginners through th
 <strong>Common Struggles:</strong>
 <ul>
 <li>Coordinating multiple subsystems safely</li>
-<li>State machine complexity</li>
-<li>Race conditions</li>
 <li>Not thinking through all state transitions</li>
+<li>Understanding the difference between what works theoretically and in reality</li>
 </ul>
 
 <strong>Key Teaching Points:</strong>
 <ul>
-<li>Draw state machine diagrams on whiteboard</li>
 <li>Discuss real-world examples from team's competition robots</li>
 <li>Teach defensive interlocks: "What could go wrong?"</li>
-<li>Emphasize testing: "Test every state transition"</li>
+<li>Emphasize testing: "Test every possible sequence of code to ensure it doesn't break"</li>
 </ul>
 
 <strong>Mentor Tips:</strong>
@@ -349,7 +355,7 @@ This guide helps experienced programmers effectively mentor beginners through th
 <ul>
 <li>Show a real 2-mechanism coordination from competition code</li>
 <li>Demonstrate what happens when interlocks aren't implemented</li>
-<li>Walk through the team's competition robot state machine</li>
+<li>Walk through previous year's integration</li>
 </ul>
 
 <strong>Assessment Questions:</strong>
@@ -357,15 +363,16 @@ This guide helps experienced programmers effectively mentor beginners through th
 <li>"What happens if the elevator stalls?"</li>
 <li>"What if robot loses power mid-movement?"</li>
 <li>"How do you test this safely?"</li>
-<li>"Why did you choose this state machine design?"</li>
+<li>"Why did you choose this sequence of operations?"</li>
+<li>"Is there a more efficient way to do this?"</li>
 </ul>
 
 <strong>Red Flags:</strong>
 <ul>
-<li>Not drawing out state machine first</li>
-<li>Missing state transitions</li>
+<li>Not planning out how subsystems will interact</li>
 <li>No safety interlocks</li>
 <li>Can't explain their own code</li>
+<li>Unsure where commands lead to other commands</li>
 </ul>
 
 
@@ -479,11 +486,12 @@ Help students understand where they fit in competition season based on their ski
 
 <strong>Advanced Roles (Levels 3-4):</strong>
 <ul>
-<li>Drive system</li>
+<li>Understainding the drive system</li>
 <li>Vision integration</li>
 <li>System architecture</li>
 <li>Code review leadership</li>
-<li>Mentoring Level 1 programmers</li>
+<li>Mentoring Level 1-3 programmers</li>
+<li>Creating actual sim logic</li>
 </ul>
 
 <h3>Setting Expectations</h3>
@@ -491,7 +499,7 @@ Help students understand where they fit in competition season based on their ski
 <li>Competition code has higher quality standards</li>
 <li>Multiple people editing same codebase</li>
 <li>Deadlines are real (competition dates fixed!)</li>
-<li>Not everyone gets to work on "cool" stuff (someone has to do LEDs)</li>
+<li>Not everyone gets to work on "cool" stuff (someone has to work on basic stuff like LEDs and logging)</li>
 <li>Communication becomes critical</li>
 </ul>
 
@@ -501,7 +509,6 @@ Help students understand where they fit in competition season based on their ski
 <h3>Must-Read Documentation</h3>
 <ul>
 <li>WPILib Command-Based: https://docs.wpilib.org/en/stable/docs/software/commandbased/</li>
-<li>REV SparkMAX: https://docs.revrobotics.com/sparkmax/</li>
 <li>Team 254 Programming Resources: https://www.team254.com/resources/</li>
 </ul>
 
@@ -509,7 +516,7 @@ Help students understand where they fit in competition season based on their ski
 <ul>
 <li>FRC Control System Overview: https://www.youtube.com/watch?v=64ZhA3hsvSE</li>
 <li>PID Control Explained: https://www.youtube.com/watch?v=4Y7zG48uHRo</li>
-<li>WPILib State Machines: https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html</li>
+<li>WPILib Command Compositions: https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html</li>
 </ul>
 
 <h3>When to Escalate</h3>
