@@ -87,13 +87,17 @@ java
 <p>
 robotInit()              // Runs ONCE when robot starts
 ↓
-teleopInit()            // Runs ONCE when teleop starts
+robotPeriodic() ----→  // Runs REPEATEDLY every 20ms in all modes
+↓
+autonomousInit()            // Runs when auto starts
+↓
+autonomousPeriodic() ----→  // Runs REPEATEDLY every 20ms in auto
+↓
+teleopInit()            // Runs when teleop starts
 ↓
 teleopPeriodic() ----→  // Runs REPEATEDLY every 20ms
 ↓                     //    (50 times per second!)
-teleopExit()            // Runs ONCE when teleop ends
-↓
-disabledInit()          // Runs ONCE when disabled
+disabledInit()          // Runs when disabled starts
 ↓
 disabledPeriodic() --→  // Runs REPEATEDLY while disabled
 
@@ -103,10 +107,8 @@ disabledPeriodic() --→  // Runs REPEATEDLY while disabled
 <p>
 | Class | Purpose | Common Methods |
 |-------|---------|----------------|
-| <code>TimedRobot</code> | Base robot class | <code>robotInit()</code>, <code>teleopPeriodic()</code> |
-| <code>XboxController</code> | Read controller inputs | <code>getAButton()</code>, <code>getLeftY()</code> |
-| <code>CANSparkMax</code> | Control NEO motors | <code>set()</code>, <code>getEncoder()</code> |
-| <code>SmartDashboard</code> | Display data to drivers | <code>putNumber()</code>, <code>putBoolean()</code> |
+| <code>XboxController</code> | Read controller inputs | <code>.a()</code>, <code>getLeftY()</code> |
+| <code>SmartDashboard</code> | Display data to drivers | <code>putNumber()</code>, <code>putData()</code> |
 | <code>PIDController</code> | Position/speed control | <code>setSetpoint()</code>, <code>calculate()</code> |
 
 
@@ -595,7 +597,7 @@ git checkout main
 >
 > "It's not about being the best, it's about being better than you were yesterday."
 >
-> "Going against the current!" 🌊⚡
+> "Going against the current!" 
 
 <strong>Team Resistance has been competing since 1996.</strong>
 <strong>You are part of that legacy. Make us proud!</strong>
@@ -609,7 +611,7 @@ git checkout main
 
     <footer class="site-footer">
         <p>Team Resistance #86 • Jacksonville, FL</p>
-        <p style="margin-top: 10px;">🌊⚡ Going against the current! ⚡🌊</p>
+        <p style="margin-top: 10px;"> Going against the current! ⚡🌊</p>
     </footer>
 
     <script>
