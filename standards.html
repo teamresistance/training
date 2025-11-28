@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Standards / Formatting</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+        <!-- Page-specific content starts here -->
+        <h1>Code Standards / Formatting</h1>
+
+        <section>
+            <h3>Naming</h3>
+            <p>Variables should be properly named! Try to keep them as descriptive but not too long. For example, if you were storing a mechanism's setpoint, you would name it <code>elevatorTarget</code>, not <code>requestedElevatorPIDSetpointLocation</code>.</p>
+            <ul>
+                <li><strong>Classes:</strong> UpperCamelCase (ex. <code>ElevatorSubsystem</code>)</li>
+                <li><strong>Methods:</strong> lowerCamelCase (ex. <code>setElevatorHeight()</code>) - methods should state exactly what they do as simply as possible, try to stick with "set" or "get" aswell.</li>
+                <li><strong>Variables:</strong> lowerCamelCase (ex. <code>elevatorSpeed</code>)</li>
+                <li><strong>Constants:</strong> ALL_CAPS_WITH_UNDERSCORES (ex. <code>MAX_ELEVATOR_HEIGHT</code>)</li>
+        </section>
+
+        <section>
+			<h3>Organization</h3>
+			<p>Good FRC code is predictable, consistent, and structured so anyone on the team can navigate it quickly. The goal is to eliminate “mystery code” by putting every file where people expect to find it and keeping subsystems, commands, and utilities clearly separated.</p>
+
+			<h4>Project Layout</h4>
+			<ul>
+				<li><strong>subsystems/</strong> – One folder per subsystem, each holding a SubsystemIO, SubsystemReal, and SubsystemSim</li>
+				<li><strong>commands/</strong> – One file per command or command group</li>
+				<li><strong>util/</strong> – Reusable utilities (ex. GeomUtil)</li>
+				<li><strong>Constants.java</strong> – Store anything that should be easily changed and should be visible easily (ports, gains, limits, timing)</li>
+				<li><strong>RobotContainer.java</strong> – Triggers, auto setup, subsystem initialization </li>
+				<li><strong>Main.java / Robot.java</strong> – Never modify unless you have a REALLY good reason. </li>
+			</ul>
+
+			<h4>Keep Logic Where It Belongs</h4>
+			<ul>
+				<li><strong>Subsystems own hardware + IO</strong></li>
+				<li><strong>Commands own behavior</strong> (what to do, not how to do it)</li>
+				<li><strong>RobotContainer owns bindings</strong></li>
+			</ul>
+
+		</section>
+
+		<section>
+            <h3>Constants</h3>
+            <p>Every robot project has some values that are used in many places or should be easily changed. What if you're at a competition and you need to quickly edit the timings on scoring? You don't have time to find the 8 places where the number is used - create a constant for it and change that.</p>
+			<p>Constants are named in ALL_CAPS_WITH_UNDERSCORES. They are also always public, static, and final. They also go in the <code>Constants.java</code> file.</p>
+        </section>
+
+        <section>
+            <h3>Never-Do's</h3>
+            <p>On a side note, there are a few things you should NEVER put in your code. These make the code less easy to work with and can cause issues down the line.</p>
+			<ul>
+				<li>Thread.sleep() or Timer.delay() - These will BREAK the robot. When the robot code thread sleeps, the robot keeps doing what it was doing because no new inputs can be received. So, if you're driving forward and you Thread.sleep(1000), you will be uncontrollably driving forwards for the next second. Dangerous!</li>
+				<li>Manually scheduling commands - ALWAYS try to avoid doing this. This makes it much harder to "track" a command and keep control of it.</li>
+				<li>"Magic Numbers" - If it's important, it gets a CONSTANT! Avoid putting random numbers only where they're used - it becomes a big challenge to change them later on. Don't put 0.125 in 10 places, create a VARIABLE_NAME_HERE constant and reference it.</li>
+			</ul>
+        </section>
+
+        <section>
+            <h3>Spotless</h3>
+            <p>We use a very convenient tool to format our code automatically. You can run it through the command line: <code>./gradlew spotlessApply</code> - it should format your indentation, line lengths, etc. Do this every time before you commit in git.</p>
+        </section>
+        <!-- Page-specific content ends here -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

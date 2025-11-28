@@ -3,148 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Resistance #86 - Programming Training</title>
+    <title>Programming Training Hub</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="site-header">
-        <a href="index.html" class="site-logo">
-            <div class="logo-circle">86</div>
-            <div class="logo-text">
-                <span class="team-name">TEAM RESISTANCE</span>
-                <span class="team-tagline">Going against the current</span>
-            </div>
-        </a>
-        <nav class="header-nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="quick-reference.html">Quick Ref</a>
-            <a href="progression.html">Skills Path</a>
-        </nav>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-    </header>
 
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar-nav" id="sidebarNav">
-        <div class="nav-section">
-            <div class="nav-section-title">Main</div>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="challenges.html">Programming Challenges</a></li>
-                <li><a href="mentor-guide.html">Mentor Guide</a></li>
-                <li><a href="quick-reference.html">Quick Reference</a></li>
-            </ul>
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
         </div>
-        <div class="nav-section">
-            <div class="nav-section-title">Visual Tools</div>
-            <ul>
-                <li><a href="progression.html">Skills Progression</a></li>
-                <li><a href="tracker.html">Challenge Tracker</a></li>
-            </ul>
-        </div>
-        <div class="nav-section">
-            <div class="nav-section-title">Resources</div>
-            <ul>
-                <li><a href="https://github.com/teamresistance" target="_blank">Team GitHub ↗</a></li>
-                <li><a href="https://www.thebluealliance.com/team/86" target="_blank">The Blue Alliance ↗</a></li>
-                <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
-            </ul>
-        </div>
-    </nav>
+    </a>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="content-wrapper">
-            <!-- Hero Section -->
-            <div style="text-align: center; margin-bottom: 60px;" class="fade-in">
-                <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px;">
-                    <div class="logo-circle glow" style="width: 120px; height: 120px; font-size: 56px;">86</div>
-                    <div>
-                        <h1 style="margin: 0; font-size: 56px;">TEAM RESISTANCE</h1>
-                    </div>
-                </div>
-                
-                <h2 style="border: none; font-size: 36px; margin: 30px 0 20px;">Programming Training Program</h2>
-                <p style="font-size: 18px; max-width: 800px; margin: 0 auto; color: var(--resistance-light-gray);">
-                    A comprehensive, skill-based progression system for new programmers. Build real skills for competition robotics through hands-on challenges with expert mentorship.
-            </div>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
 
-            <!-- Quick Stats -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 50px;">
-                <div class="card text-center">
-                    <div style="font-size: 48px; color: var(--resistance-green); font-weight: bold; margin-bottom: 10px;">29</div>
-                    <div style="color: var(--resistance-light-gray);">Years Competing</div>
-                </div>
-                <div class="card text-center">
-                    <div style="font-size: 48px; color: var(--resistance-green); font-weight: bold; margin-bottom: 10px;">6</div>
-                    <div style="color: var(--resistance-light-gray);">Core Challenges</div>
-                </div>
-                <div class="card text-center">
-                    <div style="font-size: 48px; color: var(--resistance-green); font-weight: bold; margin-bottom: 10px;">4</div>
-                    <div style="color: var(--resistance-light-gray);">Skill Levels</div>
-                </div>
-                <div class="card text-center">
-                    <div style="font-size: 48px; color: var(--resistance-green); font-weight: bold; margin-bottom: 10px;">1:1</div>
-                    <div style="color: var(--resistance-light-gray);">Mentor Support</div>
-                </div>
-            </div>
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html" class="active">Home</a>
+        <br>
 
-            <!-- Getting Started -->
-            <div class="success-box">
-                <h2 style="margin-top: 0; color: var(--resistance-green);">Ready to Get Started?</h2>
-                
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <a href="challenges.html" class="btn">📚 View All Challenges</a>
-                    <a href="mentor-guide.html" class="btn btn-outline">👨‍🏫 Mentor Guide</a>
-                    <a href="quick-reference.html" class="btn btn-outline">📖 Quick Reference</a>
-                    <a href="tracker.html" class="btn btn-outline">✅ Track Progress</a>
-                </div>
-            </div>
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
 
-            <!-- Training Philosophy -->
-            <h2>Our Training Philosophy</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
-                <div class="info-box">
-                    <h4 style="margin-top: 0; color: var(--resistance-green);">🎯 Skill-Based Progression</h4>
-                </div>
-                <div class="info-box">
-                    <h4 style="margin-top: 0; color: var(--resistance-green);">🔧 Hands-On Learning</h4>
-                </div>
-                <div class="info-box">
-                    <h4 style="margin-top: 0; color: var(--resistance-green);">👥 Mentorship Focus</h4>
-                </div>
-                <div class="info-box">
-                    <h4 style="margin-top: 0; color: var(--resistance-green);">🏆 Competition Ready</h4>
-                </div>
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+
+        <!-- Hero -->
+        <div style="text-align: center; margin-bottom: 50px;" class="fade-in">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px;">
+                <div class="logo-circle glow" style="width: 120px; height: 120px; font-size: 56px;">86</div>
+                <h1 style="margin: 0; font-size: 56px;">Programming Training Hub</h1>
             </div>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <p>Team Resistance #86 • Jacksonville, FL</p>
-        <p style="margin-top: 10px;">🌊⚡ Going against the current! ⚡🌊</p>
-    </footer>
+        <!-- 5 Section List -->
+        <h2 style="margin-bottom: 20px;">Training Sections</h2>
 
-    <script>
-        function toggleMobileMenu() {
-            const sidebar = document.getElementById('sidebarNav');
-            sidebar.classList.toggle('active');
+        <div class="info-section-grid">
+
+            <!-- Section 1 -->
+            <div class="info-box">
+                <h3>1. Pre-Programming</h3>
+                <ul>
+                    <li><a href="https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html">Installing Tools & VS Code</a></li>
+                    <li><a href="https://www.codecademy.com/learn/learn-java">Learn Java</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="info-box">
+                <h3>2. WPILib Essentials</h3>
+                <ul>
+                    <li><a href="motors.html">Basic Motor Control</a></li>
+                    <li><a href="joysticks.html">User Input</a></li>
+                    <li><a href="sensors.html">Sensors</a></li>
+                    <li><a href="telemetry.html">Telementry / Logging</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="info-box">
+                <h3>3. Basics</h3>
+                <ul>
+                    <li><a href="command-based.html">Command-Based Programming</a></li>
+                    <li><a href="pid-basics.html">Basic PID Control</a></li>
+                    <li><a href="standards.html">Coding Standards / Conventions</a></li>
+                    <li><a href="geometry.html">Geometry in FRC</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="info-box">
+                <h3>4. Intermediate</h3>
+                <ul>
+                    <li><a href="abstract-io.html">Subsystem IO Abstraction</a></li>
+                    <li><a href="pathing.html">Pathplanning and Pathfinding Tools</a></li>
+                    <li><a href="pid-tuning.html">Tuning PID</a></li>
+                    <li><a href="vendors.html">Making Use of Vendor Features</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="info-box">
+                <h3>5. Advanced</h3>
+                <ul>
+                    <li><a href="sim.html">Simulation Logic</a></li>
+                    <li><a href="vision-pose.html">Vision - Pose Estimation</a></li>
+                    <li><a href="vision-tracking.html">Vision - Target / Game Piece Tracking</a></li>
+                    <li><a href="vision.html">Setting Up and Tuning Vision</a></li>
+                    <li><a href="swerve.html">Swerve Drive</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
         }
-
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebarNav');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (window.innerWidth <= 1024 && 
-                !sidebar.contains(event.target) && 
-                !toggle.contains(event.target) && 
-                sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

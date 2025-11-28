@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics | Sensors</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+
+        <h1>Sensors in FRC</h1>
+        <p>An overview of common FRC sensors, how they work, and how we use them to create reliable robot behavior.</p>
+
+        <!-- Banner Sensors -->
+        <section>
+            <h3>Banner Sensors</h3>
+            <p>Banner sensors are small optical sensors used for object detection.</p>
+            <ul>
+                <li>Digital output (true/false)</li>
+                <li>Fast and reliable</li>
+                <li>Detects if something is in the way - super simple</li>
+            </ul>
+
+            <h4>Example (Digital Input)</h4>
+            <pre><code>private DigitalInput banner = new DigitalInput(0);
+
+public boolean hasPiece() {
+    return banner.get();
+}
+</code></pre>
+        </section>
+
+        <!-- Encoders -->
+        <section>
+            <h3>Encoders</h3>
+            <p>Encoders measure rotation accurately and are used to know how many times a motor has rotated.</p>
+
+            <h4>Types of Encoders</h4>
+            <ul>
+                <li><strong>Integrated encoders:</strong> Neo/Kraken built-in sensors</li>
+                <li><strong>External encoders:</strong> SRX Mag, Through-Bore</li>
+                <li><strong>Absolute encoders:</strong> Gives the true angle at startup</li>
+                <li><strong>Relative encoders:</strong> Counts movement from zero, wherever it was when it powered on is "0 rotations"</li>
+            </ul>
+
+            <h4>Example (SparkMAX Built-In Relative Encoder)</h4>
+            <pre><code>private RelativeEncoder encoder = sparkMotorController.getEncoder();
+
+public double getPosition() {
+    return encoder.getDistance();
+}
+</code></pre>
+        </section>
+
+        <!-- Absolute vs Relative -->
+        <section>
+            <h3>Absolute vs Relative Encoders</h3>
+
+            <h4>Absolute Encoders</h4>
+            <ul>
+                <li>Know angle on startup</li>
+                <li>Used particularly on swerve, helpful in other places if precision is absolutely needed</li>
+                <li>Not affected by missed counts</li>
+            </ul>
+
+            <h4>Relative Encoders</h4>
+            <ul>
+                <li>Start at 0 on boot</li>
+                <li>Require homing</li>
+                <li>Used for mostly everything that doesn't need to be ultra-precise or can't be reasonably put in a home position</li>
+            </ul>
+        </section>
+
+        <!-- Limit Switches -->
+        <section>
+            <h3>Limit Switches</h3>
+            <p>Limit switches detect endpoints of travel and protect mechanisms.</p>
+
+            <ul>
+                <li>Not as common anymore</li>
+                <li>Digital input (true/false)</li>
+                <li>Often used for homing</li>
+            </ul>
+
+            <h4>Example (Limit Switch)</h4>
+            <pre><code>private DigitalInput limit = new DigitalInput(1);
+
+public boolean atHome() {
+    return limit.get();
+}
+</code></pre>
+        </section>
+
+        <!-- Homing -->
+        <section>
+            <h3>Homing a Mechanism</h3>
+            <p>Homing establishes a known zero position for a mechanism.</p>
+
+            <h4>Common Homing Methods</h4>
+            <ul>
+                <li>Drive into a limit switch → reset encoder</li>
+                <li>Move slowly until hard-stop → reset encoder</li>
+				<li>Put the mechanism in the right place before powering on the robot</li>
+            </ul>
+
+            <h4>Example (Homing using a limit switch)</h4>
+            <pre><code>if (limitSwitch.get()) {
+    encoder.setPosition(0);
+}
+</code></pre>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

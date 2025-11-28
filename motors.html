@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics | Motors</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+        <!-- Page-specific content starts here -->
+        <h1>Basic Motor Control</h1>
+        <p>
+			Motors are the backbone of FRC power transmission. They convert power into rotary motion in the motor shaft - motors used in FRC are incredibly powerful.
+			This section will cover simple control of motors in FRC.
+		</p>
+
+        <!-- Example content section -->
+        <section>
+            <h3>Motors</h3>
+            <p>In FRC, you do not directly control a motor. Instead, you send signals to a Motor Controller (SparkMax, TalonFX) which controls the motor's power for you.
+				This makes controlling the motors much easier because you don't have to manually write control code, you just set it's input power percentage/voltage.</p>
+			<p>For example, the SparkMAX can be controlled as such: <code>intakeMotor.set(1.0)</code> - what does this do? This tells the motor controller that you
+				 would like 100% power to be supplied to the motor - full speed. What do you think <code>intakeMotor.set(-1.0)</code> would do? Full reverse speed!
+				Motors can also be controlled to go backwards as shown.</p>
+				<p>You can create a motor in your code just like any other constructor, such as <code>TalonFX armMotor = new TalonFX(1)</code> - what does the 1 mean? 1 is the CAN address of the device. You can think of it as sending a letter - the letter tells the motor controller what to do, and the CAN address is like the address so that it can get to the right place.</p>
+        </section>
+		<section>
+            <h3>Types of Motor Controllers</h3>
+            <p>
+				The two main types of motor controllers are the SparkMAX and TalonFX. The SparkMAX controls REV Robotics motors and the TalonFX (mostly) controls Kraken motors.
+				You don't need to know all about the actual motors, just that each one should be controlled through their respective motor controller.
+			</p>
+			<p>
+				Each motor requires its own Vendor Library in the robot project - REVlib for the SparkMAX and Phoenix 6 for the TalonFX. You must install these through the vendor dependency manager in WPILib to use these controllers! 
+			</p>
+        </section>
+		<section>
+			<h3>Configuring Motors</h3>
+			<p>
+				One of the most important things in code is configuring your motors properly. The two main features you'll use are the idle/neutral mode and inversion. A motor's idle mode specifies if it will try and resist motion (brake) or not (coast) when no power is applied. Inversion specifies if positive power (ex. 100%, 45%) should spin clockwise or counterclockwise - useful in a gearbox or when mounted strangely. 
+			</p>
+			<p>For example, to configure a SparkMAX, you would do <code>SparkMaxConfig config = new SparkMaxConfig().withIdleMode(IdleMode.kBrake)</code> and <code>motorController.configure(config)</code> to set the motor the SparkMAX controls into brake mode.</p>
+		</section>
+		<p>There are many other ways to control motors - such as built-in PID controllers, CTRE's Motion Magic, and a couple others - but these are more advanced.</p>
+        <!-- Page-specific content ends here -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

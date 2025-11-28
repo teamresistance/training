@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect PID Tuning</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+
+        <!-- Page-specific content starts here -->
+        <h1>Perfect PID Tuning</h1>
+        <p>This guide shows how to find near-perfect P, I, D, and F values for any mechanism, with a repeatable and precise tuning workflow.</p>
+
+        <!-- Section: Perfecting P -->
+        <section>
+            <h3>Find the Perfect P Value</h3>
+            <p>The goal: maximum stiffness without oscillation.</p>
+
+            <h4>1. Increase P Until First Oscillation</h4>
+            <p>Move to a setpoint far away (ex: 0 → 90°).</p>
+
+            <p>When you first see *clean*, rhythmic oscillation at the target → stop.</p>
+
+            <h4>2. Reduce P</h4>
+            <p>Reduce P until you get to a very small amount of oscillation - it should still quickly go to its target. D can take care of the oscillation.</p>
+        </section>
+
+
+        <!-- Section: Perfecting D -->
+        <section>
+            <h3>Find the Perfect D Value</h3>
+            <p>D should cancel oscillation without slowing the system.</p>
+
+            <h4>1. Add D Until Overshoot Stops</h4>
+            <p>Increase D in tiny increments (0.0001–0.001 depending on scaling).</p>
+
+            <p>Watch the settling behavior:</p>
+            <ul>
+                <li>still oscillates → add more D</li>
+                <li>sluggish / slow → too much D</li>
+            </ul>
+
+            <h4>2. Target: Minimal Overshoot or Perfect Stop</h4>
+            <p>The ideal D brings the mechanism to a stop exactly on it's target or overshoots minimally and can correct instantly.</p>
+        </section>
+
+
+        <!-- Section: Perfecting I -->
+        <section>
+            <h3>Find the Perfect I Value</h3>
+            <p>Only used for eliminating long-term steady-state error.</p>
+
+            <h4>1. Check for Steady-State Error</h4>
+            <p>If the mechanism stops short of the setpoint or sags under load → I needed.</p>
+
+            <h4>2. Increase I Until Drift Disappears</h4>
+            <pre><code>controller.setI(I + very_small_step);</code></pre>
+
+            <p>The mechanism should creep perfectly into the target after several seconds.</p>
+
+            <h4>3. If System Vibrates → I Too High</h4>
+        </section>
+
+
+        <!-- Section: Validation -->
+        <section>
+            <h3>Validation Tests for “Perfect” Tuning</h3>
+
+            <h4>1. Step Response Test</h4>
+            <p>Command min → max rapidly.</p>
+            <ul>
+                <li>minimal overshoot</li>
+                <li>fast settle</li>
+                <li>no chatter</li>
+            </ul>
+
+            <h4>2. Hold Position Under Load</h4>
+            <p>Push on the mechanism. It should resist without buzzing.</p>
+
+            <h4>3. Multi-Setpoint Sweep</h4>
+            <p>Command several positions at various distances.</p>
+
+            <pre><code>0° → 30° → 90° → 45° → 75° → 10°</code></pre>
+
+            <p>You want the same behavior no matter the distance.</p>
+        </section>
+
+        <!-- Page-specific content ends here -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>

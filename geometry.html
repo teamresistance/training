@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPILib Geometry Classes</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+        <!-- Page-specific content starts here -->
+        <h1>WPILib Geometry Classes</h1>
+        <p>
+            WPILib provides geometry classes to handle positions, rotations, and transforms in 2D space.
+            These classes simplify robot math such as aiming, distance calculation, and field-relative movement.
+        </p>
+
+        <h5>WARNING: All code you write using these classes should be based on a BLUE alliance origin. (0,0) should be on the bottom blue corner! Look up "FRC Blue Side Origin" for more info</h5>
+        <section>
+            <h3>Translation2d</h3>
+            <p>
+                Represents a point or vector on a 2D plane (x, y). Useful for distances and positions.
+            </p>
+
+            <h4>Creating a Translation</h4>
+<pre><code class="language-java">
+Translation2d point = new Translation2d(2.0, 3.0); // x=2m, y=3m
+</code></pre>
+
+            <h4>Distance and Vector Math</h4>
+<pre><code class="language-java">
+Translation2d a = new Translation2d(1, 1);
+Translation2d b = new Translation2d(4, 5);
+
+double distance = a.getDistance(b); // 5 meters
+Translation2d vector = b.minus(a);   // vector from a to b
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Rotation2d</h3>
+            <p>
+                Stores an angle, provides sine/cosine helpers, and supports combining rotations.
+            </p>
+
+            <h4>Creating a Rotation</h4>
+<pre><code class="language-java">
+Rotation2d rot = Rotation2d.fromDegrees(90);
+double radians = rot.getRadians();
+</code></pre>
+
+            <h4>Combining Rotations</h4>
+<pre><code class="language-java">
+Rotation2d a = Rotation2d.fromDegrees(30);
+Rotation2d b = Rotation2d.fromDegrees(20);
+Rotation2d c = a.plus(b); // 50 degrees
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Pose2d</h3>
+            <p>
+                Combines a translation and rotation, representing the robot’s full position on the field.
+            </p>
+
+            <h4>Creating a Pose</h4>
+<pre><code class="language-java">
+Pose2d robot = new Pose2d(
+    new Translation2d(2.0, 1.0),
+    Rotation2d.fromDegrees(90)
+);
+</code></pre>
+
+            <h4>Applying a Transform</h4>
+<pre><code class="language-java">
+Transform2d movement = new Transform2d(
+    new Translation2d(1.0, 0.0),
+    Rotation2d.fromDegrees(45)
+);
+
+Pose2d newPose = robot.plus(movement);
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Transform2d</h3>
+            <p>
+                Represents a relative movement (translation + rotation) between poses.
+            </p>
+
+            <h4>Creating a Transform</h4>
+<pre><code class="language-java">
+Transform2d t = new Transform2d(
+    new Translation2d(1.0, 0.5),
+    Rotation2d.fromDegrees(15)
+);
+Pose2d movedPose = robot.plus(t);
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Targeting and Angles</h3>
+            <p>
+                You can use the robot pose and target pose to calculate angles, distances, etc. for aiming.
+            </p>
+
+            <h4>Angle to Target</h4>
+<pre><code class="language-java">
+Translation2d target = new Translation2d(5, 3);
+Translation2d toTarget = target.minus(robot.getTranslation());
+
+Rotation2d aimAngle = new Rotation2d(Math.atan2(
+    toTarget.getY(),
+    toTarget.getX()
+));
+</code></pre>
+
+            <h4>Degrees to Rotate</h4>
+<pre><code class="language-java">
+Rotation2d currentAngle = robot.getRotation();
+Rotation2d neededTurn = aimAngle.minus(currentAngle);
+
+double degrees = neededTurn.getDegrees();
+</code></pre>
+
+            <h4>Distance to Target</h4>
+<pre><code class="language-java">
+double dist = robot.getTranslation().getDistance(target);
+</code></pre>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>
