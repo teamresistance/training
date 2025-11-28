@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics | PID Control</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+
+        <h1>PID Basics</h1>
+        <p>A beginner-level explanation of PID control: what the numbers mean, how each term behaves, simple ways to find usable values, and how to apply PID in real robot code.</p>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h3>What is PID?</h3>
+            <p>
+                PID stands for <strong>Proportional–Integral–Derivative</strong>.  
+                It is a feedback controller that attempts to push a mechanism toward a target position, angle, velocity, or any measurable quantity.
+            </p>
+
+            <h4>The Basic Idea</h4>
+            <p>
+                PID looks at the <strong>error</strong> (how far you are from the target) and outputs a correction:
+            </p>
+
+            <p>This output goes to a motor.</p>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h3>What the Terms Mean</h3>
+
+            <h4>Proportional (P)</h4>
+            <p>
+                The main driver. P is a direct scalar to the error. If P = 10 and error = 5, output = 50. <br>
+                Large error → large correction.  
+                Small error → small correction.
+            </p>
+            <ul>
+                <li><strong>Too low:</strong> slow response, never reaches target</li>
+                <li><strong>Too high:</strong> oscillation, overshoot, shaking</li>
+            </ul>
+
+            <h4>Integral (I)</h4>
+            <p>
+                Fixes small remaining error that P alone can’t eliminate. Most of the time a well-tuned PID will not need this, or Feedforward will take care of it. <br>
+                Builds up over time when the mechanism is close but not perfect.
+            </p>
+            <ul>
+                <li><strong>Use sparingly.</strong></li>
+                <li>Too high → drifting, runaway, overshoot</li>
+				<li>Too low → mechanism may be "just a tad bit off" and unable to correct itself</li>
+            </ul>
+
+            <h4>Derivative (D)</h4>
+            <p>
+                Adds damping.  
+                Reacts to how fast the error is changing.
+            </p>
+            <ul>
+                <li>Reduces overshoot</li>
+                <li>Helps stop smoothly at target</li>
+                <li>Too high → oscillation</li>
+				<li>Too low → can still overshoot</li>
+            </ul>
+
+            <h4>Summary</h4>
+
+<pre><code class="language-text">
+Term | What it does              | If too low         | If too high
+-----+---------------------------+--------------------+--------------------------
+P    | Main movement force       | Slow, weak         | Oscillation, overshoot
+I    | Fix long-term small error | Never perfect      | Drifting, runaway
+D    | Stabilizes, adds braking  | Overshoot          | Oscillation
+</code></pre>
+
+        </section>
+
+        <!-- SECTION 3 -->
+        <section>
+            <h3>Applications in FRC</h3>
+            <ul>
+                <li><strong>Arm angle control</strong> — needs P + D + feedforward to compensate for gravity</li>
+                <li><strong>Elevators</strong> — P + D + feedfoward</li>
+                <li><strong>Turrets</strong> — high D for stability</li>
+                <li><strong>Flywheel velocity</strong> — P only, a flywheel doesn't need to smoothly reach it's target speed!</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <h3>Getting the Numbers (Simple Method)</h3>
+            <p>
+                This is not “proper tuning,” but rather a quick way to get functional values.
+            </p>
+
+            <h4>1. Start With Only kP</h4>
+            <ol>
+                <li>Set a small value like <code>0.01</code>.</li>
+                <li>Increase until the mechanism starts to oscillate.</li>
+                <li>Reduce by 20–30%.</li>
+            </ol>
+
+            <h4>2. Add kD</h4>
+            <p>
+                Add derivative until overshoot stops.
+            </p>
+            <ol>
+                <li>Increase slowly.</li>
+                <li>If the mechanism becomes shaky → reduce.</li>
+            </ol>
+
+            <h4>3. Add kI (Only If Needed)</h4>
+            <p>
+                Only add I when the mechanism gets close but never reaches target.
+            </p>
+            <ol>
+                <li>Start extremely small (<code>0.0001</code>).</li>
+                <li>Increase until the error goes away.</li>
+            </ol>
+			
+			<h4>4. Consider adding a Feedfoward</h4>
+            <p>
+                Adding a feedfoward can be as simple as this: <code>output = output+feedfoward</code><br>There is a more proper way to do this, but this will work in some cases.
+            </p>
+            <ol>
+                <li>Test your motor by applying increasing power until it just starts to move</li>
+                <li>When your motor JUST starts to move, use this as your feedforward. This is the power needed to avoid gravity (an external force)</li>
+            </ol>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section>
+            <h3>PID Code Examples</h3>
+
+            <h4>Basic PID in a Subsystem</h4>
+<pre><code class="language-java">
+public class Arm extends SubsystemBase {
+    private final PIDController pid =
+        new PIDController(0.05, 0.0, 0.002);
+
+    private double targetDeg = 0;
+
+    public void setTarget(double deg) {
+        targetDeg = deg;
+    }
+
+    @Override
+    public void periodic() {
+        double current = getArmAngleDegrees();
+        double output = pid.calculate(current, targetDeg);
+        motor.set(output);
+    }
+}
+</code></pre>
+
+            <h4>PID in a Command</h4>
+<pre><code class="language-java">
+public class MoveArmTo extends Command {
+    private final Arm arm;
+    private final double target;
+
+    public MoveArmTo(Arm arm, double target) {
+        this.arm = arm;
+        this.target = target;
+        addRequirements(arm);
+    }
+
+    @Override
+    public void initialize() {
+        arm.setTarget(target);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return Math.abs(arm.getError()) < 2;
+    }
+}
+</code></pre>
+
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
