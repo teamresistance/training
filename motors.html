@@ -71,7 +71,7 @@
 		<section>
             <h3>Types of Motor Controllers</h3>
             <p>
-				The two main types of motor controllers are the SparkMAX and TalonFX. The SparkMAX controlls REV Robotics motors and the TalonFX (mostly) controlls Kraken motors.
+				The two main types of motor controllers are the SparkMAX and TalonFX. The SparkMAX controls REV Robotics motors and the TalonFX (mostly) controls Kraken motors.
 				You don't need to know all about the actual motors, just that each one should be controlled through their respective motor controller.
 			</p>
 			<p>
@@ -81,9 +81,9 @@
 		<section>
 			<h3>Configuring Motors</h3>
 			<p>
-				One of the most important things in code is configuring your motors properly. The two main features you'll use are the idle/neutral mode and inversion. A motor's idle mode specifies if it will try and resist motion (brake) or not (coast) when no power is applied. Inversion specifies if positive power (ex. 100%, 45%) should spin clockwise or counterclockwise - useful in a gearbox or when mounted stragely. 
+				One of the most important things in code is configuring your motors properly. The two main features you'll use are the idle/neutral mode and inversion. A motor's idle mode specifies if it will try and resist motion (brake) or not (coast) when no power is applied. Inversion specifies if positive power (ex. 100%, 45%) should spin clockwise or counterclockwise - useful in a gearbox or when mounted strangely. 
 			</p>
-			<p>For example, to configure a SparkMAX, you would do <code>SparkMaxConfig config = new SparkMaxConfig().withIdleMode(IdleMode.kBrake)</code> and <code>motorController.cofigure(config)</code> to set the motor the SparkMAX controlls into brake mode.</p>
+			<p>For example, to configure a SparkMAX, you would do <code>SparkMaxConfig config = new SparkMaxConfig().withIdleMode(IdleMode.kBrake)</code> and <code>motorController.configure(config)</code> to set the motor the SparkMAX controls into brake mode.</p>
 		</section>
 		<p>There are many other ways to control motors - such as built-in PID controllers, CTRE's Motion Magic, and a couple others - but these are more advanced.</p>
         <!-- Page-specific content ends here -->
