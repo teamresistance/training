@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command-Based Programming</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="wpilib.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathing.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="main-content">
+<div class="content-wrapper">
+
+<h1>Command-Based Programming</h1>
+<p>
+The command-based framework is the recommended structure for FRC robots. It cleanly separates robot logic into <b>subsystems</b> (what your robot is) and <b>commands</b> (what your robot does).
+</p>
+<p>The simplest way to understand it is this:</p>
+<ul>
+	<li>Subsystems have methods and logic that runs hardware</li>
+	<li>Commands run subsystem logic / methods</li>
+	<li>Triggers run commands</li>
+	<li>The command scheduler checks triggers</li>
+</ul>
+<section>
+    <h3>How the Command-Based Framework Works</h3>
+    <p>
+        WPILib’s Command-Based architecture is built on a scheduler that constantly asks:
+        <em>“What commands should run right now?”</em>
+        Every robot loop (~20ms), the scheduler updates active commands, checks triggers,
+        and ensures subsystem rules are followed.
+    </p>
+
+    <h4>The Scheduler</h4>
+    <p>
+        The scheduler is responsible for running, interrupting, and managing commands.
+        It automatically:
+    </p>
+    <ul>
+        <li>Runs <code>initialize()</code> when a command starts.</li>
+        <li>Calls <code>execute()</code> every robot loop.</li>
+        <li>Ends a command when <code>isFinished()</code> returns true or another command interrupts it.</li>
+        <li>Enforces subsystem requirements (one command per subsystem at a time).</li>
+    </ul>
+
+    <h4>Command Lifecycle</h4>
+    <pre><code class="language-text">
++---------------+---------------------------+
+| Method        | When It's Called          |
++---------------+---------------------------+
+| initialize()  | When the command starts   |
+| execute()     | Every 20ms while running  |
+| isFinished()  | Checked every loop        |
+| end()         | When ending or canceled   |
++---------------+---------------------------+
+    </code></pre>
+
+    <h3>Triggers and Event Binding</h3>
+    <p>
+        Triggers listen for conditions and start/stop commands automatically.
+        They can be bound to controller buttons, sensors, booleans, or custom logic.
+    </p>
+
+    <h4>Button Triggers (Typical)</h4>
+    <pre><code class="language-java">
+
+driverController.rightTrigger()
+    .whileTrue(new ShootCommand(shooter))
+    .onFalse(new StopShooter(shooter));
+    </code></pre>
+
+    <h4>Boolean Triggers</h4>
+    <p>Any function that returns a boolean can be used as a trigger.</p>
+
+    <pre><code class="language-java">
+Trigger armAtTop = new Trigger(() -> arm.getPosition() > 80);
+
+armAtTop.onTrue(new HoldArmPosition(arm));
+    </code></pre>
+
+    <h4>Event-Driven Programming</h4>
+    <ul>
+        <li>Commands start/stop based on events, not loops.</li>
+        <li>Subsystems declare “who is controlling me right now” through requirements.</li>
+        <li>Triggers make code reactive instead of procedural.</li>
+    </ul>
+
+    <h4>Command Groups and Compositions</h4>
+    <p>
+        The scheduler also runs composite commands:
+    </p>
+    <ul>
+        <li><code>SequentialCommandGroup</code> → run commands in order</li>
+        <li><code>ParallelCommandGroup</code> → run simultaneously</li>
+        <li><code>RaceGroup</code> → stop all when one finishes</li>
+        <li><code>DeadlineGroup</code> → run all until a “deadline” command ends</li>
+    </ul>
+
+    <pre><code class="language-java">
+new SequentialCommandGroup(
+    new HomeArm(arm),
+    new WaitCommand(1),
+    new MoveToPosition(arm, 45)
+);
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>Subsystems</h3>
+    <p>
+        A subsystem represents hardware: motors, sensors, and logic that runs every loop.  
+        Each subsystem should control <b>one mechanical responsibility</b>.
+    </p>
+
+    <h4>Subsystem Responsibilities</h4>
+    <ul>
+        <li>Own the hardware (motors, encoders, solenoids)</li>
+        <li>Expose public methods (set Motor, go To Angle, shoot Ball)</li>
+        <li>Run background logic in <code>periodic()</code></li>
+        <li>Optionally have a <b>default command</b></li>
+    </ul>
+
+    <h4>Example Subsystem</h4>
+    <pre><code>public class Arm extends SubsystemBase {
+    private final MotorController motor = new TalonFX(3);
+    private double targetDegrees = 0;
+
+    public void setTarget(double deg) {
+        targetDegrees = deg;
+    }
+
+    @Override
+    public void periodic() {
+        // Control loop
+        motor.set(targetDegrees > getAngle() ? 0.4 : -0.4);
+    }
+
+    public double getAngle() {
+        return encoder.getPosition();
+    }
+}
+</code></pre>
+</section>
+
+<section>
+    <h3>Commands</h3>
+    <p>
+        A command is an action the robot performs: move arm, drive straight, shoot, etc.
+        Commands run until they finish, get interrupted, or loop forever if continuous.
+    </p>
+
+    <h4>A Real Command Class</h4>
+    Use this when the logic is non-trivial or lasts over time:
+    <pre><code>public class MoveArmTo extends Command {
+    private final Arm arm;
+    private final double target;
+
+    public MoveArmTo(Arm arm, double target) {
+        this.arm = arm;
+        this.target = target;
+        addRequirements(arm);
+    }
+
+    @Override
+    public void execute() {
+        arm.setTarget(target);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return Math.abs(arm.getAngle() - target) < 2.0;
+    }
+}
+</code></pre>
+
+    <h4>When to Make a Dedicated Command File</h4>
+    <ul>
+        <li>Action spans time (rotate arm to angle)</li>
+        <li>Action requires state (store values internally)</li>
+        <li>You need initialize/execute/end logic</li>
+        <li>You want to reuse the command in multiple places</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Command Composition (inline commands)</h3>
+    <p>
+        Instead of making a whole file, WPILib allows “one-liner” commands composed from lambdas.
+        These are ideal for simple actions.
+    </p>
+
+    <h4>Examples of Inline Commands</h4>
+
+    <h4>Instant Command (do something once)</h4>
+    <pre><code>.onTrue(Commands.runOnce(() -> arm.setTarget(90)));</code></pre>
+
+    <h4>Run Command (runs continuously)</h4>
+    <pre><code>.whileTrue(Commands.run(() -> arm.setTarget(driverInput)));</code></pre>
+
+    <h4>StartEnd Command (runs while held)</h4>
+    <pre><code>.whileTrue(Commands.startEnd(
+    () -> intake.setPower(0.8),
+    () -> intake.setPower(0))
+);</code></pre>
+
+    <h4>Sequence</h4>
+    <pre><code>Commands.sequence(
+    intake.startEnd(() -> intake.setPower(1), () -> intake.setPower(0)).withTimeout(1),
+    shooter.runOnce(() -> shooter.fire())
+);</code></pre>
+
+    <h4>Parallel Commands</h4>
+    <pre><code>Commands.parallel(
+    arm.runOnce(() -> arm.setTarget(80)),
+    elevator.runOnce(() -> elevator.moveTo(40))
+);</code></pre>
+
+    <h4>When to Use Composition Instead of a Command File</h4>
+    <ul>
+        <li>Behavior is extremely small</li>
+        <li>No state needs to be stored</li>
+        <li>No initialization logic required</li>
+        <li>No finish condition needed</li>
+        <li>Used only once (not reused)</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Requirements (addRequirements())</h3>
+    <p>
+        Requirements tell WPILib which subsystem(s) a command controls.  
+        Only one command at a time may use a subsystem.
+    </p>
+
+    <h4>Why Requirements Exist</h4>
+    <ul>
+        <li>Prevents two commands from fighting over motors</li>
+        <li>Ensures default commands stop when another command interrupts</li>
+        <li>Makes concurrency safe</li>
+    </ul>
+
+    <h4>Example</h4>
+    <pre><code>public MoveArmTo(Arm arm, double target) {
+    this.arm = arm;
+    this.target = target;
+    addRequirements(arm);
+}
+</code></pre>
+
+    <h4>What Happens Without Requirements?</h4>
+    <ul>
+        <li>Both commands may try to control the same motor</li>
+        <li>Robot behavior becomes inconsistent</li>
+        <li>Default command keeps running even during an action</li>
+        <li>WPILib can't automatically interrupt commands</li>
+    </ul>
+
+    <h4>When NOT to Use Requirements</h4>
+    <ul>
+        <li>When command does NOT own hardware (e.g. vibration, LED logic separate from driving)</li>
+		<li>When no issues will arise from multiple commands running on the same subsystem at once</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Default Commands</h3>
+    <p>
+        Every subsystem can have one default command that runs whenever no other command is using it.
+    </p>
+
+    <h4>Example: default drive command</h4>
+    <pre><code>drive.setDefaultCommand(
+    drive.run(() -> {
+        drive.arcadeDrive(
+            controller.getY(),
+            controller.getX()
+        );
+    })
+);
+</code></pre>
+
+    <h4>Rules for Default Commands</h4>
+    <ul>
+        <li>Must have a requirement on the subsystem</li>
+        <li>Runs continuously</li>
+        <li>Stops when another command interrupts, continues afterwards</li>
+        <li>Useful for operator control</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Best Practices</h3>
+
+    <h4>Subsystem Design</h4>
+    <ul>
+        <li>One subsystem per mechanical system</li>
+        <li>Keep periodic short</li>
+        <li>Expose high-level methods (not raw motor sets)</li>
+    </ul>
+
+    <h4>Command Design</h4>
+    <ul>
+        <li>Make files for reusable & multi-step actions</li>
+        <li>Use composition for tiny one-off behaviors</li>
+        <li>Always declare requirements</li>
+        <li>Don’t put hardware in commands (only subsystems)</li>
+    </ul>
+
+    <h4>Operator Controls</h4>
+    <pre><code>controller.a().onTrue(new MoveArmTo(arm, 90));
+controller.b().onTrue(arm.runOnce(() -> arm.setTarget(0)));
+
+controller.x().whileTrue(
+    intake.startEnd(() -> intake.set(0.8), () -> intake.set(0))
+);
+</code></pre>
+</section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+function toggleMobileMenu() {
+    const sidebar = document.getElementById('sidebarNav');
+    sidebar.classList.toggle('active');
+}
+
+document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebarNav');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+
+    if (window.innerWidth <= 1024 &&
+        !sidebar.contains(event.target) &&
+        !toggle.contains(event.target) &&
+        sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    }
+});
+</script>
+
+</body>
+</html>
