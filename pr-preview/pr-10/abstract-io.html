@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subsystem IO Abstraction</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="abstract-io.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathfinding.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org/" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com/" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org/" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+        <!-- Page-specific content starts here -->
+        <h1>Subsystem IO Abstraction</h1>
+        <p>
+            IO Abstraction separates hardware access from subsystem logic.  
+            This allows you to swap between real hardware, simulation, replay, and unit tests without changing subsystem code.
+        </p>
+
+        <section>
+            <h3>What Is IO Abstraction?</h3>
+            <p>
+                The concept is simple: every subsystem talks to an <b>IO interface</b> instead of directly accessing motor controllers,
+                encoders, or sensors.  
+            </p>
+
+            <p>This gives you:</p>
+            <ul>
+                <li>Cleaner subsystem code</li>
+                <li>Real vs. simulated implementations</li>
+                <li>Easier hardware swap flexibility</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>The Structure</h3>
+            <p>A subsystem usually has:</p>
+            <ul>
+                <li><b>An IO interface</b> — defines inputs/outputs</li>
+                <li><b>A real implementation</b> — talks to actual hardware</li>
+                <li><b>A fake/sim implementation</b> - for simulating robot code</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Defining the IO Interface</h3>
+            <p>
+                This interface defines <b>what the subsystem needs</b>.  
+                It does not know anything about CAN IDs or motor types.
+            </p>
+
+<pre><code class="language-java">
+public interface ArmIO extends Subsystem {
+
+    // This method works the same as it does in a subsystem class! 
+    // This means the periodic() method in each implementation will be called automatically just the same.
+    @Override 
+    void periodic();
+
+    // All non-default methods must be implemented by the real and sim classes. 
+    void setWristAngle(double degrees);
+    void setTargetAngle(double degrees);
+    void home();
+
+    // Default methods are not required to be implemented in the real/sim class. 
+    // If a default method is not changed by an implementation, the default code is used (in this case, a placeholder);
+    default double degreesToMotorRotations(double degrees) { return 0; }
+    default double motorRotationsToDegrees(double rotations) { return 0; }
+}
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Real Hardware Implementation</h3>
+            <p>
+                This class uses real hardware—TalonFX, SparkMAX, encoders, limit switches, etc.
+            </p>
+
+<pre><code class="language-java">
+// ArmReal.java
+public class ArmReal implements ArmIO {
+
+    private final TalonFX motor = new TalonFX(1);
+
+    public ArmReal() {
+        register(); // THIS IS REQUIRED!!!!! The Subsystem class does not auto-register on the command scheduler!
+    }
+
+    @Override
+    public void periodic() {
+        // ... periodically run code when on a robot
+    }
+
+    @Override
+    public void setWristAngle(double degrees) {
+        // ... code that runs real hardware
+    }
+
+    @Override
+    public void setTargetAngle(double degrees) {
+        // ... code that runs real hardware
+    }
+
+    @Override
+    public void home() {
+        motor.setPosition(0);
+    }
+}
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Fake / Simulation Implementation</h3>
+            <p>
+                Used for simulation, unit tests, or AdvantageKit replay.
+            </p>
+
+<pre><code class="language-java">
+// ArmSim.java
+public class ArmSim implements ArmIO {
+
+    public ArmSim() {
+        register(); // THIS IS REQUIRED!!!!! The Subsystem class does not auto-register on the command scheduler!
+    }
+
+    private double simulatedArmAngle = 0;
+
+    @Override
+    public void periodic() {
+        // ... periodically run code while not on a real robot
+    }
+
+    @Override
+    public void setWristAngle(double degrees) {
+        // ... simulated movement
+    }
+
+    @Override
+    public void setTargetAngle(double degrees) {
+        // ... simulated movement
+    }
+
+    @Override
+    public void home() {
+        // ... homing has no use in sim! we can leave this blank
+    }
+}
+</code></pre>
+</section>
+
+        <section>
+            <h3>Selecting Real vs Sim in RobotContainer</h3>
+            <p>You choose the implementation at runtime:</p>
+
+<pre><code class="language-java">
+// RobotContainer.java
+public class RobotContainer {
+
+    private final ArmIO arm;
+
+    public RobotContainer() {
+        if (Robot.isReal()) {
+            armIO = new ArmReal();
+            // ... other subsystems
+        } else {
+            armIO = new ArmSim();
+            // ... other subsystems
+        }
+    }
+}
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Why Teams Use This Pattern</h3>
+            <p>
+                WPILib does not force IO abstraction, but the best teams use it because:
+            </p>
+
+            <ul>
+                <li>Simulation works instantly</li>
+                <li>No conflict between simulated logic and real logic</li>
+                <li>AdvantageKit integrates perfectly</li>
+            </ul>
+        </section>
+        <p>There will be more covered on how to set up and use simulation later.</p>
+
+        <!-- Page-specific content ends here -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>
