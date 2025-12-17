@@ -74,8 +74,8 @@
             <p>The subsystem maintains the robot's field position using a SwerveDrivePoseEstimator. </p>
             <ul>
                 <li>Core Data: It fuses data from the Gyro (<code>rawGyroRotation</code>) and the positions of all four Swerve Modules (<code>lastModulePositions</code>).</li>
-                <li>Update Loop: The <code>periodic()</code> method is responsible for continuously updating the pose estimator with time-stamped data from the gyroscope and modules. This is done within a lock (<code>ODOMETRY_LOCK</code>) to ensure data consistency.</li>
-                <li>Vision Integration: The methods <code>addVisionMeasurement()</code> and <code>addAutoVisionMeasurement()</code> allow external vision systems (like Limelight or PhotonVision) to correct the estimated pose, improving accuracy by miles - relying on odometry alone is bound to fail as the wheels can slip frequently.</li>
+                <li>Update Loop: The <code>periodic()</code> method is responsible for continuously updating the pose estimator with time-stamped data from the gyroscope and modules.</li>
+                <li>Vision Integration: The methods <code>addVisionMeasurement()</code> and <code>addAutoVisionMeasurement()</code> allow external vision systems (like Limelight or PhotonVision) to correct the estimated pose, improving accuracy by miles - relying on odometry alone is bound to fail as the wheels can slip frequently. <a href="https://v6.docs.ctr-electronics.com/en/latest/docs/application-notes/update-frequency-impact.html">See this</a> for more unneccessary - but cool to know - odometry info</li>
             </ul>
 
             <h3>PathPlanner Setup</h3>
