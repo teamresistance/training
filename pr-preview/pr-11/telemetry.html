@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics | Logging</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <a href="index.html" class="site-logo">
+        <div class="logo-circle">86</div>
+        <div class="logo-text">
+            <span class="team-name">Programming Training</span>
+            <span class="team-tagline">Going against the current</span>
+        </div>
+    </a>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="index.html">Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            <li><a href="pid-tuning.html">Tuning PID</a></li>
+            <li><a href="abstract-io.html">Subsystem IO Abstraction</a></li>
+            <li><a href="pathfinding.html">Pathing</a></li>
+            <li><a href="standards.html">Code Standards</a></li>
+            <li><a href="swerve.html">Swerve Drive</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            <li><a href="https://docs.wpilib.org/" target="_blank">WPILib Docs ↗</a></li>
+            <li><a href="https://www.thebluealliance.com/" target="_blank">The Blue Alliance ↗</a></li>
+            <li><a href="https://docs.advantagekit.org" target="_blank">AdvantageKit ↗</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-wrapper">
+
+        <h1>Telemetry & Logging</h1>
+        <p>Telemetry is how the robot reports information for tuning, debugging, and analysis. This page covers both SmartDashboard and AdvantageKit logging.</p>
+
+        <!-- SmartDashboard Section -->
+        <section>
+            <h3>SmartDashboard</h3>
+            <p>SmartDashboard is the simplest telemetry system built into WPILib. It sends key-value pairs to NetworkTables and can be viewed from any tool.</p>
+
+            <h4>When to Use SmartDashboard</h4>
+            <ul>
+                <li>Quick debugging</li>
+                <li>Live values during testing</li>
+                <li>Basic telemetry during matches</li>
+            </ul>
+
+            <h4>Basic Example</h4>
+            <pre><code>import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+public void periodic() {
+    SmartDashboard.putNumber("Arm Angle", getAngle());
+    SmartDashboard.putBoolean("Has Game Piece", hasPiece());
+}
+</code></pre>
+
+            <h4>Reading SmartDashboard Values</h4>
+            <p>You can also read values from the dashboard (use sparingly):</p>
+
+            <pre><code>double setpoint = SmartDashboard.getNumber("Arm Setpoint", 0.0);
+pidController.setSetpoint(setpoint);
+</code></pre>
+        </section>
+
+        <!-- AdvantageKit Section -->
+        <section>
+            <h3>AdvantageKit</h3>
+            <p>AdvantageKit is a high-performance logging framework used for real-time telemetry and replay. It records everything the robot does for offline debugging.</p>
+
+            <h4>What AdvantageKit Provides</h4>
+            <ul>
+                <li>Full match logging</li>
+                <li>Automatic timestamping</li>
+                <li>Replay simulator</li>
+                <li>Plots, charts, time-aligned telemetry</li>
+                <li>Swerve and path debugging</li>
+            </ul>
+
+			<p>You don't need to know all the special stuff - just the <code>recordOutput()</code> method.</p>
+
+            <h4>Basic Logger Example</h4>
+            <pre><code>import org.littletonrobotics.junction.Logger;
+
+public void periodic() {
+    Logger.recordOutput("Arm/Angle", getAngle());
+    Logger.recordOutput("Arm/Target", targetAngle);
+    Logger.recordOutput("Intake/HasPiece", hasPiece());
+}
+</code></pre>
+
+            <h4>Logging a Complex Object</h4>
+            <p>AdvantageKit supports Pose2d, Rotation2d, and other geometry types automatically.</p>
+
+            <pre><code>Logger.recordOutput("Drive/Pose", drivetrain.getPose());
+</code></pre>
+
+            <h4>Logging Motor/Encoder Data</h4>
+            <pre><code>Logger.recordOutput("Arm/MotorTemp", motor.getTemperature());
+Logger.recordOutput("Arm/EncoderPosition", encoder.getPosition());
+</code></pre>
+
+        <!-- Best Practices -->
+        <section>
+            <h3>Best Practices</h3>
+
+            <h4>What to Log</h4>
+            <ul>
+                <li>Subsystem states (enabled, disabled, idling)</li>
+                <li>Sensor values (encoders, limit switches)</li>
+                <li>Odometry / robot pose</li>
+            </ul>
+
+
+            <h4>Use Namespace Folders</h4>
+			<p>...and DON'T change the spelling or capitalization.</p>
+            <pre><code>Logger.recordOutput("Arm/Angle", angle);
+Logger.recordOutput("Arm/Target", target);
+Logger.recordOutput("Drive/LeftVelocity", leftVel);
+</code></pre>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Team Resistance - Going against the current</p>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebarNav');
+        sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target) &&
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
