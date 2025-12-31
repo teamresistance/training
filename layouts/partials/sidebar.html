@@ -1,0 +1,22 @@
+<nav class="sidebar-nav" id="sidebarNav">
+    <div class="nav-section">
+        <a href="/" {{ if .IsHome }}class="active"{{ end }}>Home</a>
+        <br>
+
+        <div class="nav-section-title">Quick Reference</div>
+        <ul>
+            {{- range .Site.Menus.quick }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{- end }}
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <div class="nav-section-title">External</div>
+        <ul>
+            {{- range .Site.Menus.external }}
+            <li><a href="{{ .URL }}" target="_blank">{{ .Name }} ↗</a></li>
+            {{- end }}
+        </ul>
+    </div>
+</nav>

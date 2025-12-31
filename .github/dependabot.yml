@@ -7,3 +7,10 @@ updates:
       day: "monday"
       time: "02:00"
       timezone: "America/New_York"
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "02:00"
+      timezone: "America/New_York"

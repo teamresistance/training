@@ -1,0 +1,55 @@
+baseURL = 'https://training.teamresistance.org/'
+languageCode = 'en-us'
+title = 'Programming Training Hub'
+disableKinds = ['taxonomy', 'term']
+
+[params]
+  teamName = 'Team Resistance'
+  teamNumber = '86'
+  tagline = 'Going against the current'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Allows HTML in markdown files
+
+[menu]
+  [[menu.quick]]
+    name = 'Tuning PID'
+    url = '/pid-tuning/'
+    weight = 1
+
+  [[menu.quick]]
+    name = 'Subsystem IO Abstraction'
+    url = '/abstract-io/'
+    weight = 2
+
+  [[menu.quick]]
+    name = 'Pathing'
+    url = '/pathfinding/'
+    weight = 3
+
+  [[menu.quick]]
+    name = 'Code Standards'
+    url = '/standards/'
+    weight = 4
+
+  [[menu.quick]]
+    name = 'Swerve Drive'
+    url = '/swerve/'
+    weight = 5
+
+  [[menu.external]]
+    name = 'WPILib Docs'
+    url = 'https://docs.wpilib.org/'
+    weight = 1
+
+  [[menu.external]]
+    name = 'The Blue Alliance'
+    url = 'https://www.thebluealliance.com/'
+    weight = 2
+
+  [[menu.external]]
+    name = 'AdvantageKit'
+    url = 'https://docs.advantagekit.org/'
+    weight = 3
