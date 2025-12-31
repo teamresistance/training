@@ -113,11 +113,38 @@
                 <ul>
                     <li><a href="sim.html">Simulation Logic</a></li>
                     <li><a href="vision-pose.html">Vision - Pose Estimation</a></li>
-                    <li><a href="vision-tracking.html">Vision - Target / Game Piece Tracking</a></li>
+                    <li><a href="vision-tracking.html">Vision - Target / Game Piece Tracking with Limelight</a></li>
                     <li><a href="vision.html">Setting Up and Tuning Vision</a></li>
                     <li><a href="swerve.html">Swerve Drive</a></li>
                 </ul>
             </div>
+        </div>
+        <h2 style="margin: 60px 0 20px;">Challenges</h2>
+        <div class="info-section-grid">
+            <div class="info-box">
+                <p>These are meant to test your understanding of each section in a unique way - try to complete everything here. Working on a project can help you learn a lot faster than just reading!</p>
+                <details>
+                    <summary>Project 1: Command-Based Lights (sections 1 to 3.1)</summary>
+                    <h4>Project details:</h4>
+                    <ul>
+                        <li>Your goal is to create a traffic-light system in robot code!</li>
+                        <li>The lights will be <code>DigitalOutputs</code>, each representing a different color (red, yellow, green).</li>
+                        <li>You should have a LightSubsystem (or similarly named subsystem) and should use command compositions when commands are too short to get a dedicated file.</li>
+                        <li>You should have sequences to automate a sequence of lights (for example, green for 10s, yellow for 3s, red for 16s)</li>
+                        <li>You should also add the ability to manually set the lights - make sure that you can't confuse our imaginary drivers by having two lights on at once!</li>
+                        <li>Should be controllable using either an xbox controller or a generic joystick, depending on what is available to you</li>
+                        <li>Keep your code readable, well-documented, and have ample logging</li>
+                    </ul>
+                    <h4>Extra challenge:</h4>
+                    <ul>
+                        <li>Add another layer of complexity by having car sensors!</li>
+                        <li>Create a second subsystem with <code>DigitalInputs</code> that can detect the weight of cars waiting at the lights.</li>
+                        <li>You should also try to include some way to check how long its been since a car last went over the sensor - are there no cars coming?</li>
+                        <li>Do whatever with this extra input! For example, you can make it so that if a car is waiting at a red light and no cars have passed through the opposing green light in a while, it advances faster to get the waiting cars moving earlier.</li>
+                    </ul>
+                </details>
+            </div>
+
         </div>
     </div>
 </main>
