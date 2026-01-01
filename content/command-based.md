@@ -1,9 +1,11 @@
 ---
 title: "Command-Based Programming"
 ---
+
 The command-based framework is the recommended structure for FRC robots. It cleanly separates robot logic into**subsystems**(what your robot is) and**commands**(what your robot does).
 
 The simplest way to understand it is this:
+
 - Subsystems have methods and logic that runs hardware
 - Commands run subsystem logic / methods
 - Triggers run commands
@@ -12,9 +14,11 @@ The simplest way to understand it is this:
 ### How the Command-Based Framework Works
 
 WPILib’s Command-Based architecture is built on a scheduler that constantly asks:*“What commands should run right now?”*Every robot loop (~20ms), the scheduler updates active commands, checks triggers, and ensures subsystem rules are followed.
+
 #### The Scheduler
 
 The scheduler is responsible for running, interrupting, and managing commands. It automatically:
+
 - Runs`initialize()`when a command starts.
 - Calls`execute()`every robot loop.
 - Ends a command when`isFinished()`returns true or another command interrupts it.
@@ -38,6 +42,7 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 ### Triggers and Event Binding
 
 Triggers listen for conditions and start/stop commands automatically. They can be bound to controller buttons, sensors, booleans, or custom logic.
+
 #### Button Triggers (Typical)
 
 ```
@@ -52,6 +57,7 @@ driverController.rightTrigger()
 #### Boolean Triggers
 
 Any function that returns a boolean can be used as a trigger.
+
 ```
 `
 Trigger armAtTop = new Trigger(() -> arm.getPosition() > 80);
@@ -69,6 +75,7 @@ armAtTop.onTrue(new HoldArmPosition(arm));
 #### Command Groups and Compositions
 
 The scheduler also runs composite commands:
+
 - `SequentialCommandGroup`→ run commands in order
 - `ParallelCommandGroup`→ run simultaneously
 - `RaceGroup`→ stop all when one finishes
@@ -87,6 +94,7 @@ new SequentialCommandGroup(
 ### Subsystems
 
 A subsystem represents hardware: motors, sensors, and logic that runs every loop. Each subsystem should control**one mechanical responsibility**.
+
 #### Subsystem Responsibilities
 
 - Own the hardware (motors, encoders, solenoids)
@@ -121,8 +129,11 @@ A subsystem represents hardware: motors, sensors, and logic that runs every loop
 ### Commands
 
 A command is an action the robot performs: move arm, drive straight, shoot, etc. Commands run until they finish, get interrupted, or loop forever if continuous.
+
 #### A Real Command Class
+
 Use this when the logic is non-trivial or lasts over time:
+
 ```
 `public class MoveArmTo extends Command {
     private final Arm arm;
@@ -157,6 +168,7 @@ Use this when the logic is non-trivial or lasts over time:
 ### Command Composition (inline commands)
 
 Instead of making a whole file, WPILib allows “one-liner” commands composed from lambdas. These are ideal for simple actions.
+
 #### Examples of Inline Commands
 
 #### Instant Command (do something once)
@@ -209,6 +221,7 @@ Instead of making a whole file, WPILib allows “one-liner” commands composed 
 ### Requirements (addRequirements())
 
 Requirements tell WPILib which subsystem(s) a command controls. Only one command at a time may use a subsystem.
+
 #### Why Requirements Exist
 
 - Prevents two commands from fighting over motors
@@ -241,6 +254,7 @@ Requirements tell WPILib which subsystem(s) a command controls. Only one command
 ### Default Commands
 
 Every subsystem can have one default command that runs whenever no other command is using it.
+
 #### Example: default drive command
 
 ```

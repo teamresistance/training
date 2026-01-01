@@ -1,14 +1,14 @@
 {{ define "main" }}
 <!-- Hero -->
-<div style="text-align: center; margin-bottom: 50px;" class="fade-in">
-    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px;">
-        <div class="logo-circle glow" style="width: 120px; height: 120px; font-size: 56px;">{{ .Site.Params.teamNumber }}</div>
-        <h1 style="margin: 0; font-size: 56px;">{{ .Site.Title }}</h1>
+<div class="hero-section fade-in">
+    <div class="hero-content">
+        <div class="logo-circle glow hero-logo">{{ .Site.Params.teamNumber }}</div>
+        <h1 class="hero-title">{{ .Site.Title }}</h1>
     </div>
 </div>
 
 <!-- 5 Section List -->
-<h2 style="margin-bottom: 20px;">Training Sections</h2>
+<h2 class="section-heading">Training Sections</h2>
 
 <div class="info-section-grid">
 
@@ -66,7 +66,7 @@
         </ul>
     </div>
 </div>
-<h2 style="margin: 60px 0 20px;">Challenges</h2>
+<h2 class="challenges-heading">Challenges</h2>
 <div class="info-section-grid">
     <div class="info-box">
         <p>These are meant to test your understanding of each section in a unique way - try to complete everything here. Working on a project can help you learn a lot faster than just reading!</p>

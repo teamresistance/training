@@ -1,10 +1,13 @@
 ---
 title: "Telemetry & Logging"
 ---
+
 Telemetry is how the robot reports information for tuning, debugging, and analysis. This page covers both SmartDashboard and AdvantageKit logging.
+
 ### SmartDashboard
 
 SmartDashboard is the simplest telemetry system built into WPILib. It sends key-value pairs to NetworkTables and can be viewed from any tool.
+
 #### When to Use SmartDashboard
 
 - Quick debugging
@@ -26,6 +29,7 @@ public void periodic() {
 #### Reading SmartDashboard Values
 
 You can also read values from the dashboard (use sparingly):
+
 ```
 `double setpoint = SmartDashboard.getNumber("Arm Setpoint", 0.0);
 pidController.setSetpoint(setpoint);
@@ -35,6 +39,7 @@ pidController.setSetpoint(setpoint);
 ### AdvantageKit
 
 AdvantageKit is a high-performance logging framework used for real-time telemetry and replay. It records everything the robot does for offline debugging.
+
 #### What AdvantageKit Provides
 
 - Full match logging
@@ -44,6 +49,7 @@ AdvantageKit is a high-performance logging framework used for real-time telemetr
 - Swerve and path debugging
 
 You don't need to know all the special stuff - just the`recordOutput()`method.
+
 #### Basic Logger Example
 
 ```
@@ -60,6 +66,7 @@ public void periodic() {
 #### Logging a Complex Object
 
 AdvantageKit supports Pose2d, Rotation2d, and other geometry types automatically.
+
 ```
 `Logger.recordOutput("Drive/Pose", drivetrain.getPose());
 `
@@ -84,6 +91,7 @@ Logger.recordOutput("Arm/EncoderPosition", encoder.getPosition());
 #### Use Namespace Folders
 
 ...and DON'T change the spelling or capitalization.
+
 ```
 `Logger.recordOutput("Arm/Angle", angle);
 Logger.recordOutput("Arm/Target", target);

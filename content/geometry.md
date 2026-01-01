@@ -1,10 +1,13 @@
 ---
 title: "WPILib Geometry Classes"
 ---
+
 WPILib provides geometry classes to handle positions, rotations, and transforms in 2D space. These classes simplify robot math such as aiming, distance calculation, and field-relative movement.WARNING: All code you write using these classes should be based on a BLUE alliance origin. (0,0) should be on the bottom blue corner! Look up "FRC Blue Side Origin" for more info
+
 ### Translation2d
 
 Represents a point or vector on a 2D plane (x, y). Useful for distances and positions.
+
 #### Creating a Translation
 
 ```
@@ -28,6 +31,7 @@ Translation2d vector = b.minus(a);   // vector from a to b
 ### Rotation2d
 
 Stores an angle, provides sine/cosine helpers, and supports combining rotations.
+
 #### Creating a Rotation
 
 ```
@@ -50,6 +54,7 @@ Rotation2d c = a.plus(b); // 50 degrees
 ### Pose2d
 
 Combines a translation and rotation, representing the robot’s full position on the field.
+
 #### Creating a Pose
 
 ```
@@ -77,6 +82,7 @@ Pose2d newPose = robot.plus(movement);
 ### Transform2d
 
 Represents a relative movement (translation + rotation) between poses.
+
 #### Creating a Transform
 
 ```
@@ -92,6 +98,7 @@ Pose2d movedPose = robot.plus(t);
 ### Targeting and Angles
 
 You can use the robot pose and target pose to calculate angles, distances, etc. for aiming.
+
 #### Angle to Target
 
 ```

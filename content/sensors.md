@@ -1,10 +1,13 @@
 ---
 title: "Sensors in FRC"
 ---
+
 An overview of common FRC sensors, how they work, and how we use them to create reliable robot behavior.
+
 ### Banner Sensors
 
 Banner sensors are small optical sensors used for object detection.
+
 - Digital output (true/false)
 - Fast and reliable
 - Detects if something is in the way - super simple
@@ -23,6 +26,7 @@ public boolean hasPiece() {
 ### Encoders
 
 Encoders measure rotation accurately and are used to know how many times a motor has rotated.
+
 #### Types of Encoders
 
 - **Integrated encoders:**Neo/Kraken built-in sensors
@@ -58,6 +62,7 @@ public double getPosition() {
 ### Limit Switches
 
 Limit switches detect endpoints of travel and protect mechanisms.
+
 - Not as common anymore
 - Digital input (true/false)
 - Often used for homing
@@ -76,6 +81,7 @@ public boolean atHome() {
 ### Homing a Mechanism
 
 Homing establishes a known zero position for a mechanism.
+
 #### Common Homing Methods
 
 - Drive into a limit switch → reset encoder
