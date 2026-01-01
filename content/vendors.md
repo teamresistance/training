@@ -67,7 +67,7 @@ The Spark MAX handles the ramping internally, preventing aggressive starts and s
 
 ### CTRE Tuner X
 
-Tuner X is used to configure CTRE devices such as TalonFXs, Pidgeon2s (CTRE gyroscope), CANdles (LED controller), and more. It is used to:
+Tuner X is used to configure CTRE devices such as TalonFXs, Pigeon2s (CTRE gyroscope), CANdles (LED controller), and more. It is used to:
 
 - Firmware updates (SHOULD BE DONE REGULARLY!!)
 - Set CAN IDs (needs to be done to new devices, especially when first starting to put code on the robot)

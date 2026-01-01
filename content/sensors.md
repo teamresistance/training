@@ -14,14 +14,14 @@ Banner sensors are small optical sensors used for object detection.
 
 #### Example (Digital Input)
 
-```
+```java
 `private DigitalInput banner = new DigitalInput(0);
 
 public boolean hasPiece() {
     return banner.get();
 }
 `
-```
+```java
 
 ### Encoders
 
@@ -36,14 +36,14 @@ Encoders measure rotation accurately and are used to know how many times a motor
 
 #### Example (SparkMAX Built-In Relative Encoder)
 
-```
+```java
 `private RelativeEncoder encoder = sparkMotorController.getEncoder();
 
 public double getPosition() {
     return encoder.getDistance();
 }
 `
-```
+```java
 
 ### Absolute vs Relative Encoders
 
@@ -69,14 +69,14 @@ Limit switches detect endpoints of travel and protect mechanisms.
 
 #### Example (Limit Switch)
 
-```
+```java
 `private DigitalInput limit = new DigitalInput(1);
 
 public boolean atHome() {
     return limit.get();
 }
 `
-```
+```java
 
 ### Homing a Mechanism
 
@@ -90,9 +90,9 @@ Homing establishes a known zero position for a mechanism.
 
 #### Example (Homing using a limit switch)
 
-```
+```java
 `if (limitSwitch.get()) {
     encoder.setPosition(0);
 }
 `
-```
+```java

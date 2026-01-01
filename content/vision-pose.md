@@ -5,7 +5,10 @@ title: "Vision Pose Estimation"
 Vision pose estimation answers one question:
 **“Where is the robot on the field, right now?”**
 
-Unlike odometry, vision provides nearly*absolute*field position. It updates significantly slower, maybe only 1 time per second if moving quickly near a tag. Odometry, unlike vision, updates*continuously*. However, it drifts quickly - vision corrects this. The goal is to fuse odometry with vision - take the less frequent but more accurate vision pose and combine it with odometry to create the most accurate pose.
+Unlike odometry, vision provides nearly*absolute*field position. It updates significantly slower, maybe only 1 time
+per second if moving quickly near a tag. Odometry, unlike vision, updates*continuously*. However, it drifts quickly -
+vision corrects this. The goal is to fuse odometry with vision - take the less frequent but more accurate vision pose
+and combine it with odometry to create the most accurate pose.
 
 ## High-Level Data Flow
 
@@ -18,13 +21,16 @@ A complete vision pose estimate follows this pipeline:
 1. Timestamp corrected for latency
 1. Estimate fused into pose estimator
 
-Every error introduced early compounds later. This is why calibration is key - if your odometry drifts slowly and your vision data isn't good you might be adding to the issue of innacuracy.
+Every error introduced early compounds later. This is why calibration is key - if your odometry drifts slowly and your vision data isn't good you might be adding to the issue of inaccuracy.
 
 ## PhotonVision Pose Estimation
 
 PhotonVision performs solvePnP on detected AprilTags to determine the 3D pose of the camera relative to the tag.
 
-PhotonVision calculates the camera's pose to the to the apriltag using complex geometry - it only knows where the tag is and what it looks like. Using Photon's estimated pose, you can apply a transformation of the camera pose to the robot. For example, if the camera is at (1, 1) relative to the robot and PhotonVision estimates that that camera is at (5, 5) on the field, you can deduce that the robot is at (4, 4) on the field. (rotation is also involved)
+PhotonVision calculates the camera's pose to the to the apriltag using complex geometry - it only knows where the tag
+is and what it looks like. Using Photon's estimated pose, you can apply a transformation of the camera pose to the
+robot. For example, if the camera is at (1, 1) relative to the robot and PhotonVision estimates that that camera is
+at (5, 5) on the field, you can deduce that the robot is at (4, 4) on the field. (rotation is also involved)
 
 ## AprilTag Field Layout
 
@@ -32,13 +38,13 @@ AprilTags become useful only because their poses are known in field coordinates.
 
 WPILib provides official layouts:
 
-```
+```java
 `
 AprilTagFieldLayout layout =
     AprilTagFieldLayout.loadFromResource(
         AprilTagFields.k2024Crescendo.m_resourceFile);
             `
-```
+```java
 
 Each tag has a fixed Pose3d on the field. Vision estimates work backwards from that known truth.
 
@@ -68,14 +74,14 @@ MegaTag 2 can use multiple tags simultaneously to solve a constrained optimizati
 
 Vision estimates the pose of the**camera**, not the robot. You must supply the transform from camera frame to robot frame.
 
-```
+```java
 `
 Transform3d robotToCam =
     new Transform3d(
         new Translation3d(0.25, 0.0, 0.45),
         new Rotation3d(0.0, 0.0, Math.PI));
             `
-```
+```java
 
 If this transform is wrong:
 
@@ -93,13 +99,13 @@ Vision data is always delayed. This delay includes:
 
 PhotonVision provides a timestamp for when the image was captured. This timestamp must be used.
 
-```
+```java
 `
 poseEstimator.addVisionMeasurement(
     visionPose,
     visionTimestampSeconds);
             `
-```
+```java
 
 Without latency compensation, vision will**drag**your pose behind the robot during motion. Imagine always being 0.1 seconds behind! It can make a big difference.
 
@@ -112,12 +118,12 @@ Vision measurements are fused based on their covariance:
 - Lower std dev = more trust on vision, accurate readings
 - Higher std dev = less influence, less accurate
 
-```
+```java
 `
 poseEstimator.setVisionMeasurementStdDevs(
     VecBuilder.fill(0.7, 0.7, 1.2));
             `
-```
+```java
 
 Poorly tuned vision std devs cause:
 

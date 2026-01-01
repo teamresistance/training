@@ -10,15 +10,15 @@ Represents a point or vector on a 2D plane (x, y). Useful for distances and posi
 
 #### Creating a Translation
 
-```
+```java
 `
 Translation2d point = new Translation2d(2.0, 3.0); // x=2m, y=3m
 `
-```
+```java
 
 #### Distance and Vector Math
 
-```
+```java
 `
 Translation2d a = new Translation2d(1, 1);
 Translation2d b = new Translation2d(4, 5);
@@ -26,7 +26,7 @@ Translation2d b = new Translation2d(4, 5);
 double distance = a.getDistance(b); // 5 meters
 Translation2d vector = b.minus(a);   // vector from a to b
 `
-```
+```java
 
 ### Rotation2d
 
@@ -34,22 +34,22 @@ Stores an angle, provides sine/cosine helpers, and supports combining rotations.
 
 #### Creating a Rotation
 
-```
+```java
 `
 Rotation2d rot = Rotation2d.fromDegrees(90);
 double radians = rot.getRadians();
 `
-```
+```java
 
 #### Combining Rotations
 
-```
+```java
 `
 Rotation2d a = Rotation2d.fromDegrees(30);
 Rotation2d b = Rotation2d.fromDegrees(20);
 Rotation2d c = a.plus(b); // 50 degrees
 `
-```
+```java
 
 ### Pose2d
 
@@ -57,18 +57,18 @@ Combines a translation and rotation, representing the robot’s full position on
 
 #### Creating a Pose
 
-```
+```java
 `
 Pose2d robot = new Pose2d(
     new Translation2d(2.0, 1.0),
     Rotation2d.fromDegrees(90)
 );
 `
-```
+```java
 
 #### Applying a Transform
 
-```
+```java
 `
 Transform2d movement = new Transform2d(
     new Translation2d(1.0, 0.0),
@@ -77,7 +77,7 @@ Transform2d movement = new Transform2d(
 
 Pose2d newPose = robot.plus(movement);
 `
-```
+```java
 
 ### Transform2d
 
@@ -85,7 +85,7 @@ Represents a relative movement (translation + rotation) between poses.
 
 #### Creating a Transform
 
-```
+```java
 `
 Transform2d t = new Transform2d(
     new Translation2d(1.0, 0.5),
@@ -93,7 +93,7 @@ Transform2d t = new Transform2d(
 );
 Pose2d movedPose = robot.plus(t);
 `
-```
+```java
 
 ### Targeting and Angles
 
@@ -101,7 +101,7 @@ You can use the robot pose and target pose to calculate angles, distances, etc. 
 
 #### Angle to Target
 
-```
+```java
 `
 Translation2d target = new Translation2d(5, 3);
 Translation2d toTarget = target.minus(robot.getTranslation());
@@ -111,23 +111,23 @@ Rotation2d aimAngle = new Rotation2d(Math.atan2(
     toTarget.getX()
 ));
 `
-```
+```java
 
 #### Degrees to Rotate
 
-```
+```java
 `
 Rotation2d currentAngle = robot.getRotation();
 Rotation2d neededTurn = aimAngle.minus(currentAngle);
 
 double degrees = neededTurn.getDegrees();
 `
-```
+```java
 
 #### Distance to Target
 
-```
+```java
 `
 double dist = robot.getTranslation().getDistance(target);
 `
-```
+```java

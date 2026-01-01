@@ -5,9 +5,9 @@
     "**/.cspell.json",
     "**/.gitignore",
     "**/.git/**",
-    "**/node_modules/**",
-    "**/package-lock.json",
-    ".github/workflows/*.yml"
+    ".github/**/*.yml",
+    ".github/CODEOWNERS",
+    "hugo.toml"
   ],
   "ignoreRegExpList": [
     "/`+([\\s\\S]*?)`+/g",
@@ -15,14 +15,19 @@
     "/\\w*\\_\\w*/g"
   ],
   "words": [
-    "apriltag",
+    "AprilTag",
+    "AprilTags",
     "CTRE",
     "deadband",
+    "feedforward",
     "holonomic",
+    "Kalman",
     "pathfinding",
     "pathing",
     "pathplanner",
+    "pathplanning",
     "teleop",
+    "teleoperated",
     "timestamping"
   ]
 }

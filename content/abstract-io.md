@@ -26,7 +26,7 @@ A subsystem usually has:
 
 This interface defines**what the subsystem needs**. It does not know anything about CAN IDs or motor types.
 
-```
+```java
 `
 public interface ArmIO extends Subsystem {
 
@@ -46,13 +46,13 @@ public interface ArmIO extends Subsystem {
     default double motorRotationsToDegrees(double rotations) { return 0; }
 }
 `
-```
+```java
 
 ### Real Hardware Implementation
 
 This class uses real hardware—TalonFX, SparkMAX, encoders, limit switches, etc.
 
-```
+```java
 `
 // ArmReal.java
 public class ArmReal implements ArmIO {
@@ -84,13 +84,13 @@ public class ArmReal implements ArmIO {
     }
 }
 `
-```
+```java
 
 ### Fake / Simulation Implementation
 
 Used for simulation, unit tests, or AdvantageKit replay.
 
-```
+```java
 `
 // ArmSim.java
 public class ArmSim implements ArmIO {
@@ -122,13 +122,13 @@ public class ArmSim implements ArmIO {
     }
 }
 `
-```
+```java
 
 ### Selecting Real vs Sim in RobotContainer
 
 You choose the implementation at runtime:
 
-```
+```java
 `
 // RobotContainer.java
 public class RobotContainer {
@@ -146,7 +146,7 @@ public class RobotContainer {
     }
 }
 `
-```
+```java
 
 ### Why Teams Use This Pattern
 

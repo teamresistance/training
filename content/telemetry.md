@@ -16,7 +16,7 @@ SmartDashboard is the simplest telemetry system built into WPILib. It sends key-
 
 #### Basic Example
 
-```
+```java
 `import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public void periodic() {
@@ -24,17 +24,17 @@ public void periodic() {
     SmartDashboard.putBoolean("Has Game Piece", hasPiece());
 }
 `
-```
+```java
 
 #### Reading SmartDashboard Values
 
 You can also read values from the dashboard (use sparingly):
 
-```
+```java
 `double setpoint = SmartDashboard.getNumber("Arm Setpoint", 0.0);
 pidController.setSetpoint(setpoint);
 `
-```
+```java
 
 ### AdvantageKit
 
@@ -52,7 +52,7 @@ You don't need to know all the special stuff - just the`recordOutput()`method.
 
 #### Basic Logger Example
 
-```
+```java
 `import org.littletonrobotics.junction.Logger;
 
 public void periodic() {
@@ -61,24 +61,24 @@ public void periodic() {
     Logger.recordOutput("Intake/HasPiece", hasPiece());
 }
 `
-```
+```java
 
 #### Logging a Complex Object
 
 AdvantageKit supports Pose2d, Rotation2d, and other geometry types automatically.
 
-```
+```java
 `Logger.recordOutput("Drive/Pose", drivetrain.getPose());
 `
-```
+```java
 
 #### Logging Motor/Encoder Data
 
-```
+```java
 `Logger.recordOutput("Arm/MotorTemp", motor.getTemperature());
 Logger.recordOutput("Arm/EncoderPosition", encoder.getPosition());
 `
-```
+```java
 
 ### Best Practices
 
@@ -92,9 +92,9 @@ Logger.recordOutput("Arm/EncoderPosition", encoder.getPosition());
 
 ...and DON'T change the spelling or capitalization.
 
-```
+```java
 `Logger.recordOutput("Arm/Angle", angle);
 Logger.recordOutput("Arm/Target", target);
 Logger.recordOutput("Drive/LeftVelocity", leftVel);
 `
-```
+```java

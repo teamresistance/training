@@ -45,9 +45,9 @@ If the mechanism stops short of the setpoint or sags under load → I needed.
 
 #### 2. Increase I Until Drift Disappears
 
-```
+```java
 `controller.setI(I + very_small_step);`
-```
+```java
 
 The mechanism should creep perfectly into the target after several seconds.
 
@@ -71,8 +71,8 @@ Push on the mechanism. It should resist without buzzing.
 
 Command several positions at various distances.
 
-```
+```java
 `0° → 30° → 90° → 45° → 75° → 10°`
-```
+```java
 
 You want the same behavior no matter the distance.
