@@ -1,5 +1,5 @@
 {
-  "doctype-first": false,
-  "spec-char-escape": false,
-  "tag-pair": false
+    "doctype-first": false,
+    "spec-char-escape": false,
+    "tag-pair": false
 }

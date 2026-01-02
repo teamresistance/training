@@ -1,6 +1,7 @@
 {
   "language": "en,en-US",
   "version": "0.2",
+  "checkFileNames": false,
   "ignorePaths": [
     "**/.cspell.json",
     "**/.gitignore",
