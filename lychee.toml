@@ -1,4 +1,5 @@
 base_url = "https://training.teamresistance.org"
+root_dir = "/"
 exclude = [
     "^http://localhost"
 ]
