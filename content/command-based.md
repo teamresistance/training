@@ -27,7 +27,6 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 #### Command Lifecycle
 
 ```java
-`
 +---------------+---------------------------+
 | Method        | When It's Called          |
 +---------------+---------------------------+
@@ -36,8 +35,7 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 | isFinished()  | Checked every loop        |
 | end()         | When ending or canceled   |
 +---------------+---------------------------+
-    `
-```java
+```
 
 ### Triggers and Event Binding
 
@@ -46,25 +44,20 @@ Triggers listen for conditions and start/stop commands automatically. They can b
 #### Button Triggers (Typical)
 
 ```java
-`
-
 driverController.rightTrigger()
     .whileTrue(new ShootCommand(shooter))
     .onFalse(new StopShooter(shooter));
-    `
-```java
+```
 
 #### Boolean Triggers
 
 Any function that returns a boolean can be used as a trigger.
 
 ```java
-`
 Trigger armAtTop = new Trigger(() -> arm.getPosition() > 80);
 
 armAtTop.onTrue(new HoldArmPosition(arm));
-    `
-```java
+```
 
 #### Event-Driven Programming
 
@@ -82,14 +75,12 @@ The scheduler also runs composite commands:
 - `DeadlineGroup`→ run all until a “deadline” command ends
 
 ```java
-`
 new SequentialCommandGroup(
     new HomeArm(arm),
     new WaitCommand(1),
     new MoveToPosition(arm, 45)
 );
-    `
-```java
+```
 
 ### Subsystems
 
@@ -105,7 +96,7 @@ A subsystem represents hardware: motors, sensors, and logic that runs every loop
 #### Example Subsystem
 
 ```java
-`public class Arm extends SubsystemBase {
+public class Arm extends SubsystemBase {
     private final MotorController motor = new TalonFX(3);
     private double targetDegrees = 0;
 
@@ -123,8 +114,7 @@ A subsystem represents hardware: motors, sensors, and logic that runs every loop
         return encoder.getPosition();
     }
 }
-`
-```java
+```
 
 ### Commands
 
@@ -135,7 +125,7 @@ A command is an action the robot performs: move arm, drive straight, shoot, etc.
 Use this when the logic is non-trivial or lasts over time:
 
 ```java
-`public class MoveArmTo extends Command {
+public class MoveArmTo extends Command {
     private final Arm arm;
     private final double target;
 
@@ -155,8 +145,7 @@ Use this when the logic is non-trivial or lasts over time:
         return Math.abs(arm.getAngle() - target) < 2.0;
     }
 }
-`
-```java
+```
 
 #### When to Make a Dedicated Command File
 
@@ -174,41 +163,41 @@ Instead of making a whole file, WPILib allows “one-liner” commands composed 
 #### Instant Command (do something once)
 
 ```java
-`.onTrue(Commands.runOnce(() -> arm.setTarget(90)));`
-```java
+.onTrue(Commands.runOnce(() -> arm.setTarget(90)));
+```
 
 #### Run Command (runs continuously)
 
 ```java
-`.whileTrue(Commands.run(() -> arm.setTarget(driverInput)));`
-```java
+.whileTrue(Commands.run(() -> arm.setTarget(driverInput)));
+```
 
 #### StartEnd Command (runs while held)
 
 ```java
-`.whileTrue(Commands.startEnd(
+.whileTrue(Commands.startEnd(
     () -> intake.setPower(0.8),
     () -> intake.setPower(0))
-);`
-```java
+);
+```
 
 #### Sequence
 
 ```java
-`Commands.sequence(
+Commands.sequence(
     intake.startEnd(() -> intake.setPower(1), () -> intake.setPower(0)).withTimeout(1),
     shooter.runOnce(() -> shooter.fire())
-);`
-```java
+);
+```
 
 #### Parallel Commands
 
 ```java
-`Commands.parallel(
+Commands.parallel(
     arm.runOnce(() -> arm.setTarget(80)),
     elevator.runOnce(() -> elevator.moveTo(40))
-);`
-```java
+);
+```
 
 #### When to Use Composition Instead of a Command File
 
@@ -231,13 +220,12 @@ Requirements tell WPILib which subsystem(s) a command controls. Only one command
 #### Example
 
 ```java
-`public MoveArmTo(Arm arm, double target) {
+public MoveArmTo(Arm arm, double target) {
     this.arm = arm;
     this.target = target;
     addRequirements(arm);
 }
-`
-```java
+```
 
 #### What Happens Without Requirements?
 
@@ -258,7 +246,7 @@ Every subsystem can have one default command that runs whenever no other command
 #### Example: default drive command
 
 ```java
-`drive.setDefaultCommand(
+drive.setDefaultCommand(
     drive.run(() -> {
         drive.arcadeDrive(
             controller.getY(),
@@ -266,8 +254,7 @@ Every subsystem can have one default command that runs whenever no other command
         );
     })
 );
-`
-```java
+```
 
 #### Rules for Default Commands
 
@@ -294,11 +281,10 @@ Every subsystem can have one default command that runs whenever no other command
 #### Operator Controls
 
 ```java
-`controller.a().onTrue(new MoveArmTo(arm, 90));
+controller.a().onTrue(new MoveArmTo(arm, 90));
 controller.b().onTrue(arm.runOnce(() -> arm.setTarget(0)));
 
 controller.x().whileTrue(
     intake.startEnd(() -> intake.set(0.8), () -> intake.set(0))
 );
-`
-```java
+```
