@@ -1,6 +1,9 @@
+# Exclude localhost URLs
 exclude = [
-    "^http://localhost"
+    '^http://localhost',
+    # Exclude all root-relative paths (like /motors/, /abstract-io/, etc.)
+    '^\/'
 ]
-exclude_path = [
-    "^/"
-]
+
+# Include only absolute URLs (http/https) for checking
+include = ['^https?://']
