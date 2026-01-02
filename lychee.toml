@@ -1,6 +1,5 @@
 # Exclude localhost URLs and Hugo template syntax
 exclude = [
-    'http://localhost(:[0-9]+)?(/.*)?',
     '\{\{.*\}\}'
 ]
 
@@ -9,3 +8,6 @@ include = ['^https?://']
 
 # Exclude checking files in certain paths
 exclude_path = ['layouts/']
+
+# Exclude all private IPs and localhost
+exclude_all_private = true
