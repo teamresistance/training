@@ -45,14 +45,12 @@ Adds damping. Reacts to how fast the error is changing.
 #### Summary
 
 ```java
-`
 Term | What it does              | If too low         | If too high
 -----+---------------------------+--------------------+--------------------------
 P    | Main movement force       | Slow, weak         | Oscillation, overshoot
 I    | Fix long-term small error | Never perfect      | Drifting, runaway
 D    | Stabilizes, adds braking  | Overshoot          | Oscillation
-`
-```java
+```
 
 ### Applications in FRC
 
@@ -98,7 +96,6 @@ There is a more proper way to do this, but this will work in some cases.
 #### Basic PID in a Subsystem
 
 ```java
-`
 public class Arm extends SubsystemBase {
     private final PIDController pid =
         new PIDController(0.05, 0.0, 0.002);
@@ -116,13 +113,11 @@ public class Arm extends SubsystemBase {
         motor.set(output);
     }
 }
-`
-```java
+```
 
 #### PID in a Command
 
 ```java
-`
 public class MoveArmTo extends Command {
     private final Arm arm;
     private final double target;
@@ -143,5 +138,4 @@ public class MoveArmTo extends Command {
         return Math.abs(arm.getError()) < 2;
     }
 }
-`
-```java
+```

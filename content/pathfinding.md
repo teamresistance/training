@@ -41,7 +41,6 @@ Add PathPlanner lib to your vendor dependencies through the vendor dependency ma
 #### Load & Run a Path
 
 ```java
-`
 // This code goes in the RobotContainer - this is how you will typically create an auto selector.
   private LoggedDashboardChooser configureAutos() {
 
@@ -51,8 +50,7 @@ Add PathPlanner lib to your vendor dependencies through the vendor dependency ma
 
     return autoChooser;
   }
-            `
-```java
+```
 
 ### Named Commands
 
@@ -61,11 +59,9 @@ Named commands are defined in-code and can be run by PathPlanner in an auto.
 #### Example
 
 ```java
-`
 NamedCommands.registerCommand(
     "autoScore", new DeferredCommand(() -> new AutoScoreCommand(reef, drive, elevator)));
-            `
-```java
+```
 
 These commands run just the same as normal commands - but PathPlanner will wait to continue until they finish.
 
@@ -76,7 +72,6 @@ You can generate short paths at runtime (helpful for driver-assist or snapping t
 #### Simple runtime path from current pose → target pose
 
 ```java
-`
 public static Command followPoses(SwerveDriveIO drive, double transitionVelocity, Supplier pointArraySupplier) {
     Pose2d[] points = pointArraySupplier.get();
     List waypoints = PathPlannerPath.waypointsFromPoses(points);
@@ -94,8 +89,7 @@ public static Command followPoses(SwerveDriveIO drive, double transitionVelocity
         AutoBuilder.pathfindToPose(points[0], Constants.PATH_CONSTRAINTS, transitionVelocity),
         AutoBuilder.followPath(path));
   }
-            `
-```java
+```
 
 #### Semi-Auto Uses
 

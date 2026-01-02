@@ -39,12 +39,10 @@ AprilTags become useful only because their poses are known in field coordinates.
 WPILib provides official layouts:
 
 ```java
-`
 AprilTagFieldLayout layout =
     AprilTagFieldLayout.loadFromResource(
         AprilTagFields.k2024Crescendo.m_resourceFile);
-            `
-```java
+```
 
 Each tag has a fixed Pose3d on the field. Vision estimates work backwards from that known truth.
 
@@ -75,13 +73,11 @@ MegaTag 2 can use multiple tags simultaneously to solve a constrained optimizati
 Vision estimates the pose of the**camera**, not the robot. You must supply the transform from camera frame to robot frame.
 
 ```java
-`
 Transform3d robotToCam =
     new Transform3d(
         new Translation3d(0.25, 0.0, 0.45),
         new Rotation3d(0.0, 0.0, Math.PI));
-            `
-```java
+```
 
 If this transform is wrong:
 
@@ -100,12 +96,10 @@ Vision data is always delayed. This delay includes:
 PhotonVision provides a timestamp for when the image was captured. This timestamp must be used.
 
 ```java
-`
 poseEstimator.addVisionMeasurement(
     visionPose,
     visionTimestampSeconds);
-            `
-```java
+```
 
 Without latency compensation, vision will**drag**your pose behind the robot during motion. Imagine always being 0.1 seconds behind! It can make a big difference.
 
@@ -119,11 +113,9 @@ Vision measurements are fused based on their covariance:
 - Higher std dev = less influence, less accurate
 
 ```java
-`
 poseEstimator.setVisionMeasurementStdDevs(
     VecBuilder.fill(0.7, 0.7, 1.2));
-            `
-```java
+```
 
 Poorly tuned vision std devs cause:
 
