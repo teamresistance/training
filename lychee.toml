@@ -1,7 +1,7 @@
 # Exclude localhost URLs and Hugo template syntax
 exclude = [
     '^http://localhost',
-    '{{.*}}',  # Exclude Hugo template variables
+    '\{\{.*\}\}'
 ]
 
 # Only check external absolute URLs
