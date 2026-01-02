@@ -1,28 +1,31 @@
 ---
 title: "Sensors in FRC"
 ---
+
 An overview of common FRC sensors, how they work, and how we use them to create reliable robot behavior.
+
 ### Banner Sensors
 
 Banner sensors are small optical sensors used for object detection.
+
 - Digital output (true/false)
 - Fast and reliable
 - Detects if something is in the way - super simple
 
 #### Example (Digital Input)
 
-```
-`private DigitalInput banner = new DigitalInput(0);
+```java
+private DigitalInput banner = new DigitalInput(0);
 
 public boolean hasPiece() {
     return banner.get();
 }
-`
 ```
 
 ### Encoders
 
 Encoders measure rotation accurately and are used to know how many times a motor has rotated.
+
 #### Types of Encoders
 
 - **Integrated encoders:**Neo/Kraken built-in sensors
@@ -32,13 +35,12 @@ Encoders measure rotation accurately and are used to know how many times a motor
 
 #### Example (SparkMAX Built-In Relative Encoder)
 
-```
-`private RelativeEncoder encoder = sparkMotorController.getEncoder();
+```java
+private RelativeEncoder encoder = sparkMotorController.getEncoder();
 
 public double getPosition() {
     return encoder.getDistance();
 }
-`
 ```
 
 ### Absolute vs Relative Encoders
@@ -58,24 +60,25 @@ public double getPosition() {
 ### Limit Switches
 
 Limit switches detect endpoints of travel and protect mechanisms.
+
 - Not as common anymore
 - Digital input (true/false)
 - Often used for homing
 
 #### Example (Limit Switch)
 
-```
-`private DigitalInput limit = new DigitalInput(1);
+```java
+private DigitalInput limit = new DigitalInput(1);
 
 public boolean atHome() {
     return limit.get();
 }
-`
 ```
 
 ### Homing a Mechanism
 
 Homing establishes a known zero position for a mechanism.
+
 #### Common Homing Methods
 
 - Drive into a limit switch → reset encoder
@@ -84,9 +87,8 @@ Homing establishes a known zero position for a mechanism.
 
 #### Example (Homing using a limit switch)
 
-```
-`if (limitSwitch.get()) {
+```java
+if (limitSwitch.get()) {
     encoder.setPosition(0);
 }
-`
 ```

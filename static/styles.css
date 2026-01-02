@@ -1,20 +1,18 @@
 /* ===== ROOT VARIABLES ===== */
 :root {
     --resistance-green: #00ff41;
-    --resistance-green-dark: #00cc33;
+    --resistance-green-dark: #0c3;
     --resistance-green-darker: #009926;
-    --resistance-green-light: #00ff88;
+    --resistance-green-light: #0f8;
     --resistance-black: #1a1a1a;
     --resistance-dark-gray: #2d2d2d;
-    --resistance-med-gray: #444444;
-    --resistance-light-gray: #cccccc;
-    --resistance-white: #ffffff;
-    
-    --shadow-green: rgba(0, 255, 65, 0.3);
-    --shadow-green-strong: rgba(0, 255, 65, 0.6);
-    --bg-green-subtle: rgba(0, 255, 65, 0.05);
-    --bg-green-light: rgba(0, 255, 65, 0.1);
-    
+    --resistance-med-gray: #444;
+    --resistance-light-gray: #ccc;
+    --resistance-white: #fff;
+    --shadow-green: rgb(0 255 65 / 30%);
+    --shadow-green-strong: rgb(0 255 65 / 60%);
+    --bg-green-subtle: rgb(0 255 65 / 5%);
+    --bg-green-light: rgb(0 255 65 / 10%);
     --header-height: 80px;
     --nav-width: 250px;
 }
@@ -36,6 +34,26 @@ body {
     color: var(--resistance-white);
     line-height: 1.6;
     min-height: 100vh;
+}
+
+a {
+    color: var(--resistance-green-light);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul,
+ol {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+    color: var(--resistance-light-gray);
 }
 
 /* ===== HEADER ===== */
@@ -99,20 +117,38 @@ body {
     gap: 25px;
 }
 
-.header-nav a {
+.header-nav a,
+.nav-section a {
     color: var(--resistance-light-gray);
     text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header-nav a {
     font-size: 14px;
     font-weight: 500;
-    transition: color 0.3s ease;
     padding: 8px 12px;
     border-radius: 5px;
+}
+
+.nav-section a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .header-nav a:hover,
 .header-nav a.active {
     color: var(--resistance-green);
     background: var(--bg-green-subtle);
+}
+
+.nav-section a:hover,
+.nav-section a.active {
+    background: var(--bg-green-light);
+    color: var(--resistance-green);
+    transform: translateX(5px);
 }
 
 /* ===== MOBILE MENU TOGGLE ===== */
@@ -164,23 +200,6 @@ body {
     margin-bottom: 8px;
 }
 
-.nav-section a {
-    display: block;
-    color: var(--resistance-light-gray);
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.nav-section a:hover,
-.nav-section a.active {
-    background: var(--bg-green-light);
-    color: var(--resistance-green);
-    transform: translateX(5px);
-}
-
 /* ===== MAIN CONTENT ===== */
 .main-content {
     margin-left: var(--nav-width);
@@ -230,15 +249,6 @@ p {
     color: var(--resistance-light-gray);
 }
 
-a {
-    color: var(--resistance-green-light);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 code {
     background: var(--resistance-dark-gray);
     padding: 2px 6px;
@@ -260,17 +270,6 @@ pre {
 pre code {
     background: none;
     padding: 0;
-}
-
-/* ===== LISTS ===== */
-ul, ol {
-    margin-left: 30px;
-    margin-bottom: 20px;
-}
-
-li {
-    margin-bottom: 8px;
-    color: var(--resistance-light-gray);
 }
 
 /* ===== TABLES ===== */
@@ -313,7 +312,7 @@ tbody tr:hover {
 }
 
 .warning-box {
-    background: rgba(255, 193, 7, 0.1);
+    background: rgb(255 193 7 / 10%);
     border-left: 4px solid #ffc107;
     padding: 20px;
     margin: 20px 0;
@@ -360,19 +359,19 @@ tbody tr:hover {
 }
 
 .badge-beginner {
-    background: rgba(76, 175, 80, 0.2);
+    background: rgb(76 175 80 / 20%);
     color: #4caf50;
     border: 1px solid #4caf50;
 }
 
 .badge-intermediate {
-    background: rgba(255, 193, 7, 0.2);
+    background: rgb(255 193 7 / 20%);
     color: #ffc107;
     border: 1px solid #ffc107;
 }
 
 .badge-advanced {
-    background: rgba(244, 67, 54, 0.2);
+    background: rgb(244 67 54 / 20%);
     color: #f44336;
     border: 1px solid #f44336;
 }
@@ -430,52 +429,52 @@ tbody tr:hover {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .main-content {
         margin-left: 0;
         padding: 20px;
     }
-    
+
     .sidebar-nav {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 999;
     }
-    
+
     .sidebar-nav.active {
         transform: translateX(0);
     }
-    
+
     .header-nav {
         display: none;
     }
-    
+
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .site-footer {
         margin-left: 0;
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     h1 {
         font-size: 32px;
     }
-    
+
     h2 {
         font-size: 26px;
     }
-    
+
     .site-header {
         padding: 0 15px;
     }
-    
+
     .team-name {
         font-size: 16px;
     }
-    
+
     .logo-circle {
         width: 40px;
         height: 40px;
@@ -500,11 +499,12 @@ tbody tr:hover {
 .mb-3 { margin-bottom: 30px; }
 
 /* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -512,13 +512,15 @@ tbody tr:hover {
 }
 
 .fade-in {
-    animation: fadeIn 0.6s ease;
+    animation: fade-in 0.6s ease;
 }
 
 @keyframes glow {
-    0%, 100% {
+    0%,
+    100% {
         box-shadow: 0 0 20px var(--shadow-green);
     }
+
     50% {
         box-shadow: 0 0 40px var(--shadow-green-strong);
     }
@@ -526,6 +528,39 @@ tbody tr:hover {
 
 .glow {
     animation: glow 2s infinite;
+}
+
+/* ===== HOME PAGE HERO ===== */
+.hero-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.hero-logo {
+    width: 120px;
+    height: 120px;
+    font-size: 56px;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 56px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.challenges-heading {
+    margin: 60px 0 20px;
 }
 
 /* ===== SKILLS PROGRESSION PAGE ===== */
@@ -608,7 +643,7 @@ tbody tr:hover {
     border: 3px solid var(--resistance-green);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 8px 32px rgba(0, 255, 65, 0.2);
+    box-shadow: 0 8px 32px rgb(0 255 65 / 20%);
     transition: all 0.3s ease;
     position: relative;
     z-index: 10;
@@ -616,7 +651,7 @@ tbody tr:hover {
 
 .challenge-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 255, 65, 0.4);
+    box-shadow: 0 12px 40px rgb(0 255 65 / 40%);
     border-color: var(--resistance-green-light);
 }
 
@@ -645,7 +680,7 @@ tbody tr:hover {
     font-weight: bold;
     color: var(--resistance-black);
     border: 4px solid var(--resistance-black);
-    box-shadow: 0 4px 16px rgba(0, 255, 65, 0.4);
+    box-shadow: 0 4px 16px rgb(0 255 65 / 40%);
     z-index: 20;
 }
 
@@ -694,13 +729,14 @@ tbody tr:hover {
 
 .skill-tag {
     padding: 4px 12px;
-    background: rgba(0, 255, 65, 0.15);
+    background: rgb(0 255 65 / 15%);
     border-radius: 12px;
     font-size: 12px;
     color: var(--resistance-green);
 }
 
-.start-node, .end-node {
+.start-node,
+.end-node {
     text-align: center;
     padding: 30px;
     background: linear-gradient(135deg, var(--resistance-green) 0%, var(--resistance-green-dark) 100%);
@@ -708,7 +744,7 @@ tbody tr:hover {
     font-size: 24px;
     font-weight: bold;
     color: var(--resistance-black);
-    box-shadow: 0 8px 32px rgba(0, 255, 65, 0.5);
+    box-shadow: 0 8px 32px rgb(0 255 65 / 50%);
     max-width: 400px;
     margin: 0 auto;
     position: relative;
@@ -716,16 +752,18 @@ tbody tr:hover {
 }
 
 .end-node {
-    background: linear-gradient(135deg, var(--resistance-green) 0%, #ffcc00 100%);
+    background: linear-gradient(135deg, var(--resistance-green) 0%, #fc0 100%);
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        box-shadow: 0 8px 32px rgba(0, 255, 65, 0.5);
+    0%,
+    100% {
+        box-shadow: 0 8px 32px rgb(0 255 65 / 50%);
     }
+
     50% {
-        box-shadow: 0 8px 48px rgba(0, 255, 65, 0.8);
+        box-shadow: 0 8px 48px rgb(0 255 65 / 80%);
     }
 }
 
@@ -748,7 +786,7 @@ tbody tr:hover {
 }
 
 /* Responsive adjustments for progression */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .challenge-card {
         width: 100%;
         max-width: 400px;

@@ -4,9 +4,9 @@ Team Resistance programming training documentation site built with Hugo.
 
 ## Local Development
 
-1. Install Hugo: `brew install hugo` (macOS) or download from [gohugo.io](https://gohugo.io)
+1. Install Hugo: `brew install hugo` (macOS) or download from [their site](https://gohugo.io)
 2. Run development server: `hugo server -D`
-3. View site at http://localhost:1313
+3. View site at <http://localhost:1313>
 
 ## Building
 
