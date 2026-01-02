@@ -1,6 +1,6 @@
 # Exclude localhost URLs and Hugo template syntax
 exclude = [
-    '^http://localhost',
+    'http://localhost',
     '\{\{.*\}\}'
 ]
 
