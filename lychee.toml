@@ -1,4 +1,6 @@
 exclude = [
-    "^http://localhost",
-    "^/[^/]"
+    "^http://localhost"
+]
+exclude_path = [
+    "^/"
 ]
