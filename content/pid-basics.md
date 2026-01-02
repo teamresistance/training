@@ -44,13 +44,11 @@ Adds damping. Reacts to how fast the error is changing.
 
 #### Summary
 
-```java
-Term | What it does              | If too low         | If too high
------+---------------------------+--------------------+--------------------------
-P    | Main movement force       | Slow, weak         | Oscillation, overshoot
-I    | Fix long-term small error | Never perfect      | Drifting, runaway
-D    | Stabilizes, adds braking  | Overshoot          | Oscillation
-```
+| Term | What it does              | If too low    | If too high            |
+| ---- | ------------------------- | ------------- | ---------------------- |
+| P    | Main movement force       | Slow, weak    | Oscillation, overshoot |
+| I    | Fix long-term small error | Never perfect | Drifting, runaway      |
+| D    | Stabilizes, adds braking  | Overshoot     | Oscillation            |
 
 ### Applications in FRC
 

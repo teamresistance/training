@@ -26,16 +26,12 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 
 #### Command Lifecycle
 
-```java
-+---------------+---------------------------+
-| Method        | When It's Called          |
-+---------------+---------------------------+
-| initialize()  | When the command starts   |
-| execute()     | Every 20ms while running  |
-| isFinished()  | Checked every loop        |
-| end()         | When ending or canceled   |
-+---------------+---------------------------+
-```
+| Method         | When It's Called         |
+| -------------- | ------------------------ |
+| `initialize()` | When the command starts  |
+| `execute()`    | Every 20ms while running |
+| `isFinished()` | Checked every loop       |
+| `end()`        | When ending or canceled  |
 
 ### Triggers and Event Binding
 
