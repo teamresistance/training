@@ -1,9 +1,11 @@
-# Exclude localhost URLs
+# Exclude localhost URLs and Hugo template syntax
 exclude = [
     '^http://localhost',
-    # Exclude all root-relative paths (like /motors/, /abstract-io/, etc.)
-    '^\/'
+    '{{.*}}',  # Exclude Hugo template variables
 ]
 
-# Include only absolute URLs (http/https) for checking
+# Only check external absolute URLs
 include = ['^https?://']
+
+# Exclude checking files in certain paths
+exclude_path = ['layouts/']
