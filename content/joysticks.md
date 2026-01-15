@@ -33,4 +33,4 @@ new JoystickButton(operatorJoystick, 1)
 
 A **deadband** is a small range of input values around zero that are intentionally treated as zero. Real joysticks do not always perfectly return to a value of exactly 0.0. For example, if a deadband of 0.08 is set, a raw input of -0.03 or 0.05 will be treated as 0. Deadbands stop motors from whining and overheating and drivetrains creeping. An Xbox Controller would implement a deadband with `applyDeadband(XboxController.getRightX(), 0.08)`
 
-For both Joysticks and Xbox Controllers, the y-value of the joysticks are **inverted**. To fix this, simply multiply the value recieved by a joystick by -1.
+For both Joysticks and Xbox Controllers, the y-value of the joysticks are **inverted**. To fix this, simply multiply the value received by a joystick by -1.
