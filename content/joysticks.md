@@ -4,10 +4,9 @@ title: "User Input"
 
 The driver needs to tell the robot what to do! WPILib provides us with multiple choices in which we can communicate with a robot/simulation. In Team Resistance, we mainly use Xbox Controllers and Joysticks.(although less commonly used amongst teams) `GenericHID` is the parent class for every other controller. `GenericHID` can be used when external button systems are used as controllers, providing us more versatility in our User Input mechanisms.
 
-
 ### Xbox Controllers
 
-The team often uses xbox controllers to control the robot - they have a lot of buttons and are easy to understand! Luckily, instead of having to remember button IDs, WPILib provides the `CommandXboxController` class. Assigning buttons is as easy as `controller.b().onTrue(...)` . Simply specify the button and watch your action get executed. One special feature of Xbox Controllers is that they can **rumble**, sending a vibration to the driver based on a certain trigger to notify them of an event. If the robot is in position to shoot a ball, for example, send the driver a rumble so that they can gain additional information without having to eyeball anything. 
+The team often uses xbox controllers to control the robot - they have a lot of buttons and are easy to understand! Luckily, instead of having to remember button IDs, WPILib provides the `CommandXboxController` class. Assigning buttons is as easy as `controller.b().onTrue(...)` . Simply specify the button and watch your action get executed. One special feature of Xbox Controllers is that they can **rumble**, sending a vibration to the driver based on a certain trigger to notify them of an event. If the robot is in position to shoot a ball, for example, send the driver a rumble so that they can gain additional information without having to eyeball anything.
 
 #### Basic Xbox Controller Binding
 
