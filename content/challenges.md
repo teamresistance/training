@@ -20,7 +20,7 @@ Learn the command-based architecture by building a robot project -- no real hard
 - Create a new robot project using the WPILib command-based template
 - Use `SequentialCommandGroup` to create a multi-step "scoring sequence" that transitions through multiple commands
 - Use `ParallelCommandGroup` to simulate two things happening at once
-- Write subsystems 
+- Write subsystems
 - Bind commands to controller buttons using `Trigger` bindings in RobotContainer
 
 ### Success criteria
