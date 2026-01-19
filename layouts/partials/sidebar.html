@@ -1,6 +1,7 @@
 <nav class="sidebar-nav" id="sidebar-nav">
     <div class="nav-section">
         <a href="/" {{ if .IsHome }}class="active"{{ end }}>Home</a>
+        <a href="/challenges/" {{ if eq .RelPermalink "/challenges/" }}class="active"{{ end }} style="font-weight: 600; color: var(--accent-color);">Challenges</a>
         <br>
 
         <div class="nav-section-title">Quick Reference</div>
