@@ -87,7 +87,7 @@ Build a traffic light system using digital outputs (integrates with later sensor
 ### Success criteria
 
 - Simulation runs and shows realistic subsystem behavior
-- SmartDashboard displays live subsystem status and telementry
+- SmartDashboard displays live subsystem status and telemetry
 - Can switch between positions using controller
 - Code cleanly separates IO interface from implementation
 
