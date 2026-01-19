@@ -13,30 +13,25 @@ Complete these challenges in order. The first challenges focus on software conce
 
 ### Overview
 
-Learn the command-based architecture by building a "state machine" robot project -- no real hardware needed. You'll create subsystems, commands, command groups, and triggers that work entirely in code.
+Learn the command-based architecture by building a robot project -- no real hardware needed. You'll create subsystems, commands, command groups, and triggers that work entirely in code.
 
 ### Requirements
 
 - Create a new robot project using the WPILib command-based template
-- Build a `GameStateSubsystem` that tracks the robot's current "mode" (e.g., IDLE, INTAKING, SCORING, CLIMBING)
-- Create individual commands that transition between states (e.g., `StartIntakeCommand`, `PrepareToScoreCommand`)
-- Use `SequentialCommandGroup` to create a multi-step "scoring sequence" that transitions through multiple states with `WaitCommand` delays
+- Use `SequentialCommandGroup` to create a multi-step "scoring sequence" that transitions through multiple commands
 - Use `ParallelCommandGroup` to simulate two things happening at once
+- Write subsystems 
 - Bind commands to controller buttons using `Trigger` bindings in RobotContainer
-- Add a default command that returns to IDLE after 5 seconds of no input
-- Log state changes to [SmartDashboard/Shuffleboard](/telemetry/) so you can see transitions
 
 ### Success criteria
 
 - Code compiles and runs in simulation without errors
-- State transitions are visible in SmartDashboard
 - Button presses trigger the correct commands
 - Sequential and parallel command groups execute correctly
 
 ### Extra challenge
 
-- Add a `Trigger` that fires based on the current state (e.g., when in SCORING mode for more than 3 seconds, auto-transition to IDLE)
-- Create a `RaceGroup` or `DeadlineGroup` to demonstrate advanced composition
+- Create a `RaceGroup` or `DeadlineGroup` to demonstrate advanced composition, and make it useful
 
 ---
 
@@ -92,7 +87,7 @@ Build a traffic light system using digital outputs (integrates with later sensor
 ### Success criteria
 
 - Simulation runs and shows realistic subsystem behavior
-- SmartDashboard displays live subsystem state
+- SmartDashboard displays live subsystem status and telementry
 - Can switch between positions using controller
 - Code cleanly separates IO interface from implementation
 
@@ -118,8 +113,8 @@ Create autonomous routines that use your subsystem from Challenge 2. Practice se
 
 ### Example routines (adapt to your subsystem)
 
-- **Arm:** "Score High" → Move to SCORE, wait 1s, move to STOWED
-- **Elevator:** "Cycle All" → Move LOW → MID → HIGH → STOWED with 0.5s between each
+- **Arm:** "Score High" → Score, wait, then return to home
+- **Elevator:** "Cycle All" → Move to low, middle, and high positions with delays to demonstrate movement and control
 - **Lights:** "Traffic Cycle" → Green 10s → Yellow 3s → Red 10s → repeat
 
 ### Success criteria
@@ -131,7 +126,7 @@ Create autonomous routines that use your subsystem from Challenge 2. Practice se
 
 ### Extra challenge
 
-- Create a "conditional" autonomous that checks subsystem state mid-routine and branches
+- Create a "conditional" autonomous that checks subsystem status mid-routine and branches
 - Add a command that uses `.until()` or `.withTimeout()` decorators
 
 ---
