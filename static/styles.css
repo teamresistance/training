@@ -149,6 +149,7 @@ li {
     background: var(--bg-green-light);
     color: var(--resistance-green);
     transform: translateX(5px);
+    font-weight: 600;
 }
 
 /* ===== MOBILE MENU TOGGLE ===== */
