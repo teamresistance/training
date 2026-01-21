@@ -426,7 +426,7 @@ Choose "Sim GUI" when prompted. The simulation window should open, and you can e
 
 ## Step 7: Start Your First Challenge
 
-Now you're ready to begin! Head over to the [Programming Challenges](/challenges/) page and start with **Challenge 1: Command-Based Fundamentals**.
+Now you're ready to begin! Head over to the [Programming Challenges](/challenges/) page and start with **Challenge 1: Command-Based Fundamentals**. You'll work in your fork.
 
 ### Workflow for Each Challenge
 
