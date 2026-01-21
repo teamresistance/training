@@ -229,7 +229,7 @@ Before starting the challenges, verify the project builds and runs in simulation
 
 In VS Code, press **Ctrl+Shift+P** (Windows/Linux) or **Cmd+Shift+P** (macOS) and type:
 
-```
+```bash
 WPILib: Build Robot Code
 ```
 
@@ -239,7 +239,7 @@ The build should complete successfully. If you see errors, ask a mentor for help
 
 Press **Ctrl+Shift+P** / **Cmd+Shift+P** and type:
 
-```
+```bash
 WPILib: Simulate Robot Code
 ```
 
@@ -257,30 +257,30 @@ As you work through challenges, follow this Git workflow:
 
 1. **Create a branch for the challenge:**
 
-   ```bash
-   git checkout -b challenge-1
-   ```
+```bash
+git checkout -b challenge-1
+```
 
 2. **Make your changes and test your code**
 
 3. **Stage and commit your work:**
 
-   ```bash
-   git add .
-   git commit -m "Complete Challenge 1: Command-based fundamentals"
-   ```
+```bash
+git add .
+git commit -m "Complete Challenge 1: Command-based fundamentals"
+```
 
 4. **Push to your fork:**
 
-   ```bash
-   git push -u origin challenge-1
-   ```
+```bash
+git push -u origin challenge-1
+```
 
 5. **Create a pull request** (optional, for mentor review):
 
-   ```bash
-   gh pr create --title "Challenge 1 Complete" --body "Completed command-based fundamentals challenge"
-   ```
+```bash
+gh pr create --title "Challenge 1 Complete" --body "Completed command-based fundamentals challenge"
+```
 
 6. **After mentor approval, merge and move to the next challenge**
 
