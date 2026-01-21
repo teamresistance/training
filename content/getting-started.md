@@ -44,37 +44,165 @@ If you're new to Git and GitHub, work through these tutorials first:
 
 ### Essential Git Commands
 
-Here are the commands you'll use most often:
+Here are the commands you'll use most often. Each command has both a **command-line** option and an **IDE** option using VS Code:
+
+#### Clone a Repository
+
+Download a repository to your computer.
+
+**Command Line:**
 
 ```bash
-# Clone a repository (download it to your computer)
 git clone <repository-url>
+```
 
-# Check the status of your working directory
+**VS Code:**
+
+1. Press **Ctrl+Shift+P** (Windows/Linux) or **Cmd+Shift+P** (macOS)
+2. Type "Git: Clone" and press Enter
+3. Paste the repository URL and choose a folder
+
+---
+
+#### Check Status
+
+See which files have been modified.
+
+**Command Line:**
+
+```bash
 git status
+```
 
-# Stage files for commit (prepare them to be saved)
+**VS Code:**
+
+- The Source Control panel (sidebar icon with branches) shows modified files automatically
+- Click the Source Control icon or press **Ctrl+Shift+G** / **Cmd+Shift+G**
+
+---
+
+#### Stage Files for Commit
+
+Prepare files to be saved in the next commit.
+
+**Command Line:**
+
+```bash
 git add <file-name>          # Add specific file
 git add .                    # Add all changed files
+```
 
-# Commit your changes (save a snapshot)
+**VS Code:**
+
+1. Open the Source Control panel (**Ctrl+Shift+G** / **Cmd+Shift+G**)
+2. Click the **+** icon next to individual files, or click **+** next to "Changes" to stage all
+
+---
+
+#### Commit Changes
+
+Save a snapshot of your staged changes.
+
+**Command Line:**
+
+```bash
 git commit -m "Description of changes"
+```
 
-# Push your commits to GitHub (upload)
+**VS Code:**
+
+1. Open the Source Control panel
+2. Type your commit message in the text box at the top
+3. Press **Ctrl+Enter** (Windows/Linux) or **Cmd+Enter** (macOS), or click the checkmark icon
+
+---
+
+#### Push to GitHub
+
+Upload your commits to GitHub.
+
+**Command Line:**
+
+```bash
 git push
+```
 
-# Pull the latest changes from GitHub (download updates)
+**VS Code:**
+
+1. Open the Source Control panel
+2. Click the **...** menu → **Push**, or
+3. Click **Sync Changes** if available at the bottom of the window
+
+---
+
+#### Pull from GitHub
+
+Download the latest changes from GitHub.
+
+**Command Line:**
+
+```bash
 git pull
+```
 
-# Create and switch to a new branch
+**VS Code:**
+
+1. Open the Source Control panel
+2. Click the **...** menu → **Pull**, or
+3. Click **Sync Changes** at the bottom of the window (pulls and pushes)
+
+---
+
+#### Create and Switch to a New Branch
+
+Start working on a new feature or challenge.
+
+**Command Line:**
+
+```bash
 git checkout -b <branch-name>
+```
 
-# Switch to an existing branch
+**VS Code:**
+
+1. Click the branch name in the bottom-left corner of the window
+2. Select **Create new branch...**
+3. Enter the branch name and press Enter
+
+---
+
+#### Switch to an Existing Branch
+
+Change to a different branch.
+
+**Command Line:**
+
+```bash
 git checkout <branch-name>
+```
 
-# See your commit history
+**VS Code:**
+
+1. Click the branch name in the bottom-left corner
+2. Select the branch you want from the list
+
+---
+
+#### View Commit History
+
+See past commits.
+
+**Command Line:**
+
+```bash
 git log --oneline
 ```
+
+**VS Code:**
+
+1. Open the Source Control panel
+2. Click the **...** menu → **View History** (requires Git Graph extension), or
+3. Right-click a file and select **View File History**
 
 ---
 
@@ -124,7 +252,9 @@ sudo pacman -S github-cli
 
 ### Authenticate with GitHub
 
-After installation, authenticate the CLI with your GitHub account:
+After installation, authenticate the CLI with your GitHub account.
+
+**Command Line:**
 
 ```bash
 gh auth login
@@ -141,6 +271,13 @@ Verify it worked:
 ```bash
 gh auth status
 ```
+
+**VS Code:**
+
+1. Open the Source Control panel (**Ctrl+Shift+G** / **Cmd+Shift+G**)
+2. If not signed in, you'll see a **Sign in to GitHub** button
+3. Click it and follow the browser authentication prompts
+4. Look for your GitHub username in the bottom-left corner to confirm
 
 ---
 
@@ -171,7 +308,9 @@ You'll work in your fork independently, and mentors can review your progress by 
 
 ### Fork the Repository
 
-Create your personal copy of the `Drive_Template`:
+Create your personal copy of the `Drive_Template`.
+
+**Command Line:**
 
 ```bash
 gh repo fork teamresistance/Drive_Template --clone
@@ -183,24 +322,58 @@ This command will:
 2. Clone it to your computer in a new `Drive_Template` folder
 3. Set up the original repository as an "upstream" remote (for pulling updates)
 
+**VS Code / Web Browser:**
+
+1. Visit [github.com/teamresistance/Drive_Template](https://github.com/teamresistance/Drive_Template) in your browser
+2. Click the **Fork** button in the top-right corner
+3. Click **Create fork** (keep the default settings)
+4. Once created, click the green **Code** button
+5. Copy the HTTPS URL
+6. In VS Code, press **Ctrl+Shift+P** / **Cmd+Shift+P**
+7. Type "Git: Clone" and paste the URL
+8. Choose a folder location on your computer
+
+---
+
 ### Navigate to Your Project
+
+**Command Line:**
 
 ```bash
 cd Drive_Template
 ```
 
+**VS Code:**
+
+- If you just cloned: Click **Open** when prompted, or use **File → Open Folder** and select the `Drive_Template` folder
+
+---
+
 ### Verify Your Setup
 
-Check that your fork is properly connected:
+Check that your fork is properly connected.
+
+**Command Line:**
 
 ```bash
 git remote -v
 ```
 
+**VS Code:**
+
+1. Open the terminal in VS Code (**Terminal → New Terminal**)
+2. Type `git remote -v` and press Enter
+
 You should see:
 
 - `origin` pointing to **your fork** (`your-username/Drive_Template`)
 - `upstream` pointing to the **original repository** (`teamresistance/Drive_Template`)
+
+> **Note:** When forking via the website, you'll need to manually add the `upstream` remote. In the terminal:
+>
+> ```bash
+> git remote add upstream https://github.com/teamresistance/Drive_Template.git
+> ```
 
 ---
 
@@ -211,13 +384,17 @@ FRC development uses Visual Studio Code with the WPILib extension. If you haven'
 1. Install [VS Code](https://code.visualstudio.com/)
 2. Install the [WPILib suite](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (includes Java, Gradle, and robot libraries)
 
-Open your cloned project:
+Open your cloned project.
+
+**Command Line:**
 
 ```bash
 code .
 ```
 
-Or launch VS Code and use **File → Open Folder** to open the `Drive_Template` directory.
+**VS Code:**
+
+- Launch VS Code and use **File → Open Folder** to select the `Drive_Template` directory
 
 ---
 
@@ -253,36 +430,86 @@ Now you're ready to begin! Head over to the [Programming Challenges](/challenges
 
 ### Workflow for Each Challenge
 
-As you work through challenges, follow this Git workflow:
+As you work through challenges, follow this Git workflow. Each step shows both command-line and IDE options:
 
-1. **Create a branch for the challenge:**
+#### 1. Create a Branch for the Challenge
+
+**Command Line:**
 
 ```bash
 git checkout -b challenge-1
 ```
 
-2. **Make your changes and test your code**
+**VS Code:**
 
-3. **Stage and commit your work:**
+1. Click the branch name in the bottom-left corner
+2. Select **Create new branch...**
+3. Type `challenge-1` and press Enter
+
+---
+
+#### 2. Make Your Changes and Test Your Code
+
+Write your code and test it in simulation!
+
+---
+
+#### 3. Stage and Commit Your Work
+
+**Command Line:**
 
 ```bash
 git add .
 git commit -m "Complete Challenge 1: Command-based fundamentals"
 ```
 
-4. **Push to your fork:**
+**VS Code:**
+
+1. Open the Source Control panel (**Ctrl+Shift+G** / **Cmd+Shift+G**)
+2. Click **+** next to "Changes" to stage all files
+3. Type your commit message: "Complete Challenge 1: Command-based fundamentals"
+4. Press **Ctrl+Enter** / **Cmd+Enter** or click the checkmark
+
+---
+
+#### 4. Push to Your Fork
+
+**Command Line:**
 
 ```bash
 git push -u origin challenge-1
 ```
 
-5. **Create a pull request** (optional, for mentor review):
+**VS Code:**
+
+1. Click **Sync Changes** at the bottom of the window, or
+2. Open Source Control panel → **...** menu → **Push**
+3. If prompted, confirm you want to publish the branch
+
+---
+
+#### 5. Create a Pull Request (Optional, for Mentor Review)
+
+**Command Line:**
 
 ```bash
 gh pr create --title "Challenge 1 Complete" --body "Completed command-based fundamentals challenge"
 ```
 
-6. **After mentor approval, merge and move to the next challenge**
+**VS Code / Web Browser:**
+
+1. After pushing, VS Code may show a notification to **Create Pull Request** - click it, or
+2. Visit your fork on GitHub (e.g., `github.com/your-username/Drive_Template`)
+3. Click the **Compare & pull request** button that appears
+4. Add title: "Challenge 1 Complete"
+5. Add description: "Completed command-based fundamentals challenge"
+6. Click **Create pull request**
+
+---
+
+#### 6. After Mentor Approval, Merge and Move to the Next Challenge
+
+Your mentor will review and merge your PR, then you're ready for the next challenge!
 
 ---
 
