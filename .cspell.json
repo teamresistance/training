@@ -24,6 +24,7 @@
     "feedforward",
     "holonomic",
     "Kalman",
+    "NetworkTables",
     "pathfinding",
     "pathing",
     "pathplanner",
