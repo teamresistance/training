@@ -21,16 +21,24 @@
     "CODEOWNERS",
     "CTRE",
     "deadband",
+    "deadbands",
+    "drivetrain",
+    "drivetrains",
     "feedforward",
     "holonomic",
+    "intaking",
     "Kalman",
     "NetworkTables",
     "pathfinding",
     "pathing",
     "pathplanner",
     "pathplanning",
+    "setpoint",
+    "setpoints",
+    "teamresistance",
     "teleop",
     "teleoperated",
-    "timestamping"
+    "timestamping",
+    "winget"
   ]
 }
