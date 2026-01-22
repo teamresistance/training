@@ -17,7 +17,7 @@ Complete these challenges in order. The first challenges focus on software conce
 
 Learn the command-based architecture by building a robot project -- no real hardware needed. You'll create subsystems, commands, command groups, and triggers that work entirely in code.
 
-Make sure you've completed the [Getting Started guide](/getting-started/) and have your fork of the `Drive_Template` cloned and building before beginning this challenge.
+Make sure you've completed the [Getting Started guide](/getting-started/) and have your fork of the `Newbie_Gym` cloned and building before beginning this challenge.
 
 ### Requirements
 

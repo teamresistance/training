@@ -283,7 +283,7 @@ gh auth status
 
 ## Step 3: Understanding the Drive Template
 
-Team Resistance maintains a base robot code template at [teamresistance/Drive_Template](https://github.com/teamresistance/Drive_Template). This repository contains:
+Team Resistance maintains a base robot code template at [teamresistance/Newbie_Gym](https://github.com/teamresistance/Newbie_Gym). This repository contains:
 
 - **WPILib project structure** - Standard FRC robot code layout
 - **AdvantageKit integration** - Logging framework for replay and debugging
@@ -293,7 +293,7 @@ Team Resistance maintains a base robot code template at [teamresistance/Drive_Te
 
 ### Why Fork the Template?
 
-For the [programming challenges](/challenges/), you'll be creating your own robot subsystems and commands. Rather than starting from scratch, you'll **fork** (make your own copy of) the `Drive_Template` repository. This gives you:
+For the [programming challenges](/challenges/), you'll be creating your own robot subsystems and commands. Rather than starting from scratch, you'll **fork** (make your own copy of) the `Newbie_Gym` repository. This gives you:
 
 - A working build system configured for FRC
 - Team coding standards and best practices pre-configured
@@ -308,23 +308,23 @@ You'll work in your fork independently, and mentors can review your progress by 
 
 ### Fork the Repository
 
-Create your personal copy of the `Drive_Template`.
+Create your personal copy of the `Newbie_Gym`.
 
 **Command Line:**
 
 ```bash
-gh repo fork teamresistance/Drive_Template --clone
+gh repo fork teamresistance/Newbie_Gym --clone
 ```
 
 This command will:
 
-1. Create a fork under your GitHub account (e.g., `your-username/Drive_Template`)
-2. Clone it to your computer in a new `Drive_Template` folder
+1. Create a fork under your GitHub account (e.g., `your-username/Newbie_Gym`)
+2. Clone it to your computer in a new `Newbie_Gym` folder
 3. Set up the original repository as an "upstream" remote (for pulling updates)
 
 **VS Code / Web Browser:**
 
-1. Visit [github.com/teamresistance/Drive_Template](https://github.com/teamresistance/Drive_Template) in your browser
+1. Visit [github.com/teamresistance/Newbie_Gym](https://github.com/teamresistance/Newbie_Gym) in your browser
 2. Click the **Fork** button in the top-right corner
 3. Click **Create fork** (keep the default settings)
 4. Once created, click the green **Code** button
@@ -340,12 +340,12 @@ This command will:
 **Command Line:**
 
 ```bash
-cd Drive_Template
+cd Newbie_Gym
 ```
 
 **VS Code:**
 
-- If you just cloned: Click **Open** when prompted, or use **File → Open Folder** and select the `Drive_Template` folder
+- If you just cloned: Click **Open** when prompted, or use **File → Open Folder** and select the `Newbie_Gym` folder
 
 ---
 
@@ -366,13 +366,13 @@ git remote -v
 
 You should see:
 
-- `origin` pointing to **your fork** (`your-username/Drive_Template`)
-- `upstream` pointing to the **original repository** (`teamresistance/Drive_Template`)
+- `origin` pointing to **your fork** (`your-username/Newbie_Gym`)
+- `upstream` pointing to the **original repository** (`teamresistance/Newbie_Gym`)
 
 > **Note:** When forking via the website, you'll need to manually add the `upstream` remote. In the terminal:
 >
 > ```bash
-> git remote add upstream https://github.com/teamresistance/Drive_Template.git
+> git remote add upstream https://github.com/teamresistance/Newbie_Gym.git
 > ```
 
 ---
@@ -394,7 +394,7 @@ code .
 
 **VS Code:**
 
-- Launch VS Code and use **File → Open Folder** to select the `Drive_Template` directory
+- Launch VS Code and use **File → Open Folder** to select the `Newbie_Gym` directory
 
 ---
 
@@ -499,7 +499,7 @@ gh pr create --title "Challenge 1 Complete" --body "Completed command-based fund
 **VS Code / Web Browser:**
 
 1. After pushing, VS Code may show a notification to **Create Pull Request** - click it, or
-2. Visit your fork on GitHub (e.g., `github.com/your-username/Drive_Template`)
+2. Visit your fork on GitHub (e.g., `github.com/your-username/Newbie_Gym`)
 3. Click the **Compare & pull request** button that appears
 4. Add title: "Challenge 1 Complete"
 5. Add description: "Completed command-based fundamentals challenge"
