@@ -80,7 +80,7 @@ These commands utilize the PathPlanner library to generate and follow complex pa
 - Path Generation: The logic first converts the provided control points (`followCurve`) or poses (`followPoses`) into a PathPlanner`PathPlannerPath`object, which includes motion constraints.
 - Sequence: The final command is a sequence: first, it uses`AutoBuilder.pathfindToPose`to navigate dynamically from the current location to the path's start point; second, it uses`AutoBuilder.followPath`to precisely follow the pre-generated curve or pose path.
 
-### Conceptual Understanding
+## Conceptual Understanding
 
 How does swerve work?
 
