@@ -18,6 +18,7 @@
     "AprilTag",
     "AprilTags",
     "baseof",
+    "Charuco",
     "CODEOWNERS",
     "CTRE",
     "deadband",
@@ -28,18 +29,17 @@
     "holonomic",
     "intaking",
     "Kalman",
+    "NetworkTables",
     "pathfinding",
     "pathing",
     "pathplanner",
     "pathplanning",
     "setpoint",
     "setpoints",
+    "teamresistance",
     "teleop",
     "teleoperated",
     "timestamping",
-    "tuning",
-    "photonvision",
-    "Photonvision",
-    "Charuco"
+    "winget"
   ]
 }
