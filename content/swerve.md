@@ -39,7 +39,7 @@ The subsystem maintains the robot's field position using a SwerveDrivePoseEstima
 The subsystem configures the PathPlanner`AutoBuilder`to enable autonomous routines. This includes defining:
 
 - State Getters/Setters: Methods like`getPose()`,`setPose()`,`getChassisSpeeds()`.
-- Drive Command: The`runVelocity()`method is used to execute the calculated path speeds.
+- Drive Command: The`runVelocity()` method is used to execute the calculated path speeds.
 - Control Parameters: Holonomic PID controllers (PPHolonomicDriveController) for both the X/Y translation and the rotation are configured.
 - Pathfinding: It uses the`LocalADStarAK`implementation for real-time obstacle avoidance and dynamic path generation.
 
@@ -103,7 +103,7 @@ These lines of code just establish the starting an ending positions for the robo
 #### `controlVectorEnd.y= new double[]{BlueATarget.getY(), 0, 0};`
 
 For controlVectorStart.x, the code is setting the x-position of the starting position vector to the current x-position of the robot, which is mathematically calculated using PhotonVision systems on the robot, or limelight. 
- 
+
 For controlVectorStart.y, the code is setting the y-position of the starting position vector to the current y-position of the robot. 
 
 For the controlVectorEnd.x, the x-position is set to the x-position of the desired target.
