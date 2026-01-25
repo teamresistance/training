@@ -2,7 +2,7 @@
 title: "Getting Started with Development"
 ---
 
-This guide will help you set up your development environment and begin working on the [programming challenges](/challenges/). By the end, you'll have your own fork of our robot code template and be ready to start coding.
+This guide will help you set up your development environment and begin working on the [programming challenges](/challenges/). By the end, you'll have your own local copy of our robot code template and be ready to start coding.
 
 ---
 
@@ -208,7 +208,7 @@ git log --oneline
 
 ## Step 2: Install the GitHub CLI
 
-The GitHub CLI (`gh`) is a command-line tool that makes it easy to interact with GitHub. We'll use it to fork repositories and manage your development workflow.
+The GitHub CLI (`gh`) is a command-line tool that makes it easy to interact with GitHub. We'll use it to manage your development workflow.
 
 ### Installation Instructions
 
@@ -291,47 +291,39 @@ Team Resistance maintains a base robot code template at [teamresistance/Newbie_G
 - **Swerve drive implementation** - Team 86's standard drivetrain code
 - **Code quality tools** - Linters, formatters, and CI/CD configuration
 
-### Why Fork the Template?
+### Why Use the Template?
 
-For the [programming challenges](/challenges/), you'll be creating your own robot subsystems and commands. Rather than starting from scratch, you'll **fork** (make your own copy of) the `Newbie_Gym` repository. This gives you:
+For the [programming challenges](/challenges/), you'll be creating your own robot subsystems and commands. Rather than starting from scratch, you'll **clone** (download a copy of) the `Newbie_Gym` repository. This gives you:
 
 - A working build system configured for FRC
 - Team coding standards and best practices pre-configured
 - Simulation support for testing without hardware
 - The ability to practice Git workflows (branches, commits, pull requests)
 
-You'll work in your fork independently, and mentors can review your progress by looking at your repository on GitHub.
+You'll work in your local copy independently, and mentors can review your progress through your branches.
 
 ---
 
-## Step 4: Fork and Clone the Template
+## Step 4: Clone the Template
 
-### Fork the Repository
+### Clone the Repository
 
-Create your personal copy of the `Newbie_Gym`.
+Download your local copy of the `Newbie_Gym`.
 
 **Command Line:**
 
 ```bash
-gh repo fork teamresistance/Newbie_Gym --clone
+git clone https://github.com/teamresistance/Newbie_Gym.git
 ```
 
-This command will:
+This command will clone the repository to your computer in a new `Newbie_Gym` folder.
 
-1. Create a fork under your GitHub account (e.g., `your-username/Newbie_Gym`)
-2. Clone it to your computer in a new `Newbie_Gym` folder
-3. Set up the original repository as an "upstream" remote (for pulling updates)
+**VS Code:**
 
-**VS Code / Web Browser:**
-
-1. Visit [github.com/teamresistance/Newbie_Gym](https://github.com/teamresistance/Newbie_Gym) in your browser
-2. Click the **Fork** button in the top-right corner
-3. Click **Create fork** (keep the default settings)
-4. Once created, click the green **Code** button
-5. Copy the HTTPS URL
-6. In VS Code, press **Ctrl+Shift+P** / **Cmd+Shift+P**
-7. Type "Git: Clone" and paste the URL
-8. Choose a folder location on your computer
+1. Press **Ctrl+Shift+P** (Windows/Linux) or **Cmd+Shift+P** (macOS)
+2. Type "Git: Clone" and press Enter
+3. Enter the repository URL: `https://github.com/teamresistance/Newbie_Gym.git`
+4. Choose a folder location on your computer
 
 ---
 
@@ -351,7 +343,7 @@ cd Newbie_Gym
 
 ### Verify Your Setup
 
-Check that your fork is properly connected.
+Check that your clone is properly connected.
 
 **Command Line:**
 
@@ -364,16 +356,7 @@ git remote -v
 1. Open the terminal in VS Code (**Terminal → New Terminal**)
 2. Type `git remote -v` and press Enter
 
-You should see:
-
-- `origin` pointing to **your fork** (`your-username/Newbie_Gym`)
-- `upstream` pointing to the **original repository** (`teamresistance/Newbie_Gym`)
-
-> **Note:** When forking via the website, you'll need to manually add the `upstream` remote. In the terminal:
->
-> ```bash
-> git remote add upstream https://github.com/teamresistance/Newbie_Gym.git
-> ```
+You should see `origin` pointing to the **Team Resistance repository** (`teamresistance/Newbie_Gym`).
 
 ---
 
@@ -426,7 +409,7 @@ Choose "Sim GUI" when prompted. The simulation window should open, and you can e
 
 ## Step 7: Start Your First Challenge
 
-Now you're ready to begin! Head over to the [Programming Challenges](/challenges/) page and start with **Challenge 1: Command-Based Fundamentals**. You'll work in your fork.
+Now you're ready to begin! Head over to the [Programming Challenges](/challenges/) page and start with **Challenge 1: Command-Based Fundamentals**. You'll work in your local clone.
 
 ### Workflow for Each Challenge
 
@@ -434,17 +417,28 @@ As you work through challenges, follow this Git workflow. Each step shows both c
 
 #### 1. Create a Branch for the Challenge
 
-**Command Line:**
+**Important Branch Naming:** Always include your first name at the beginning of your branch names (e.g., `john-challenge-1` or `sarah-challenge-1`). This helps mentors identify whose work they're reviewing.
+
+**Important About main Branch:** The `main` branch is locked and you cannot merge changes into it. Instead, you'll build each new challenge branch off your previous challenge branch. For example:
+- Challenge 1: Create `yourname-challenge-1` from `main`
+- Challenge 2: Create `yourname-challenge-2` from `yourname-challenge-1`
+- Challenge 3: Create `yourname-challenge-3` from `yourname-challenge-2`
+
+This way, each challenge builds on your previous work.
+
+**Command Line (for Challenge 1):**
 
 ```bash
-git checkout -b challenge-1
+git checkout -b yourname-challenge-1
 ```
 
-**VS Code:**
+Replace `yourname` with your actual first name (e.g., `git checkout -b john-challenge-1`).
+
+**VS Code (for Challenge 1):**
 
 1. Click the branch name in the bottom-left corner
 2. Select **Create new branch...**
-3. Type `challenge-1` and press Enter
+3. Type `yourname-challenge-1` (replace `yourname` with your first name) and press Enter
 
 ---
 
@@ -472,13 +466,15 @@ git commit -m "Complete Challenge 1: Command-based fundamentals"
 
 ---
 
-#### 4. Push to Your Fork
+#### 4. Push to the Repository
 
 **Command Line:**
 
 ```bash
-git push -u origin challenge-1
+git push -u origin yourname-challenge-1
 ```
+
+Replace `yourname` with your actual first name.
 
 **VS Code:**
 
@@ -488,28 +484,50 @@ git push -u origin challenge-1
 
 ---
 
-#### 5. Create a Pull Request (Optional, for Mentor Review)
+#### 5. Create a Pull Request (for Mentor Review)
+
+Create a pull request so mentors can review your work. **Note:** Your pull request will remain open for review only - it will not be merged into `main` since that branch is locked. This is just for feedback and code review.
 
 **Command Line:**
 
 ```bash
-gh pr create --title "Challenge 1 Complete" --body "Completed command-based fundamentals challenge"
+gh pr create --title "[YourName] Challenge 1 Complete" --body "Completed command-based fundamentals challenge"
 ```
+
+Replace `[YourName]` with your actual first name.
 
 **VS Code / Web Browser:**
 
 1. After pushing, VS Code may show a notification to **Create Pull Request** - click it, or
-2. Visit your fork on GitHub (e.g., `github.com/your-username/Newbie_Gym`)
+2. Visit the repository on GitHub (`github.com/teamresistance/Newbie_Gym`)
 3. Click the **Compare & pull request** button that appears
-4. Add title: "Challenge 1 Complete"
+4. Add title: "[YourName] Challenge 1 Complete" (replace with your first name)
 5. Add description: "Completed command-based fundamentals challenge"
 6. Click **Create pull request**
 
 ---
 
-#### 6. After Mentor Approval, Merge and Move to the Next Challenge
+#### 6. After Mentor Review, Create Your Next Branch
 
-Your mentor will review and merge your PR, then you're ready for the next challenge!
+Your mentor will review your PR and provide feedback. Once approved, you're ready for the next challenge!
+
+**For the next challenge**, create a new branch **from your current challenge branch** (not from `main`):
+
+**Command Line:**
+
+```bash
+git checkout yourname-challenge-1
+git checkout -b yourname-challenge-2
+```
+
+**VS Code:**
+
+1. Click the branch name in the bottom-left corner
+2. Select your previous challenge branch (e.g., `yourname-challenge-1`)
+3. Click the branch name again and select **Create new branch...**
+4. Type your next challenge branch name (e.g., `yourname-challenge-2`)
+
+This builds Challenge 2 on top of your Challenge 1 work. Repeat this process for each subsequent challenge.
 
 ---
 
