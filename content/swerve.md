@@ -103,7 +103,6 @@ These lines of code just establish the starting an ending positions for the robo
 #### `controlVectorEnd.y= new double[]{BlueATarget.getY(), 0, 0};`
 
 For controlVectorStart.x, the code is setting the x-position of the starting position vector to the current x-position of the robot, which is mathematically calculated using PhotonVision systems on the robot, or limelight. 
-
 For controlVectorStart.y, the code is setting the y-position of the starting position vector to the current y-position of the robot. 
 
 For the controlVectorEnd.x, the x-position is set to the x-position of the desired target.
