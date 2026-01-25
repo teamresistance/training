@@ -120,3 +120,12 @@ In order for a trajectory to be made from the spline, it needs an array of sever
 #### `List<PoseWithCurvature> pathway= TrajectoryGenerator.splinePointsFromSplines(arrayOfSplines);`
 
 This line of code generates the list of points that the robot will go to one by one in order to move in the spline curve, and it generates the points from the spline object curvedPathway. 
+
+#### `List<Pose2d> twoDimensionalPoints= new ArrayList<>();`
+####    `for(PoseWithCurvature curvedPose: pathway){`
+####      `twoDimensionalPoints.add(curvedPose.poseMeters);`
+In the first line of code, a list named twoDimensional points is created. These points consist of x and y coordinates. The for loop is filling the list twoDimensionalPoints with points from the spline generated earlier. 
+
+#### `trajectory= TrajectoryGenerator.generateTrajectory(twoDimensionalPoints, trajectoryConfiguration);`
+
+This line of code generated a trajectory vector for the robot to travel to its intended destination, with its inputs being the list of points from the spline and the trajectoryConfiguration, which was the maxmimum velocity and acceleration the robot was set to travel with during its travel path. 
