@@ -114,7 +114,7 @@ What does this line do? Basically, this sets the maximum speed that the robot ca
 
 The variable curvedPathway is an object, and this is basically the spline curve filled with several position points that the robot will follow. 
 
-In order for a trajectory to be made from the spline, it needs an array of several 2 dimensial points with x and y coordinates that the robot will follow. 
+In order for a trajectory to be made from the spline, it needs an array of several 2 dimensional points with x and y coordinates that the robot will follow. 
 
 #### `Spline[] arrayOfSplines= {curvedPathway};`
 #### `List<PoseWithCurvature> pathway= TrajectoryGenerator.splinePointsFromSplines(arrayOfSplines);`
@@ -128,4 +128,4 @@ In the first line of code, a list named twoDimensional points is created. These 
 
 #### `trajectory= TrajectoryGenerator.generateTrajectory(twoDimensionalPoints, trajectoryConfiguration);`
 
-This line of code generated a trajectory vector for the robot to travel to its intended destination, with its inputs being the list of points from the spline and the trajectoryConfiguration, which was the maxmimum velocity and acceleration the robot was set to travel with during its travel path. 
+This line of code generated a trajectory vector for the robot to travel to its intended destination, with its inputs being the list of points from the spline and the trajectoryConfiguration, which was the maximum velocity and acceleration the robot was set to travel with during its travel path. 
