@@ -19,9 +19,9 @@ WPILib’s Command-Based architecture is built on a scheduler that constantly as
 
 The scheduler is responsible for running, interrupting, and managing commands. It automatically:
 
-- Runs`initialize()`when a command starts.
-- Calls`execute()`every robot loop.
-- Ends a command when`isFinished()`returns true or another command interrupts it.
+- Runs `initialize()` when a command starts.
+- Calls `execute()` every robot loop.
+- Ends a command when `isFinished()` returns true or another command interrupts it.
 - Enforces subsystem requirements (one command per subsystem at a time).
 
 #### Command Lifecycle
@@ -86,7 +86,7 @@ A subsystem represents hardware: motors, sensors, and logic that runs every loop
 
 - Own the hardware (motors, encoders, solenoids)
 - Expose public methods (set Motor, go To Angle, shoot Ball)
-- Run background logic in`periodic()`
+- Run background logic in `periodic()`
 - Optionally have a**default command**
 
 #### Example Subsystem
