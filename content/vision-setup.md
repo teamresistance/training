@@ -4,14 +4,14 @@ title: "Setting up and Tuning Vision"
 
 ### Overview
 
-Vision before you can even get your hands dirty requires some setting up and adjusting for the best processing that is crucial for in game performance. Vision can be applied through different camera processing methods such as PhotonVision and Limelight. The PhotonVision and Limelight docs can be found through these two links: https://photonvision.org/ and https://docs.limelightvision.io/docs/docs-limelight/getting-started/limelight-4. These docs contain what you need to setup the different cameras and ability to have successful vision processing and tracking.
+Vision before you can even get your hands dirty requires some setting up and adjusting for the best processing that is crucial for in game performance. Vision can be applied through different camera processing methods such as PhotonVision and Limelight. The [PhotonVision](https://docs.photonvision.org/en/v2026.1.1/) and [Limelight](https://docs.limelightvision.io/docs/docs-limelight/getting-started/summary) docs can be found through these two links.These docs contain what you need to setup the different cameras and ability to have successful vision processing and tracking.
 
 ### Requirements
 
 Things you SHOULD have with you at hand when doing any calibration activity:
 
-- limelight.local (Website to connect to Limelight pipeline)
-- photonvision.local:5800 (Website to connect to Photonvision pipeline)
+-[limelight.local](limelight.local) (Website to connect to Limelight pipeline) -[photonvision.local](photonvision.local:5800) (Website to connect to Photonvision pipeline)
+
 - Both of the documents on hand to help with setup
 - Charuco Calibration Board
 
@@ -23,6 +23,4 @@ Obviously, the documents provide the knowledge you need for both code and physic
 - Next, access the pipeline of whatever you are using, this will provide different sliders to adjust lighting, color contrast (Red and Blue Balance Specifically), and sensor grain. There is no formula to adjust these to properly calibrate the camera, you have to play around and make sure the camera senses every part of the board fully as it will highlight the parts it detects.
 - Finally, once you play around and get the board fully highlighted, then the camera is ready for tracking and detecting objects on the field.
 
-![limelight](/limelight-pipeline.png)
-
-![charucoboard](/charucoboard.png)
+![limelight](/limelight-pipeline.png) ![charucoboard](/charucoboard.png)
