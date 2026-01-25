@@ -113,4 +113,4 @@ public static Command followPoses(SwerveDriveIO drive, double transitionVelocity
 
 ### PathFinder
 
-PathFinder is a sub-branch of pathplanner that allows the robot to drive to a set pose, while avoiding obstacles on the field.`AutoBuilder.pathfindToPose(...)`Use it when you want to autonomously get around field elements in teleop without much driver input.
+PathFinder is a sub-branch of pathplanner that allows the robot to drive to a set pose, while avoiding obstacles on the field. `AutoBuilder.pathfindToPose(...)` Use it when you want to autonomously get around field elements in teleop without much driver input.
