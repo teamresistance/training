@@ -110,7 +110,7 @@ For the controlVectorEnd.x, the x-position is set to the x-position of the desir
 
 For the controlVectorEnd.y, the x-position is set to the y-position of the desired target.
 
- ####`QuinticHermiteSpline curvedPathway= new QuinticHermiteSpline(controlVectorStart.x, controlVectorStart.y,controlVectorEnd.x,controlVectorEnd.y);`
+#### `QuinticHermiteSpline curvedPathway= new QuinticHermiteSpline(controlVectorStart.x, controlVectorStart.y,controlVectorEnd.x,controlVectorEnd.y);`
 
 The variable curvedPathway is an object, and this is basically the spline curve filled with several position points that the robot will follow. 
 
