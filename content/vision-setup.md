@@ -24,5 +24,5 @@ Obviously, the documents provide the knowledge you need for both code and physic
 
 
 
-![alt text](image-1.png)      ![alt text](image-2.png)
+![limelight-pipeline-ss](/limelight-pipeline ss.png)       ![charucoboard ss](/charucoboard.png)
 
