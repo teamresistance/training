@@ -39,7 +39,7 @@ The subsystem maintains the robot's field position using a SwerveDrivePoseEstima
 The subsystem configures the PathPlanner`AutoBuilder`to enable autonomous routines. This includes defining:
 
 - State Getters/Setters: Methods like`getPose()`,`setPose()`,`getChassisSpeeds()`.
-- Drive Command: The`runVelocity()`method is used to execute the calculated path speeds.
+- Drive Command: The`runVelocity()` method is used to execute the calculated path speeds.
 - Control Parameters: Holonomic PID controllers (PPHolonomicDriveController) for both the X/Y translation and the rotation are configured.
 - Pathfinding: It uses the`LocalADStarAK`implementation for real-time obstacle avoidance and dynamic path generation.
 
@@ -79,3 +79,53 @@ These commands utilize the PathPlanner library to generate and follow complex pa
 
 - Path Generation: The logic first converts the provided control points (`followCurve`) or poses (`followPoses`) into a PathPlanner`PathPlannerPath`object, which includes motion constraints.
 - Sequence: The final command is a sequence: first, it uses`AutoBuilder.pathfindToPose`to navigate dynamically from the current location to the path's start point; second, it uses`AutoBuilder.followPath`to precisely follow the pre-generated curve or pose path.
+
+## Conceptual Understanding
+
+How does swerve work?
+
+Concepts of linear algebra are heavily prevalent when formulating control vectors for the robots. There are several types of paths that robots can take. This varies from spline curves to straight lines. 
+
+How is a straight line formed?
+
+
+#### `TrajectoryConfig trajectoryConfiguration= new TrajectoryConfig(1,1);`
+
+What does this line do? Basically, this sets the maximum speed that the robot can move with during its path to its destination. 
+#### `Spline.ControlVector controlVectorStart = new Spline.ControlVector(new double[]{0, 0, 0}, new double[]{0, 0, 0});`
+#### `Spline.ControlVector controlVectorEnd = new Spline.ControlVector(new double[]{0, 0, 0}, new double[]{0, 0, 0});`
+These lines of code just establish the starting an ending positions for the robot during its path. The first bracket in the starting control vector with 0,0,0 represent the starting x position, x velocity, and x rotation of the robot. The second bracket with 0,0,0 in the control vector start represents the initial y-position, y-velocity, and y-rotation. The same applied for the control vector end. 
+
+
+#### `controlVectorStart.x= new double[]{currentPose2d.getX(),1, 0};`
+#### `controlVectorStart.y= new double[]{currentPose2d.getY(),1, 0};`
+#### `controlVectorEnd.x= new double[]{BlueATarget.getX(), 1, 0};`
+#### `controlVectorEnd.y= new double[]{BlueATarget.getY(), 0, 0};`
+
+For controlVectorStart.x, the code is setting the x-position of the starting position vector to the current x-position of the robot, which is mathematically calculated using PhotonVision systems on the robot, or limelight. 
+
+For controlVectorStart.y, the code is setting the y-position of the starting position vector to the current y-position of the robot. 
+
+For the controlVectorEnd.x, the x-position is set to the x-position of the desired target.
+
+For the controlVectorEnd.y, the x-position is set to the y-position of the desired target.
+
+#### `QuinticHermiteSpline curvedPathway= new QuinticHermiteSpline(controlVectorStart.x, controlVectorStart.y,controlVectorEnd.x,controlVectorEnd.y);`
+
+The variable curvedPathway is an object, and this is basically the spline curve filled with several position points that the robot will follow. 
+
+In order for a trajectory to be made from the spline, it needs an array of several 2 dimensional points with x and y coordinates that the robot will follow. 
+
+#### `Spline[] arrayOfSplines= {curvedPathway};`
+#### `List<PoseWithCurvature> pathway= TrajectoryGenerator.splinePointsFromSplines(arrayOfSplines);`
+
+This line of code generates the list of points that the robot will go to one by one in order to move in the spline curve, and it generates the points from the spline object curvedPathway. 
+
+#### `List<Pose2d> twoDimensionalPoints= new ArrayList<>();`
+####    `for(PoseWithCurvature curvedPose: pathway){`
+####      `twoDimensionalPoints.add(curvedPose.poseMeters);`
+In the first line of code, a list named twoDimensional points is created. These points consist of x and y coordinates. The for loop is filling the list twoDimensionalPoints with points from the spline generated earlier. 
+
+#### `trajectory= TrajectoryGenerator.generateTrajectory(twoDimensionalPoints, trajectoryConfiguration);`
+
+This line of code generated a trajectory vector for the robot to travel to its intended destination, with its inputs being the list of points from the spline and the trajectoryConfiguration, which was the maximum velocity and acceleration the robot was set to travel with during its travel path. 
