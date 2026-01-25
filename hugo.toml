@@ -15,29 +15,39 @@ disableKinds = ['taxonomy', 'term']
 
 [menu]
   [[menu.quick]]
+    name = 'Getting Started'
+    url = '/getting-started/'
+    weight = 1
+
+  [[menu.quick]]
+    name = 'Challenges'
+    url = '/challenges/'
+    weight = 2
+
+  [[menu.quick]]
     name = 'Tuning PID'
     url = '/pid-tuning/'
-    weight = 1
+    weight = 3
 
   [[menu.quick]]
     name = 'Subsystem IO Abstraction'
     url = '/abstract-io/'
-    weight = 2
+    weight = 4
 
   [[menu.quick]]
     name = 'Pathing'
     url = '/pathfinding/'
-    weight = 3
+    weight = 5
 
   [[menu.quick]]
     name = 'Code Standards'
     url = '/standards/'
-    weight = 4
+    weight = 6
 
   [[menu.quick]]
     name = 'Swerve Drive'
     url = '/swerve/'
-    weight = 5
+    weight = 7
 
   [[menu.external]]
     name = 'WPILib Docs'

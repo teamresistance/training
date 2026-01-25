@@ -34,12 +34,13 @@
     "pathplanning",
     "setpoint",
     "setpoints",
+    "teamresistance",
     "teleop",
     "teleoperated",
     "timestamping",
     "tuning",
     "photonvision",
-    "photonvision",
+    "Photonvision",
     "Charuco"
   ]
 }

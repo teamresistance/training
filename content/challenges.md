@@ -4,16 +4,20 @@ title: "Programming Season Challenges"
 
 Complete these challenges in order. The first challenges focus on software concepts you can work on anywhere -- no hardware required. Later challenges introduce sensors, motors, and hands-on tuning at the shop.
 
+**New to robot programming?** Start with the [Getting Started guide](/getting-started/) to set up your development environment and fork the team's code template.
+
 ---
 
 ## Challenge 1: Command-Based Fundamentals
 
-**Prerequisites:** Sections 1, [Command-Based Programming](/command-based/)
+**Prerequisites:** [Getting Started guide](/getting-started/), [Command-Based Programming](/command-based/)
 **Hardware needed:** None (simulation only)
 
 ### Overview
 
 Learn the command-based architecture by building a robot project -- no real hardware needed. You'll create subsystems, commands, command groups, and triggers that work entirely in code.
+
+Make sure you've completed the [Getting Started guide](/getting-started/) and have your fork of the `Newbie_Gym` cloned and building before beginning this challenge.
 
 ### Requirements
 
