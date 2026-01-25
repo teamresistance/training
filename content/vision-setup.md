@@ -22,5 +22,7 @@ Obviously, the documents provide the knowledge you need for both code and physic
 - Next, access the pipeline of whatever you are using, this will provide different sliders to adjust lighting, color contrast (Red and Blue Balance Specifically), and sensor grain. There is no formula to adjust these to properly calibrate the camera, you have to play around and make sure the camera senses every part of the board fully as it will highlight the parts it detects. 
 - Finally, once you play around and get the board fully highlighted, then the camera is ready for tracking and detecting objects on the field. 
 
+
+
 ![alt text](image-1.png)      ![alt text](image-2.png)
 
