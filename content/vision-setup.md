@@ -10,8 +10,8 @@ Vision before you can even get your hands dirty requires some setting up and adj
 
 Things you SHOULD have with you at hand when doing any calibration activity:
 
--[limelight.local](limelight.local) (Website to connect to Limelight pipeline) -[photonvision.local](photonvision.local:5800) (Website to connect to Photonvision pipeline)
-
+- [limelight.local](limelight.local) (Website to connect to Limelight pipeline)
+- [photonvision.local](photonvision.local:5800) (Website to connect to Photonvision pipeline)
 - Both of the documents on hand to help with setup
 - Charuco Calibration Board
 
