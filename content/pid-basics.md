@@ -63,7 +63,7 @@ This is not “proper tuning,” but rather a quick way to get functional values
 
 #### 1. Start With Only kP
 
-1. Set a small value like`0.01`.
+1. Set a small value like `0.01`.
 1. Increase until the mechanism starts to oscillate.
 1. Reduce by 20–30%.
 
@@ -83,7 +83,7 @@ Only add I when the mechanism gets close but never reaches target.
 
 #### 4. Consider adding a Feedforward
 
-Adding a feedforward can be as simple as this:`output = output+feedforward`
+Adding a feedforward can be as simple as this: `output = output+feedforward`
 There is a more proper way to do this, but this will work in some cases.
 
 1. Test your motor by applying increasing power until it just starts to move
