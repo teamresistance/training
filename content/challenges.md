@@ -95,6 +95,10 @@ Build a traffic light system using digital outputs (integrates with later sensor
 - Can switch between positions using controller
 - Code cleanly separates IO interface from implementation
 
+### Extra challenge
+
+- Use a `Mechanism2d` to display your mechanism in real-time
+
 ---
 
 ## Challenge 3: Autonomous Sequences
