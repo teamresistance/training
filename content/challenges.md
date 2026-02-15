@@ -139,7 +139,44 @@ Create autonomous routines that use your subsystem from Challenge 2. Practice se
 
 ---
 
-## Challenge 4: Vision-Integrated Targeting (Limelight)
+## Challenge 4: Sensor Integration
+
+**Prerequisites:** Challenges 1-3, [Sensors](/sensors/), [Telemetry](/telemetry/)
+**Hardware needed:** Test board with limit switches, beam break, or similar sensors
+
+### Overview
+
+Add sensor feedback to your subsystem. This challenge requires shop hardware -- coordinate with mentors to use the sensor test boards.
+
+### Requirements
+
+- Add at least one sensor input to your subsystem IO interface
+- Implement both real (hardware) and simulated sensor readings
+- Create a `Trigger` based on sensor state that fires a command
+- Log sensor values to [SmartDashboard](/telemetry/)
+- Use sensor feedback to modify subsystem behavior
+
+### Sensor ideas by subsystem
+
+- **Arm:** Limit switch at stowed position for homing, or "game piece detected" beam break
+- **Elevator:** Top/bottom limit switches, or through-bore encoder for absolute position
+- **Lights:** "Car sensor" using beam break -- when triggered, advance light sequence faster
+
+### Success criteria
+
+- Sensor values display correctly in SmartDashboard
+- Trigger fires command when sensor condition is met
+- Subsystem responds appropriately to sensor input
+- Simulation still works with simulated sensor values
+
+### Extra challenge
+
+- Add debouncing to your sensor input to prevent false triggers
+- Create a "calibration" command that uses sensor feedback to auto-home the subsystem
+
+---
+
+## Challenge 5: Vision-Integrated Targeting (Limelight)
 
 **Prerequisites:** Challenges 1-3, [Setting Up and Tuning Vision](/vision-setup/), [Vision Pose Estimation](/vision-pose/), [Vision - Target / Game Piece Tracking with Limelight](/vision-tracking/)
 **Hardware needed:** Limelight (real robot recommended), simulation fallback provided
@@ -196,43 +233,6 @@ Create a command that uses Limelight data to align your subsystem:
 
 - Add a deadband so the subsystem stops adjusting when close enough to aligned
 - Create an autonomous sequence that combines vision alignment with a scoring action from Challenge 3
-
----
-
-## Challenge 5: Sensor Integration
-
-**Prerequisites:** Challenges 1-3, [Sensors](/sensors/), [Telemetry](/telemetry/)
-**Hardware needed:** Test board with limit switches, beam break, or similar sensors
-
-### Overview
-
-Add sensor feedback to your subsystem. This challenge requires shop hardware -- coordinate with mentors to use the sensor test boards.
-
-### Requirements
-
-- Add at least one sensor input to your subsystem IO interface
-- Implement both real (hardware) and simulated sensor readings
-- Create a `Trigger` based on sensor state that fires a command
-- Log sensor values to [SmartDashboard](/telemetry/)
-- Use sensor feedback to modify subsystem behavior
-
-### Sensor ideas by subsystem
-
-- **Arm:** Limit switch at stowed position for homing, or "game piece detected" beam break
-- **Elevator:** Top/bottom limit switches, or through-bore encoder for absolute position
-- **Lights:** "Car sensor" using beam break -- when triggered, advance light sequence faster
-
-### Success criteria
-
-- Sensor values display correctly in SmartDashboard
-- Trigger fires command when sensor condition is met
-- Subsystem responds appropriately to sensor input
-- Simulation still works with simulated sensor values
-
-### Extra challenge
-
-- Add debouncing to your sensor input to prevent false triggers
-- Create a "calibration" command that uses sensor feedback to auto-home the subsystem
 
 ---
 
