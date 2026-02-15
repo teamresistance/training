@@ -176,9 +176,69 @@ Add sensor feedback to your subsystem. This challenge requires shop hardware -- 
 
 ---
 
-## Challenge 5: Motor Control
+## Challenge 5: Vision-Integrated Targeting (Limelight)
 
-**Prerequisites:** Challenges 1-4, [Basic Motor Control](/motors/), [Vendors](/vendors/)
+**Prerequisites:** Challenges 1-3, [Setting Up and Tuning Vision](/vision-setup/), [Vision Pose Estimation](/vision-pose/), [Vision - Target / Game Piece Tracking with Limelight](/vision-tracking/)
+**Hardware needed:** Limelight (real robot recommended), simulation fallback provided
+
+### Overview
+
+Integrate vision targeting using Limelight into your existing command-based project. You'll read target data from NetworkTables, create a vision subsystem, and write commands that align your mechanism using vision feedback. Use the same subsystem you built in Challenge 2 (arm, elevator, or LEDs).
+
+### Requirements
+
+#### 1: Create a Vision Subsystem
+
+Create a `VisionSubsystem` that:
+
+- Reads the following Limelight values:
+  - `tx` (horizontal offset)
+  - `ty` (vertical offset)
+  - `ta` (target area)
+  - `tv` (whether a target is visible)
+- Publishes these values to SmartDashboard
+
+Exposes helper methods:
+
+- `boolean hasTarget()`
+- `double getHorizontalOffset()`
+- `double getTargetArea()`
+
+#### 2: Create a Vision-Based Alignment Command
+
+Create a command that uses Limelight data to align your subsystem:
+
+**Pick one:**
+
+- **Rotating Arm:** Rotate the arm to point at the target (minimize `tx`)
+- **Elevator:** Move elevator to a height based on target distance (`ta` or `ty`)
+- **LEDs:** Change LED pattern based on whether a target is detected
+
+**Behavior:**
+
+- If `tv == 1`:
+  - Move your subsystem toward alignment using proportional control
+- If `tv == 0`:
+  - Stop movement
+  - Indicate "no target" via LEDs or SmartDashboard
+
+### Success criteria
+
+- `VisionSubsystem` reads and publishes Limelight values correctly
+- Alignment command reacts to target presence and offset
+- Subsystem responds proportionally to vision input
+- "No target" case is handled safely
+
+### Extra challenge
+
+- Add a deadband so the subsystem stops adjusting when close enough to aligned
+- Create an autonomous sequence that combines vision alignment with a scoring action from Challenge 3
+
+---
+
+## Challenge 6: Motor Control
+
+**Prerequisites:** Challenges 1-5, [Basic Motor Control](/motors/), [Vendors](/vendors/)
 **Hardware needed:** Motor on test stand
 
 ### Overview
@@ -211,9 +271,9 @@ Connect your simulated subsystem to real motors. This challenge requires shop ha
 
 ---
 
-## Challenge 6: PID Position Control
+## Challenge 7: PID Position Control
 
-**Prerequisites:** Challenges 1-5, [Basic PID Control](/pid-basics/), [Tuning PID](/pid-tuning/)
+**Prerequisites:** Challenges 1-6, [Basic PID Control](/pid-basics/), [Tuning PID](/pid-tuning/)
 **Hardware needed:** Motor test stand, PIDlab tool
 
 ### Overview
