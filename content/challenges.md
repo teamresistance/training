@@ -317,8 +317,8 @@ Replace open-loop control with closed-loop PID. This is typically the most chall
 **Hardware needed:** None (Simulation Only)
 
 ### Overview
-In this challenge, you will combine trajectory-based robot movement with subsystem actions (arm, elevator, or LEDs). 
-You will use PathPlanner to design autonomous paths and follow them in simulation using your drivetrain subsystem. 
+In this challenge, you will combine trajectory-based robot movement with subsystem actions (arm, elevator, or LEDs).
+You will use PathPlanner to design autonomous paths and follow them in simulation using your drivetrain subsystem.
 
 ### Requirements
 
@@ -332,32 +332,32 @@ You will use PathPlanner to design autonomous paths and follow them in simulatio
     - Drive back to the starting position
 
 - **Add at least 1 event marker in each path, such as:**
-    - "score" 
-    - "raiseArm" 
-    - "flashLEDs" 
+    - "score"
+    - "raiseArm"
+    - "flashLEDs"
 
 - **Load and Follow Paths in simulation**
-    - Load your paths from PathPlanner 
+    - Load your paths from PathPlanner
     - Follow them using the prebuilt drive subsystems
-    - Robot must visibly move in simulation 
+    - Robot must visibly move in simulation
 
 - **Create a SendableChooser with these shown on SmartDashboard:**
     - "Score and Leave"
-    - "Drive Only" 
-    - "Path With Mechanism Action" 
+    - "Drive Only"
+    - "Path With Mechanism Action"
 
 ### Success Criteria
 
-- Robot follows PathPlanner paths in simulation 
-- Subsystem activates at correct points in the path 
-- Autonomous routines selectable from SmartDashboard 
-- Robot completes entire routine without errors 
+- Robot follows PathPlanner paths in simulation
+- Subsystem activates at correct points in the path
+- Autonomous routines selectable from SmartDashboard
+- Robot completes entire routine without errors
 
 ### Extra Challenges
 
 #### Extra Challenge 1: Conditional Path Logic
 
-- Change the path of the robot based on mechanical status. 
+- Change the path of the robot based on mechanical status.
 - Example: If arm is raised, then keep still. Else, raise arm and drive forward
 
 
