@@ -323,28 +323,28 @@ You will use PathPlanner to design autonomous paths and follow them in simulatio
 ### Requirements
 
 - **Path A: Drive forward and stop**
-    - Start at the initial position
-    - Drive forward for 2 meters
+  - Start at the initial position
+  - Drive forward for 2 meters
 - **Path B: Drive forward, turn 180 degrees, and return**
-    - Start at the initial position
-    - Drive forward for 2 meters
-    - Perform a 180-degree turn
-    - Drive back to the starting position
+  - Start at the initial position
+  - Drive forward for 2 meters
+  - Perform a 180-degree turn
+  - Drive back to the starting position
 
 - **Add at least 1 event marker in each path, such as:**
-    - "score"
-    - "raiseArm"
-    - "flashLEDs"
+  - "score"
+  - "raiseArm"
+  - "flashLEDs"
 
 - **Load and Follow Paths in simulation**
-    - Load your paths from PathPlanner
-    - Follow them using the prebuilt drive subsystems
-    - Robot must visibly move in simulation
+  - Load your paths from PathPlanner
+  - Follow them using the prebuilt drive subsystems
+  - Robot must visibly move in simulation
 
 - **Create a SendableChooser with these shown on SmartDashboard:**
-    - "Score and Leave"
-    - "Drive Only"
-    - "Path With Mechanism Action"
+  - "Score and Leave"
+  - "Drive Only"
+  - "Path With Mechanism Action"
 
 ### Success Criteria
 
