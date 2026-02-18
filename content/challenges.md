@@ -311,7 +311,7 @@ Replace open-loop control with closed-loop PID. This is typically the most chall
 - Implement motion profiling for smoother movement (TrapezoidProfile)
 - Create a "tuning mode" command that oscillates between two positions for easy PID adjustment
 
-## Challenge 7: Autonomous Path Following with PathPlanner
+## Challenge 8: Autonomous Path Following with PathPlanner
 
 **Prerequisites:** Challenges 1-3, [Pathplanning & PathPlanner](/pathfinding/)
 **Hardware needed:** None (Simulation Only)
