@@ -310,3 +310,60 @@ Replace open-loop control with closed-loop PID. This is typically the most chall
 - Add feedforward to improve response time
 - Implement motion profiling for smoother movement (TrapezoidProfile)
 - Create a "tuning mode" command that oscillates between two positions for easy PID adjustment
+
+## Challenge 8: Autonomous Path Following with PathPlanner
+
+**Prerequisites:** Challenges 1-3, [Pathplanning & PathPlanner](/pathfinding/)
+**Hardware needed:** None (Simulation Only)
+
+### Overview
+In this challenge, you will combine trajectory-based robot movement with subsystem actions (arm, elevator, or LEDs).
+You will use PathPlanner to design autonomous paths and follow them in simulation using your drivetrain subsystem.
+
+### Requirements
+
+- **Path A: Drive forward and stop**
+  - Start at the initial position
+  - Drive forward for 2 meters
+- **Path B: Drive forward, turn 180 degrees, and return**
+  - Start at the initial position
+  - Drive forward for 2 meters
+  - Perform a 180-degree turn
+  - Drive back to the starting position
+
+- **Add at least 1 event marker in each path, such as:**
+  - "score"
+  - "raiseArm"
+  - "flashLEDs"
+
+- **Load and Follow Paths in simulation**
+  - Load your paths from PathPlanner
+  - Follow them using the prebuilt drive subsystems
+  - Robot must visibly move in simulation
+
+- **Create a SendableChooser with these shown on SmartDashboard:**
+  - "Score and Leave"
+  - "Drive Only"
+  - "Path With Mechanism Action"
+
+### Success Criteria
+
+- Robot follows PathPlanner paths in simulation
+- Subsystem activates at correct points in the path
+- Autonomous routines selectable from SmartDashboard
+- Robot completes entire routine without errors
+
+### Extra Challenges
+
+#### Extra Challenge 1: Conditional Path Logic
+
+- Change the path of the robot based on mechanical status.
+- Example: If arm is raised, then keep still. Else, raise arm and drive forward
+
+
+#### Extra Challenge 2: Multi-Path Auto
+
+Create an autonomous routine that:
+- Follows path A
+- Runs a mechanism action
+- Follows path B
