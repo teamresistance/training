@@ -61,27 +61,27 @@ Adds damping. Reacts to how fast the error is changing.
 
 This is not “proper tuning,” but rather a quick way to get functional values.
 
-## 1. Start With Only kP
+### 1. Start With Only kP
 
 1. Set a small value like `0.01`.
 1. Increase until the mechanism starts to oscillate.
 1. Reduce by 20–30%.
 
-## 2. Add kD
+### 2. Add kD
 
 Add derivative until overshoot stops.
 
 1. Increase slowly.
 1. If the mechanism becomes shaky → reduce.
 
-## 3. Add kI (Only If Needed)
+### 3. Add kI (Only If Needed)
 
 Only add I when the mechanism gets close but never reaches target.
 
 1. Start extremely small (`0.0001`).
 1. Increase until the error goes away.
 
-## 4. Consider adding a Feedforward
+### 4. Consider adding a Feedforward
 
 Adding a feedforward can be as simple as this: `output = output+feedforward`
 There is a more proper way to do this, but this will work in some cases.

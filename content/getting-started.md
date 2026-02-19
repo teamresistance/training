@@ -415,7 +415,7 @@ Now you're ready to begin! Head over to the [Programming Challenges](/challenges
 
 As you work through challenges, follow this Git workflow. Each step shows both command-line and IDE options:
 
-## 1. Create a Branch for the Challenge
+### 1. Create a Branch for the Challenge
 
 **Important Branch Naming:** Always include your first name at the beginning of your branch names (e.g., `john-challenge-1` or `sarah-challenge-1`). This helps mentors identify whose work they're reviewing.
 
@@ -443,13 +443,13 @@ Replace `yourname` with your actual first name (e.g., `git checkout -b john-chal
 
 ---
 
-## 2. Make Your Changes and Test Your Code
+### 2. Make Your Changes and Test Your Code
 
 Write your code and test it in simulation!
 
 ---
 
-## 3. Stage and Commit Your Work
+### 3. Stage and Commit Your Work
 
 **Command Line:**
 
@@ -467,7 +467,7 @@ git commit -m "Complete Challenge 1: Command-based fundamentals"
 
 ---
 
-## 4. Push to the Repository
+### 4. Push to the Repository
 
 **Command Line:**
 
@@ -485,7 +485,7 @@ Replace `yourname` with your actual first name.
 
 ---
 
-## 5. Create a Pull Request (for Mentor Review)
+### 5. Create a Pull Request (for Mentor Review)
 
 Create a pull request so mentors can review your work. **Note:** Your pull request will remain open for review only - it will not be merged into `main` since that branch is locked. This is just for feedback and code review.
 
@@ -508,7 +508,7 @@ Replace `[YourName]` with your actual first name.
 
 ---
 
-## 6. After Mentor Review, Create Your Next Branch
+### 6. After Mentor Review, Create Your Next Branch
 
 Your mentor will review your PR and provide feedback. Once approved, you're ready for the next challenge!
 
