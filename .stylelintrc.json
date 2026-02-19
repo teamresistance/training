@@ -1,43 +1,9 @@
 {
-  "extends": ["stylelint-config-standard"],
   "rules": {
-    "indentation": 2,
-    "string-quotes": "double",
-    "color-hex-length": "long",
-    "color-hex-case": "lower",
-    "declaration-block-no-redundant-longhand-properties": null,
-    "declaration-block-trailing-semicolon": "always",
-    "no-descending-specificity": null,
-    "selector-class-pattern": null,
-    "custom-property-pattern": null,
-    "alpha-value-notation": "percentage",
-    "color-function-notation": "legacy",
-    "selector-not-notation": "simple",
-    "media-feature-range-notation": "prefix",
-    "import-notation": "string",
-    "length-zero-no-unit": true,
-    "font-family-name-quotes": "always-where-recommended",
-    "font-weight-notation": "numeric",
-    "comment-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested"],
-        "ignore": ["stylelint-commands"]
-      }
-    ],
-    "rule-empty-line-before": [
-      "always-multi-line",
-      {
-        "except": ["first-nested"],
-        "ignore": ["after-comment"]
-      }
-    ],
-    "at-rule-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested", "blockless-after-same-name-blockless"],
-        "ignore": ["after-comment"]
-      }
-    ]
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "color-hex-length": null,
+    "font-weight-notation": null,
+    "media-feature-range-notation": null
   }
 }
