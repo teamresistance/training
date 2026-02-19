@@ -16,7 +16,7 @@ This guide will help you set up your development environment and begin working o
 
 ## Step 1: Introduction to Git and GitHub
 
-### What is Git?
+## What is Git?
 
 Git is a version control system that tracks changes to your code over time. It allows you to:
 
@@ -25,7 +25,7 @@ Git is a version control system that tracks changes to your code over time. It a
 - Collaborate with others without overwriting each other's changes
 - Revert mistakes and see the history of your project
 
-### What is GitHub?
+## What is GitHub?
 
 GitHub is a website that hosts Git repositories online. It adds collaboration features like:
 
@@ -34,7 +34,7 @@ GitHub is a website that hosts Git repositories online. It adds collaboration fe
 - Online code browsing and search
 - Automated testing and deployment
 
-### Learning Resources
+## Learning Resources
 
 If you're new to Git and GitHub, work through these tutorials first:
 
@@ -42,11 +42,11 @@ If you're new to Git and GitHub, work through these tutorials first:
 - [Git Handbook](https://docs.github.com/en/get-started/using-git/about-git) - Core Git concepts explained
 - [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) - How to use branches and pull requests
 
-### Essential Git Commands
+## Essential Git Commands
 
 Here are the commands you'll use most often. Each command has both a **command-line** option and an **IDE** option using VS Code:
 
-#### Clone a Repository
+## Clone a Repository
 
 Download a repository to your computer.
 
@@ -64,7 +64,7 @@ git clone <repository-url>
 
 ---
 
-#### Check Status
+## Check Status
 
 See which files have been modified.
 
@@ -81,7 +81,7 @@ git status
 
 ---
 
-#### Stage Files for Commit
+## Stage Files for Commit
 
 Prepare files to be saved in the next commit.
 
@@ -99,7 +99,7 @@ git add .                    # Add all changed files
 
 ---
 
-#### Commit Changes
+## Commit Changes
 
 Save a snapshot of your staged changes.
 
@@ -117,7 +117,7 @@ git commit -m "Description of changes"
 
 ---
 
-#### Push to GitHub
+## Push to GitHub
 
 Upload your commits to GitHub.
 
@@ -135,7 +135,7 @@ git push
 
 ---
 
-#### Pull from GitHub
+## Pull from GitHub
 
 Download the latest changes from GitHub.
 
@@ -153,7 +153,7 @@ git pull
 
 ---
 
-#### Create and Switch to a New Branch
+## Create and Switch to a New Branch
 
 Start working on a new feature or challenge.
 
@@ -171,7 +171,7 @@ git checkout -b <branch-name>
 
 ---
 
-#### Switch to an Existing Branch
+## Switch to an Existing Branch
 
 Change to a different branch.
 
@@ -188,7 +188,7 @@ git checkout <branch-name>
 
 ---
 
-#### View Commit History
+## View Commit History
 
 See past commits.
 
@@ -210,9 +210,9 @@ git log --oneline
 
 The GitHub CLI (`gh`) is a command-line tool that makes it easy to interact with GitHub. We'll use it to manage your development workflow.
 
-### Installation Instructions
+## Installation Instructions
 
-#### macOS
+## macOS
 
 Using Homebrew (recommended):
 
@@ -220,7 +220,7 @@ Using Homebrew (recommended):
 brew install gh
 ```
 
-#### Windows
+## Windows
 
 Using winget:
 
@@ -230,7 +230,7 @@ winget install --id GitHub.cli
 
 Or download the installer from [cli.github.com](https://cli.github.com/).
 
-#### Linux
+## Linux
 
 **Debian/Ubuntu:**
 
@@ -250,7 +250,7 @@ sudo dnf install gh
 sudo pacman -S github-cli
 ```
 
-### Authenticate with GitHub
+## Authenticate with GitHub
 
 After installation, authenticate the CLI with your GitHub account.
 
@@ -291,7 +291,7 @@ Team Resistance maintains a base robot code template at [teamresistance/Newbie_G
 - **Swerve drive implementation** - Team 86's standard drivetrain code
 - **Code quality tools** - Linters, formatters, and CI/CD configuration
 
-### Why Use the Template?
+## Why Use the Template?
 
 For the [programming challenges](/challenges/), you'll be creating your own robot subsystems and commands. Rather than starting from scratch, you'll **clone** (download a copy of) the `Newbie_Gym` repository. This gives you:
 
@@ -306,7 +306,7 @@ You'll work in your local copy independently, and mentors can review your progre
 
 ## Step 4: Clone the Template
 
-### Clone the Repository
+## Clone the Repository
 
 Download your local copy of the `Newbie_Gym`.
 
@@ -327,7 +327,7 @@ This command will clone the repository to your computer in a new `Newbie_Gym` fo
 
 ---
 
-### Navigate to Your Project
+## Navigate to Your Project
 
 **Command Line:**
 
@@ -341,7 +341,7 @@ cd Newbie_Gym
 
 ---
 
-### Verify Your Setup
+## Verify Your Setup
 
 Check that your clone is properly connected.
 
@@ -385,7 +385,7 @@ code .
 
 Before starting the challenges, verify the project builds and runs in simulation.
 
-### Build the Project
+## Build the Project
 
 In VS Code, press **Ctrl+Shift+P** (Windows/Linux) or **Cmd+Shift+P** (macOS) and type:
 
@@ -395,7 +395,7 @@ WPILib: Build Robot Code
 
 The build should complete successfully. If you see errors, ask a mentor for help.
 
-### Run Simulation
+## Run Simulation
 
 Press **Ctrl+Shift+P** / **Cmd+Shift+P** and type:
 
@@ -411,15 +411,16 @@ Choose "Sim GUI" when prompted. The simulation window should open, and you can e
 
 Now you're ready to begin! Head over to the [Programming Challenges](/challenges/) page and start with **Challenge 1: Command-Based Fundamentals**. You'll work in your local clone.
 
-### Workflow for Each Challenge
+## Workflow for Each Challenge
 
 As you work through challenges, follow this Git workflow. Each step shows both command-line and IDE options:
 
-#### 1. Create a Branch for the Challenge
+## 1. Create a Branch for the Challenge
 
 **Important Branch Naming:** Always include your first name at the beginning of your branch names (e.g., `john-challenge-1` or `sarah-challenge-1`). This helps mentors identify whose work they're reviewing.
 
 **Important About main Branch:** The `main` branch is locked and you cannot merge changes into it. Instead, you'll build each new challenge branch off your previous challenge branch. For example:
+
 - Challenge 1: Create `yourname-challenge-1` from `main`
 - Challenge 2: Create `yourname-challenge-2` from `yourname-challenge-1`
 - Challenge 3: Create `yourname-challenge-3` from `yourname-challenge-2`
@@ -442,13 +443,13 @@ Replace `yourname` with your actual first name (e.g., `git checkout -b john-chal
 
 ---
 
-#### 2. Make Your Changes and Test Your Code
+## 2. Make Your Changes and Test Your Code
 
 Write your code and test it in simulation!
 
 ---
 
-#### 3. Stage and Commit Your Work
+## 3. Stage and Commit Your Work
 
 **Command Line:**
 
@@ -466,7 +467,7 @@ git commit -m "Complete Challenge 1: Command-based fundamentals"
 
 ---
 
-#### 4. Push to the Repository
+## 4. Push to the Repository
 
 **Command Line:**
 
@@ -484,7 +485,7 @@ Replace `yourname` with your actual first name.
 
 ---
 
-#### 5. Create a Pull Request (for Mentor Review)
+## 5. Create a Pull Request (for Mentor Review)
 
 Create a pull request so mentors can review your work. **Note:** Your pull request will remain open for review only - it will not be merged into `main` since that branch is locked. This is just for feedback and code review.
 
@@ -507,7 +508,7 @@ Replace `[YourName]` with your actual first name.
 
 ---
 
-#### 6. After Mentor Review, Create Your Next Branch
+## 6. After Mentor Review, Create Your Next Branch
 
 Your mentor will review your PR and provide feedback. Once approved, you're ready for the next challenge!
 

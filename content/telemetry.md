@@ -4,17 +4,17 @@ title: "Telemetry & Logging"
 
 Telemetry is how the robot reports information for tuning, debugging, and analysis. This page covers both SmartDashboard and AdvantageKit logging.
 
-### SmartDashboard
+## SmartDashboard
 
 SmartDashboard is the simplest telemetry system built into WPILib. It sends key-value pairs to NetworkTables and can be viewed from any tool.
 
-#### When to Use SmartDashboard
+## When to Use SmartDashboard
 
 - Quick debugging
 - Live values during testing
 - Basic telemetry during matches
 
-#### Basic Example
+## Basic Example
 
 ```java
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +25,7 @@ public void periodic() {
 }
 ```
 
-#### Reading SmartDashboard Values
+## Reading SmartDashboard Values
 
 You can also read values from the dashboard (use sparingly):
 
@@ -34,11 +34,11 @@ double setpoint = SmartDashboard.getNumber("Arm Setpoint", 0.0);
 pidController.setSetpoint(setpoint);
 ```
 
-### AdvantageKit
+## AdvantageKit
 
 AdvantageKit is a high-performance logging framework used for real-time telemetry and replay. It records everything the robot does for offline debugging.
 
-#### What AdvantageKit Provides
+## What AdvantageKit Provides
 
 - Full match logging
 - Automatic timestamping
@@ -48,7 +48,7 @@ AdvantageKit is a high-performance logging framework used for real-time telemetr
 
 You don't need to know all the special stuff - just the`recordOutput()`method.
 
-#### Basic Logger Example
+## Basic Logger Example
 
 ```java
 import org.littletonrobotics.junction.Logger;
@@ -60,7 +60,7 @@ public void periodic() {
 }
 ```
 
-#### Logging a Complex Object
+## Logging a Complex Object
 
 AdvantageKit supports Pose2d, Rotation2d, and other geometry types automatically.
 
@@ -68,22 +68,22 @@ AdvantageKit supports Pose2d, Rotation2d, and other geometry types automatically
 Logger.recordOutput("Drive/Pose", drivetrain.getPose());
 ```
 
-#### Logging Motor/Encoder Data
+## Logging Motor/Encoder Data
 
 ```java
 Logger.recordOutput("Arm/MotorTemp", motor.getTemperature());
 Logger.recordOutput("Arm/EncoderPosition", encoder.getPosition());
 ```
 
-### Best Practices
+## Best Practices
 
-#### What to Log
+## What to Log
 
 - Subsystem states (enabled, disabled, idling)
 - Sensor values (encoders, limit switches)
 - Odometry / robot pose
 
-#### Use Namespace Folders
+## Use Namespace Folders
 
 ...and DON'T change the spelling or capitalization.
 

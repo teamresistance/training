@@ -4,7 +4,7 @@ title: "Subsystem IO Abstraction"
 
 IO Abstraction separates hardware access from subsystem logic. This allows you to swap between real hardware, simulation, replay, and unit tests without changing subsystem code.
 
-### What Is IO Abstraction?
+## What Is IO Abstraction?
 
 The concept is simple: every subsystem talks to an**IO interface**instead of directly accessing motor controllers, encoders, or sensors.
 
@@ -14,7 +14,7 @@ This gives you:
 - Real vs. simulated implementations
 - Easier hardware swap flexibility
 
-### The Structure
+## The Structure
 
 A subsystem usually has:
 
@@ -22,7 +22,7 @@ A subsystem usually has:
 - **A real implementation**— talks to actual hardware
 - **A fake/sim implementation**- for simulating robot code
 
-### Defining the IO Interface
+## Defining the IO Interface
 
 This interface defines**what the subsystem needs**. It does not know anything about CAN IDs or motor types.
 
@@ -46,7 +46,7 @@ public interface ArmIO extends Subsystem {
 }
 ```
 
-### Real Hardware Implementation
+## Real Hardware Implementation
 
 This class uses real hardware—TalonFX, SparkMAX, encoders, limit switches, etc.
 
@@ -82,7 +82,7 @@ public class ArmReal implements ArmIO {
 }
 ```
 
-### Fake / Simulation Implementation
+## Fake / Simulation Implementation
 
 Used for simulation, unit tests, or AdvantageKit replay.
 
@@ -118,7 +118,7 @@ public class ArmSim implements ArmIO {
 }
 ```
 
-### Selecting Real vs Sim in RobotContainer
+## Selecting Real vs Sim in RobotContainer
 
 You choose the implementation at runtime:
 
@@ -140,7 +140,7 @@ public class RobotContainer {
 }
 ```
 
-### Why Teams Use This Pattern
+## Why Teams Use This Pattern
 
 WPILib does not force IO abstraction, but the best teams use it because:
 

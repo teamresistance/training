@@ -2,7 +2,7 @@
 title: "Vision - Target / Game Piece Tracking with Limelight"
 ---
 
-### What is Limelight?
+## What is Limelight?
 
 At its core, Limelight is a smart camera that:
 
@@ -12,7 +12,7 @@ At its core, Limelight is a smart camera that:
 
 These features prove to be very strong and reliable while also being relatively easy to work with.
 
-### Apriltags Versus Game Pieces (Key differences)
+## Apriltags Versus Game Pieces (Key differences)
 
 April tags are black and white markers that:
 
@@ -28,7 +28,7 @@ Game Pieces vary by game, but they:
 
 In conclusion, Apriltags are for telling us information about the robot pose while game pieces tell us what the robot needs to pick up.
 
-### How Limelight detects game pieces
+## How Limelight detects game pieces
 
 Limelights often use **color-based pipelines** for game pieces.
 
@@ -41,7 +41,7 @@ The pipeline flow is listed below, with steps 2-5 needing configuration in the L
 1. It selects the "best" contour
 1. It calculates positional data
 
-### How to read Limelight data in Java
+## How to read Limelight data in Java
 
 Limelight data is accessed by NetworkTables, a class that allows us to communicate Limelight data directly to other parts of the code. This can be done by the following code:
 

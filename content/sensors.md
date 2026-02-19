@@ -4,7 +4,7 @@ title: "Sensors in FRC"
 
 An overview of common FRC sensors, how they work, and how we use them to create reliable robot behavior.
 
-### Banner Sensors
+## Banner Sensors
 
 Banner sensors are small optical sensors used for object detection.
 
@@ -12,7 +12,7 @@ Banner sensors are small optical sensors used for object detection.
 - Fast and reliable
 - Detects if something is in the way - super simple
 
-#### Example (Digital Input)
+## Example (Digital Input)
 
 ```java
 private DigitalInput banner = new DigitalInput(0);
@@ -22,18 +22,18 @@ public boolean hasPiece() {
 }
 ```
 
-### Encoders
+## Encoders
 
 Encoders measure rotation accurately and are used to know how many times a motor has rotated.
 
-#### Types of Encoders
+## Types of Encoders
 
 - **Integrated encoders:**Neo/Kraken built-in sensors
 - **External encoders:**SRX Mag, Through-Bore
 - **Absolute encoders:**Gives the true angle at startup
 - **Relative encoders:**Counts movement from zero, wherever it was when it powered on is "0 rotations"
 
-#### Example (SparkMAX Built-In Relative Encoder)
+## Example (SparkMAX Built-In Relative Encoder)
 
 ```java
 private RelativeEncoder encoder = sparkMotorController.getEncoder();
@@ -43,21 +43,21 @@ public double getPosition() {
 }
 ```
 
-### Absolute vs Relative Encoders
+## Absolute vs Relative Encoders
 
-#### Absolute Encoders
+## Absolute Encoders
 
 - Know angle on startup
 - Used particularly on swerve, helpful in other places if precision is absolutely needed
 - Not affected by missed counts
 
-#### Relative Encoders
+## Relative Encoders
 
 - Start at 0 on boot
 - Require homing
 - Used for mostly everything that doesn't need to be ultra-precise or can't be reasonably put in a home position
 
-### Limit Switches
+## Limit Switches
 
 Limit switches detect endpoints of travel and protect mechanisms.
 
@@ -65,7 +65,7 @@ Limit switches detect endpoints of travel and protect mechanisms.
 - Digital input (true/false)
 - Often used for homing
 
-#### Example (Limit Switch)
+## Example (Limit Switch)
 
 ```java
 private DigitalInput limit = new DigitalInput(1);
@@ -75,17 +75,17 @@ public boolean atHome() {
 }
 ```
 
-### Homing a Mechanism
+## Homing a Mechanism
 
 Homing establishes a known zero position for a mechanism.
 
-#### Common Homing Methods
+## Common Homing Methods
 
 - Drive into a limit switch → reset encoder
 - Move slowly until hard-stop → reset encoder
 - Put the mechanism in the right place before powering on the robot
 
-#### Example (Homing using a limit switch)
+## Example (Homing using a limit switch)
 
 ```java
 if (limitSwitch.get()) {
