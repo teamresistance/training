@@ -4,15 +4,11 @@ title: "Getting Started with Development"
 
 This guide will help you set up your development environment and begin working on the [programming challenges](/challenges/). By the end, you'll have your own local copy of our robot code template and be ready to start coding.
 
----
-
 ## What You'll Need
 
 - A computer running Windows, macOS, or Linux
 - Basic familiarity with using a terminal/command prompt
 - A [GitHub account](https://github.com/signup) (free)
-
----
 
 ## Step 1: Introduction to Git and GitHub
 
@@ -62,8 +58,6 @@ git clone <repository-url>
 2. Type "Git: Clone" and press Enter
 3. Paste the repository URL and choose a folder
 
----
-
 ## Check Status
 
 See which files have been modified.
@@ -78,8 +72,6 @@ git status
 
 - The Source Control panel (sidebar icon with branches) shows modified files automatically
 - Click the Source Control icon or press **Ctrl+Shift+G** / **Cmd+Shift+G**
-
----
 
 ## Stage Files for Commit
 
@@ -97,8 +89,6 @@ git add .                    # Add all changed files
 1. Open the Source Control panel (**Ctrl+Shift+G** / **Cmd+Shift+G**)
 2. Click the **+** icon next to individual files, or click **+** next to "Changes" to stage all
 
----
-
 ## Commit Changes
 
 Save a snapshot of your staged changes.
@@ -114,8 +104,6 @@ git commit -m "Description of changes"
 1. Open the Source Control panel
 2. Type your commit message in the text box at the top
 3. Press **Ctrl+Enter** (Windows/Linux) or **Cmd+Enter** (macOS), or click the checkmark icon
-
----
 
 ## Push to GitHub
 
@@ -133,8 +121,6 @@ git push
 2. Click the **...** menu → **Push**, or
 3. Click **Sync Changes** if available at the bottom of the window
 
----
-
 ## Pull from GitHub
 
 Download the latest changes from GitHub.
@@ -150,8 +136,6 @@ git pull
 1. Open the Source Control panel
 2. Click the **...** menu → **Pull**, or
 3. Click **Sync Changes** at the bottom of the window (pulls and pushes)
-
----
 
 ## Create and Switch to a New Branch
 
@@ -169,8 +153,6 @@ git checkout -b <branch-name>
 2. Select **Create new branch...**
 3. Enter the branch name and press Enter
 
----
-
 ## Switch to an Existing Branch
 
 Change to a different branch.
@@ -185,8 +167,6 @@ git checkout <branch-name>
 
 1. Click the branch name in the bottom-left corner
 2. Select the branch you want from the list
-
----
 
 ## View Commit History
 
@@ -203,8 +183,6 @@ git log --oneline
 1. Open the Source Control panel
 2. Click the **...** menu → **View History** (requires Git Graph extension), or
 3. Right-click a file and select **View File History**
-
----
 
 ## Step 2: Install the GitHub CLI
 
@@ -279,8 +257,6 @@ gh auth status
 3. Click it and follow the browser authentication prompts
 4. Look for your GitHub username in the bottom-left corner to confirm
 
----
-
 ## Step 3: Understanding the Drive Template
 
 Team Resistance maintains a base robot code template at [teamresistance/Newbie_Gym](https://github.com/teamresistance/Newbie_Gym). This repository contains:
@@ -301,8 +277,6 @@ For the [programming challenges](/challenges/), you'll be creating your own robo
 - The ability to practice Git workflows (branches, commits, pull requests)
 
 You'll work in your local copy independently, and mentors can review your progress through your branches.
-
----
 
 ## Step 4: Clone the Template
 
@@ -325,8 +299,6 @@ This command will clone the repository to your computer in a new `Newbie_Gym` fo
 3. Enter the repository URL: `https://github.com/teamresistance/Newbie_Gym.git`
 4. Choose a folder location on your computer
 
----
-
 ## Navigate to Your Project
 
 **Command Line:**
@@ -338,8 +310,6 @@ cd Newbie_Gym
 **VS Code:**
 
 - If you just cloned: Click **Open** when prompted, or use **File → Open Folder** and select the `Newbie_Gym` folder
-
----
 
 ## Verify Your Setup
 
@@ -357,8 +327,6 @@ git remote -v
 2. Type `git remote -v` and press Enter
 
 You should see `origin` pointing to the **Team Resistance repository** (`teamresistance/Newbie_Gym`).
-
----
 
 ## Step 5: Open the Project in VS Code
 
@@ -378,8 +346,6 @@ code .
 **VS Code:**
 
 - Launch VS Code and use **File → Open Folder** to select the `Newbie_Gym` directory
-
----
 
 ## Step 6: Build and Simulate
 
@@ -404,8 +370,6 @@ WPILib: Simulate Robot Code
 ```
 
 Choose "Sim GUI" when prompted. The simulation window should open, and you can enable the robot. This confirms your development environment is working.
-
----
 
 ## Step 7: Start Your First Challenge
 
@@ -441,13 +405,9 @@ Replace `yourname` with your actual first name (e.g., `git checkout -b john-chal
 2. Select **Create new branch...**
 3. Type `yourname-challenge-1` (replace `yourname` with your first name) and press Enter
 
----
-
 ### 2. Make Your Changes and Test Your Code
 
 Write your code and test it in simulation!
-
----
 
 ### 3. Stage and Commit Your Work
 
@@ -465,8 +425,6 @@ git commit -m "Complete Challenge 1: Command-based fundamentals"
 3. Type your commit message: "Complete Challenge 1: Command-based fundamentals"
 4. Press **Ctrl+Enter** / **Cmd+Enter** or click the checkmark
 
----
-
 ### 4. Push to the Repository
 
 **Command Line:**
@@ -482,8 +440,6 @@ Replace `yourname` with your actual first name.
 1. Click **Sync Changes** at the bottom of the window, or
 2. Open Source Control panel → **...** menu → **Push**
 3. If prompted, confirm you want to publish the branch
-
----
 
 ### 5. Create a Pull Request (for Mentor Review)
 
@@ -505,8 +461,6 @@ Replace `[YourName]` with your actual first name.
 4. Add title: "[YourName] Challenge 1 Complete" (replace with your first name)
 5. Add description: "Completed command-based fundamentals challenge"
 6. Click **Create pull request**
-
----
 
 ### 6. After Mentor Review, Create Your Next Branch
 
@@ -530,8 +484,6 @@ git checkout -b yourname-challenge-2
 
 This builds Challenge 2 on top of your Challenge 1 work. Repeat this process for each subsequent challenge.
 
----
-
 ## Getting Help
 
 If you run into problems:
@@ -540,8 +492,6 @@ If you run into problems:
 - **Git issues:** Check the [Git Handbook](https://docs.github.com/en/get-started/using-git/about-git) or ask for help
 - **WPILib questions:** See [WPILib documentation](https://docs.wpilib.org/)
 - **Team-specific questions:** Talk to programming mentors at meetings
-
----
 
 ## Next Steps
 
