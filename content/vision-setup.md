@@ -2,11 +2,11 @@
 title: "Setting up and Tuning Vision"
 ---
 
-### Overview
+## Overview
 
 Vision before you can even get your hands dirty requires some setting up and adjusting for the best processing that is crucial for in game performance. Vision can be applied through different camera processing methods such as PhotonVision and Limelight. The [PhotonVision](https://docs.photonvision.org/en/v2026.1.1/) and [Limelight](https://docs.limelightvision.io/docs/docs-limelight/getting-started/summary) docs can be found through these two links. These docs contain what you need to setup the different cameras and ability to have successful vision processing and tracking.
 
-### Requirements
+## Requirements
 
 Things you should have with you at hand when doing any calibration activity:
 
@@ -15,7 +15,7 @@ Things you should have with you at hand when doing any calibration activity:
 - Both of the documents on hand to help with setup
 - Charuco Calibration Board
 
-### General Process
+## General Process
 
 Obviously, the documents provide the knowledge you need for both code and physical setup to your computer, but after you get whatever camera setup, you need be able to calibrate and tune the camera vision under different conditions. This is due to the fact that when we go to any competition, we have to calibrate the cameras to the field itself as lighting varies in different rooms. Here are the steps you must follow:
 

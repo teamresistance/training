@@ -50,7 +50,7 @@ Each tag has a fixed Pose3d on the field. Vision estimates work backwards from t
 
 It may sound easy, use the newer version! However, depending on the game and your movement, which model to use may change - it is important to test which works best.
 
-### MegaTag 1
+## MegaTag 1
 
 MegaTag 1 estimates pose from a single tag at a time.
 
@@ -60,7 +60,7 @@ MegaTag 1 estimates pose from a single tag at a time.
 
 The solvePnP problem has two valid solutions in many cases - ambiguity. It can (mostly) figure out which is correct.
 
-### MegaTag 2
+## MegaTag 2
 
 MegaTag 2 can use multiple tags simultaneously to solve a constrained optimization problem.
 

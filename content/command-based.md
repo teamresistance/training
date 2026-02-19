@@ -11,11 +11,11 @@ The simplest way to understand it is this:
 - Triggers run commands
 - The command scheduler checks triggers
 
-### How the Command-Based Framework Works
+## How the Command-Based Framework Works
 
 WPILib’s Command-Based architecture is built on a scheduler that constantly asks:*“What commands should run right now?”*Every robot loop (~20ms), the scheduler updates active commands, checks triggers, and ensures subsystem rules are followed.
 
-#### The Scheduler
+## The Scheduler
 
 The scheduler is responsible for running, interrupting, and managing commands. It automatically:
 
@@ -24,7 +24,7 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 - Ends a command when `isFinished()` returns true or another command interrupts it.
 - Enforces subsystem requirements (one command per subsystem at a time).
 
-#### Command Lifecycle
+## Command Lifecycle
 
 | Method         | When It's Called         |
 | -------------- | ------------------------ |
@@ -33,11 +33,11 @@ The scheduler is responsible for running, interrupting, and managing commands. I
 | `isFinished()` | Checked every loop       |
 | `end()`        | When ending or canceled  |
 
-### Triggers and Event Binding
+## Triggers and Event Binding
 
 Triggers listen for conditions and start/stop commands automatically. They can be bound to controller buttons, sensors, booleans, or custom logic.
 
-#### Button Triggers (Typical)
+## Button Triggers (Typical)
 
 ```java
 driverController.rightTrigger()
@@ -45,7 +45,7 @@ driverController.rightTrigger()
     .onFalse(new StopShooter(shooter));
 ```
 
-#### Boolean Triggers
+## Boolean Triggers
 
 Any function that returns a boolean can be used as a trigger.
 
@@ -55,13 +55,13 @@ Trigger armAtTop = new Trigger(() -> arm.getPosition() > 80);
 armAtTop.onTrue(new HoldArmPosition(arm));
 ```
 
-#### Event-Driven Programming
+## Event-Driven Programming
 
 - Commands start/stop based on events, not loops.
 - Subsystems declare “who is controlling me right now” through requirements.
 - Triggers make code reactive instead of procedural.
 
-#### Command Groups and Compositions
+## Command Groups and Compositions
 
 The scheduler also runs composite commands:
 
@@ -78,18 +78,18 @@ new SequentialCommandGroup(
 );
 ```
 
-### Subsystems
+## Subsystems
 
 A subsystem represents hardware: motors, sensors, and logic that runs every loop. Each subsystem should control**one mechanical responsibility**.
 
-#### Subsystem Responsibilities
+## Subsystem Responsibilities
 
 - Own the hardware (motors, encoders, solenoids)
 - Expose public methods (set Motor, go To Angle, shoot Ball)
 - Run background logic in `periodic()`
 - Optionally have a**default command**
 
-#### Example Subsystem
+## Example Subsystem
 
 ```java
 public class Arm extends SubsystemBase {
@@ -112,11 +112,11 @@ public class Arm extends SubsystemBase {
 }
 ```
 
-### Commands
+## Commands
 
 A command is an action the robot performs: move arm, drive straight, shoot, etc. Commands run until they finish, get interrupted, or loop forever if continuous.
 
-#### A Real Command Class
+## A Real Command Class
 
 Use this when the logic is non-trivial or lasts over time:
 
@@ -143,32 +143,32 @@ public class MoveArmTo extends Command {
 }
 ```
 
-#### When to Make a Dedicated Command File
+## When to Make a Dedicated Command File
 
 - Action spans time (rotate arm to angle)
 - Action requires state (store values internally)
 - You need initialize/execute/end logic
 - You want to reuse the command in multiple places
 
-### Command Composition (inline commands)
+## Command Composition (inline commands)
 
 Instead of making a whole file, WPILib allows “one-liner” commands composed from lambdas. These are ideal for simple actions.
 
-#### Examples of Inline Commands
+## Examples of Inline Commands
 
-#### Instant Command (do something once)
+## Instant Command (do something once)
 
 ```java
 .onTrue(Commands.runOnce(() -> arm.setTarget(90)));
 ```
 
-#### Run Command (runs continuously)
+## Run Command (runs continuously)
 
 ```java
 .whileTrue(Commands.run(() -> arm.setTarget(driverInput)));
 ```
 
-#### StartEnd Command (runs while held)
+## StartEnd Command (runs while held)
 
 ```java
 .whileTrue(Commands.startEnd(
@@ -177,7 +177,7 @@ Instead of making a whole file, WPILib allows “one-liner” commands composed 
 );
 ```
 
-#### Sequence
+## Sequence
 
 ```java
 Commands.sequence(
@@ -186,7 +186,7 @@ Commands.sequence(
 );
 ```
 
-#### Parallel Commands
+## Parallel Commands
 
 ```java
 Commands.parallel(
@@ -195,7 +195,7 @@ Commands.parallel(
 );
 ```
 
-#### When to Use Composition Instead of a Command File
+## When to Use Composition Instead of a Command File
 
 - Behavior is extremely small
 - No state needs to be stored
@@ -203,17 +203,17 @@ Commands.parallel(
 - No finish condition needed
 - Used only once (not reused)
 
-### Requirements (addRequirements())
+## Requirements (addRequirements())
 
 Requirements tell WPILib which subsystem(s) a command controls. Only one command at a time may use a subsystem.
 
-#### Why Requirements Exist
+## Why Requirements Exist
 
 - Prevents two commands from fighting over motors
 - Ensures default commands stop when another command interrupts
 - Makes concurrency safe
 
-#### Example
+## Example
 
 ```java
 public MoveArmTo(Arm arm, double target) {
@@ -223,23 +223,23 @@ public MoveArmTo(Arm arm, double target) {
 }
 ```
 
-#### What Happens Without Requirements?
+## What Happens Without Requirements?
 
 - Both commands may try to control the same motor
 - Robot behavior becomes inconsistent
 - Default command keeps running even during an action
 - WPILib can't automatically interrupt commands
 
-#### When NOT to Use Requirements
+## When NOT to Use Requirements
 
 - When command does NOT own hardware (e.g. vibration, LED logic separate from driving)
 - When no issues will arise from multiple commands running on the same subsystem at once
 
-### Default Commands
+## Default Commands
 
 Every subsystem can have one default command that runs whenever no other command is using it.
 
-#### Example: default drive command
+## Example: default drive command
 
 ```java
 drive.setDefaultCommand(
@@ -252,29 +252,29 @@ drive.setDefaultCommand(
 );
 ```
 
-#### Rules for Default Commands
+## Rules for Default Commands
 
 - Must have a requirement on the subsystem
 - Runs continuously
 - Stops when another command interrupts, continues afterwards
 - Useful for operator control
 
-### Best Practices
+## Best Practices
 
-#### Subsystem Design
+## Subsystem Design
 
 - One subsystem per mechanical system
 - Keep periodic short
 - Expose high-level methods (not raw motor sets)
 
-#### Command Design
+## Command Design
 
 - Make files for reusable & multi-step actions
 - Use composition for tiny one-off behaviors
 - Always declare requirements
 - Don’t put hardware in commands (only subsystems)
 
-#### Operator Controls
+## Operator Controls
 
 ```java
 controller.a().onTrue(new MoveArmTo(arm, 90));

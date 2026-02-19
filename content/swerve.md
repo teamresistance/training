@@ -23,7 +23,7 @@ The `TunerConstants` class serves as the constants file for all physical and con
 
 The swerve drive subsystem is implemented using the AdvantageKit abstraction, relying on the `SwerveDriveIO` interface. It integrates hardware control, odometry, and pathfinding setup. Refer to [Subsystem IO Abstraction](/abstract-io/) if you forgot how it works!
 
-### Odometry and Pose Estimation
+## Odometry and Pose Estimation
 
 The subsystem maintains the robot's field position using a SwerveDrivePoseEstimator.
 
@@ -35,7 +35,7 @@ The subsystem maintains the robot's field position using a SwerveDrivePoseEstima
   [See this](https://v6.docs.ctr-electronics.com/en/latest/docs/application-notes/update-frequency-impact.html) for
   more unnecessary - but cool to know - odometry info
 
-### PathPlanner Setup
+## PathPlanner Setup
 
 The subsystem configures the PathPlanner `AutoBuilder` to enable autonomous routines. This includes defining:
 
@@ -48,9 +48,9 @@ The subsystem configures the PathPlanner `AutoBuilder` to enable autonomous rout
 
 This class contains static factory methods for generating reusable drive commands.
 
-### Teleoperated Driving Commands
+## Teleoperated Driving Commands
 
-#### `joystickDrive(...)`
+## `joystickDrive(...)`
 
 This is the standard, field-relative drive command. It maps raw joystick inputs (X, Y, and Omega) to robot speeds.
 
@@ -58,23 +58,23 @@ This is the standard, field-relative drive command. It maps raw joystick inputs 
 - Field-Relative Control: It converts the joystick-derived `ChassisSpeeds` from robot-relative to field-relative using the current Gyro rotation (`drive.getRotation()`).
 - Alliance Flipping: It automatically flips the drive direction (adds 180° to what angle the robot thinks it is looking) if the robot is on the Red Alliance, ensuring the controls are always relative to the driver's perspective.
 
-#### `joystickDriveAtAngle(...)`
+## `joystickDriveAtAngle(...)`
 
 A specialized command for driving while maintaining or targeting a specific field-relative rotation. You can use this if you want the robot to aim at a target while moving, for example, if it was a shooter game.
 
 - Linear Control: Linear motion (X and Y) is still controlled by the raw joystick input.
 - Angular Control: Angular velocity is controlled by a Profiled PID Controller (`angleController`). This controller calculates the necessary value to move the current robot angle (`drive.getRotation()`) toward the supplier-provided target angle (`rotationSupplier.get()`) using a motion profile.
 
-### Path Following and Navigation Commands
+## Path Following and Navigation Commands
 
-#### `goToTransform(...)`
+## `goToTransform(...)`
 
 A command that uses separate Profiled PID Controllers for the X, Y, and rotation axes to drive the robot to a target `Pose2d` (derived from a `Transform2d`) in a straight line, without using pathfinding.
 
 - Axis Control: Three PID controllers are used: `pidX`, `pidY`, and `angleController`.
 - Stopping Condition: The command terminates (`.until(...)`) when the robot is within a small positional tolerance (0.07 meters in X and Y) and angular tolerance (5 degrees) of the target.
 
-#### `followCurve(...)` and `followPoses(...)`
+## `followCurve(...)` and `followPoses(...)`
 
 These commands utilize the PathPlanner library to generate and follow complex paths.
 

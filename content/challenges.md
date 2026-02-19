@@ -6,8 +6,6 @@ Complete these challenges in order. The first challenges focus on software conce
 
 **New to robot programming?** Start with the [Getting Started guide](/getting-started/) to set up your development environment and clone the team's code template.
 
----
-
 ## Challenge 1: Command-Based Fundamentals
 
 **Prerequisites:** [Getting Started guide](/getting-started/), [Command-Based Programming](/command-based/)
@@ -36,8 +34,6 @@ Make sure you've completed the [Getting Started guide](/getting-started/) and ha
 ### Extra challenge
 
 - Create a `RaceGroup` or `DeadlineGroup` to demonstrate advanced composition, and make it useful
-
----
 
 ## Challenge 2: Subsystem with Simulation
 
@@ -99,8 +95,6 @@ Build a traffic light system using digital outputs (integrates with later sensor
 
 - Use a `Mechanism2d` to display your mechanism in real-time
 
----
-
 ## Challenge 3: Autonomous Sequences
 
 **Prerequisites:** Challenges 1-2
@@ -137,8 +131,6 @@ Create autonomous routines that use your subsystem from Challenge 2. Practice se
 - Create a "conditional" autonomous that checks subsystem status mid-routine and branches
 - Add a command that uses `.until()` or `.withTimeout()` decorators
 
----
-
 ## Challenge 4: Sensor Integration
 
 **Prerequisites:** Challenges 1-3, [Sensors](/sensors/), [Telemetry](/telemetry/)
@@ -173,8 +165,6 @@ Add sensor feedback to your subsystem. This challenge requires shop hardware -- 
 
 - Add debouncing to your sensor input to prevent false triggers
 - Create a "calibration" command that uses sensor feedback to auto-home the subsystem
-
----
 
 ## Challenge 5: Vision-Integrated Targeting (Limelight)
 
@@ -234,8 +224,6 @@ Create a command that uses Limelight data to align your subsystem:
 - Add a deadband so the subsystem stops adjusting when close enough to aligned
 - Create an autonomous sequence that combines vision alignment with a scoring action from Challenge 3
 
----
-
 ## Challenge 6: Motor Control
 
 **Prerequisites:** Challenges 1-5, [Basic Motor Control](/motors/), [Vendors](/vendors/)
@@ -268,8 +256,6 @@ Connect your simulated subsystem to real motors. This challenge requires shop ha
 - Soft limits prevent dangerous over-travel
 - Motor stops cleanly when commands end
 - Simulation still works when not connected to hardware
-
----
 
 ## Challenge 7: PID Position Control
 
@@ -317,6 +303,7 @@ Replace open-loop control with closed-loop PID. This is typically the most chall
 **Hardware needed:** None (Simulation Only)
 
 ### Overview
+
 In this challenge, you will combine trajectory-based robot movement with subsystem actions (arm, elevator, or LEDs).
 You will use PathPlanner to design autonomous paths and follow them in simulation using your drivetrain subsystem.
 
@@ -360,10 +347,10 @@ You will use PathPlanner to design autonomous paths and follow them in simulatio
 - Change the path of the robot based on mechanical status.
 - Example: If arm is raised, then keep still. Else, raise arm and drive forward
 
-
 #### Extra Challenge 2: Multi-Path Auto
 
 Create an autonomous routine that:
+
 - Follows path A
 - Runs a mechanism action
 - Follows path B

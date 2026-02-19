@@ -4,7 +4,7 @@ title: "Making Use of Vendor Features"
 
 Modern FRC motor controllers are not dumb speed controllers. TalonFXs and Spark MAXes contain onboard sensors, PID loops, motion profiling, current limiting, and safety logic. This page documents how those features actually work, when to use them, and how to configure them correctly in real robots.
 
-### Why Use Onboard Vendor Control?
+## Why Use Onboard Vendor Control?
 
 Vendor-side control runs directly on the motor controller, at a significantly higher frequency instead of the roboRIO’s 50 Hz loop. This gives:
 
@@ -12,11 +12,11 @@ Vendor-side control runs directly on the motor controller, at a significantly hi
 - Better handling of battery usage and CAN bandwidth usage
 - Less complex code, as the motor controller firmware actually does stuff with your configuration
 
-### TalonFX Integrated PID (Kraken x60/x44)
+## TalonFX Integrated PID (Kraken x60/x44)
 
 TalonFX-powered motors (krakens) contain an internal PID controller that can close the loop on position, velocity, or motion profiles using the built-in encoder.
 
-#### What Runs on the Motor
+## What Runs on the Motor
 
 - Normal PID loop (P, I, D)
 - Feedforward (kS, kV, kA, kG)
@@ -25,11 +25,11 @@ TalonFX-powered motors (krakens) contain an internal PID controller that can clo
 
 When you call`setControl()`, the roboRIO sends a target, not raw motor power. The TalonFX then handles the control loop internally.
 
-#### Motion Magic (Kraken x60/x44)
+## Motion Magic (Kraken x60/x44)
 
 Motion Magic is CTRE’s trapezoidal motion profiler built into the motor controller. You provide a target position, max velocity, and max acceleration.
 
-#### How It Works
+## How It Works
 
 1. The TalonFX generates a velocity profile internally
 1. Velocity is fed into the PID + feedforward loop
@@ -39,11 +39,11 @@ This removes the need to write your own profiling code on the RIO and ensures mo
 
 MotionMagic can be skipped for most cases (for normal positional control), but it can be useful in scenarios where you want to accelerate smoothly and avoid jerk, such as in long arms, light elevators, mechanisms with high backlash, etc.
 
-### Spark MAX Integrated PID (NEO, Vortex, 550)
+## Spark MAX Integrated PID (NEO, Vortex, 550)
 
 Spark MAX controllers include an onboard PID controller that works with either the NEO’s internal encoder or an external encoder. Basically the same as the TalonFX.
 
-#### Control Modes
+## Control Modes
 
 - Velocity control
 - Position control
@@ -51,11 +51,11 @@ Spark MAX controllers include an onboard PID controller that works with either t
 
 Like CTRE, once configured, the Spark MAX executes the control loop without relying on the roboRIO timing.
 
-#### MAXMotion Position Control
+## MAXMotion Position Control
 
 MAXMotion is REV’s equivalent to Motion Magic. It combines position PID with motion constraints to generate smooth movement profiles.
 
-#### What You Configure
+## What You Configure
 
 - Maximum velocity
 - Maximum acceleration
@@ -65,7 +65,7 @@ The Spark MAX handles the ramping internally, preventing aggressive starts and s
 
 ## Vendor Configuration / Control Programs
 
-### CTRE Tuner X
+## CTRE Tuner X
 
 Tuner X is used to configure CTRE devices such as TalonFXs, Pigeon2s (CTRE gyroscope), CANdles (LED controller), and more. It is used to:
 
@@ -78,7 +78,7 @@ Tuner X is used to configure CTRE devices such as TalonFXs, Pigeon2s (CTRE gyros
 
 Often times it's faster to use Tuner X to quickly test new PID control, current limits, or other configuration instead of updating your code and redeploying.
 
-### REV Hardware Client
+## REV Hardware Client
 
 The REV Hardware Client is used to configure REV devices, primarily SparkMAX controllers. Tuner X and REV client are very similar in use, just for different vendors. It provides:
 
@@ -89,7 +89,7 @@ The REV Hardware Client is used to configure REV devices, primarily SparkMAX con
 - Verify sensor direction and motor inversion
 - Manually control and configure devices instead of re-deploying code with new values every time
 
-### Best Practices
+## Best Practices
 
 - Always set current and speed limits before enabling closed-loop control, over time sending 60 amps to a motor (even for a split second) can damage it.
 - Configure the basics before testing anything control-wise
@@ -97,6 +97,6 @@ The REV Hardware Client is used to configure REV devices, primarily SparkMAX con
 - Please, try to simulate your code before putting it on a robot unless its heavily based on factors that only exist in the real world
 - Try to view data as it is being tested using one of these tools if not AdvantageScope. More data means more things to make better!
 
-### Summary
+## Summary
 
 Vendor motor controllers provide powerful features that dramatically simplify robot code when used correctly. Understanding what runs on the controller versus the RIO is essential for building reliable, high-performance mechanisms.

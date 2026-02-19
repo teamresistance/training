@@ -4,17 +4,17 @@ title: "WPILib Geometry Classes"
 
 WPILib provides geometry classes to handle positions, rotations, and transforms in 2D space. These classes simplify robot math such as aiming, distance calculation, and field-relative movement.WARNING: All code you write using these classes should be based on a BLUE alliance origin. (0,0) should be on the bottom blue corner! Look up "FRC Blue Side Origin" for more info
 
-### Translation2d
+## Translation2d
 
 Represents a point or vector on a 2D plane (x, y). Useful for distances and positions.
 
-#### Creating a Translation
+## Creating a Translation
 
 ```java
 Translation2d point = new Translation2d(2.0, 3.0); // x=2m, y=3m
 ```
 
-#### Distance and Vector Math
+## Distance and Vector Math
 
 ```java
 Translation2d a = new Translation2d(1, 1);
@@ -24,18 +24,18 @@ double distance = a.getDistance(b); // 5 meters
 Translation2d vector = b.minus(a);   // vector from a to b
 ```
 
-### Rotation2d
+## Rotation2d
 
 Stores an angle, provides sine/cosine helpers, and supports combining rotations.
 
-#### Creating a Rotation
+## Creating a Rotation
 
 ```java
 Rotation2d rot = Rotation2d.fromDegrees(90);
 double radians = rot.getRadians();
 ```
 
-#### Combining Rotations
+## Combining Rotations
 
 ```java
 Rotation2d a = Rotation2d.fromDegrees(30);
@@ -43,11 +43,11 @@ Rotation2d b = Rotation2d.fromDegrees(20);
 Rotation2d c = a.plus(b); // 50 degrees
 ```
 
-### Pose2d
+## Pose2d
 
 Combines a translation and rotation, representing the robot’s full position on the field.
 
-#### Creating a Pose
+## Creating a Pose
 
 ```java
 Pose2d robot = new Pose2d(
@@ -56,7 +56,7 @@ Pose2d robot = new Pose2d(
 );
 ```
 
-#### Applying a Transform
+## Applying a Transform
 
 ```java
 Transform2d movement = new Transform2d(
@@ -67,11 +67,11 @@ Transform2d movement = new Transform2d(
 Pose2d newPose = robot.plus(movement);
 ```
 
-### Transform2d
+## Transform2d
 
 Represents a relative movement (translation + rotation) between poses.
 
-#### Creating a Transform
+## Creating a Transform
 
 ```java
 Transform2d t = new Transform2d(
@@ -81,11 +81,11 @@ Transform2d t = new Transform2d(
 Pose2d movedPose = robot.plus(t);
 ```
 
-### Targeting and Angles
+## Targeting and Angles
 
 You can use the robot pose and target pose to calculate angles, distances, etc. for aiming.
 
-#### Angle to Target
+## Angle to Target
 
 ```java
 Translation2d target = new Translation2d(5, 3);
@@ -97,7 +97,7 @@ Rotation2d aimAngle = new Rotation2d(Math.atan2(
 ));
 ```
 
-#### Degrees to Rotate
+## Degrees to Rotate
 
 ```java
 Rotation2d currentAngle = robot.getRotation();
@@ -106,7 +106,7 @@ Rotation2d neededTurn = aimAngle.minus(currentAngle);
 double degrees = neededTurn.getDegrees();
 ```
 
-#### Distance to Target
+## Distance to Target
 
 ```java
 double dist = robot.getTranslation().getDistance(target);
