@@ -1,0 +1,7 @@
+{{- $id := .Anchor | default (.PlainText | urlize) -}}
+<h{{ .Level }} id="{{ $id }}">
+  <a href="#{{ $id }}" class="heading-anchor" aria-label="Link to {{ .PlainText }}">
+    <span class="heading-anchor-icon">#</span>
+  </a>
+  {{ .Text | safeHTML }}
+</h{{ .Level }}>

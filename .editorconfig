@@ -13,9 +13,14 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-# HTML content
-[*.{html,css,js}]
-indent_size = 4
+# HTML and JavaScript
+[*.{html,js}]
+indent_size = 2
+
+# CSS files
+[*.css]
+indent_size = 2
+quote_type = double
 
 # Configuration
 [*.{json,yml,toml}]
